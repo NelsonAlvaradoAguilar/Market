@@ -15,8 +15,8 @@ export default function Navbar() {
           </Link>
         </li>
         <li>
-          <Link className="navbar__link" to="/products">
-            Products/Services
+          <Link className="navbar__link" to="/store">
+            Store
           </Link>
         </li>
         <li>
