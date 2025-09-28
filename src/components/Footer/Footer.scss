@@ -1,0 +1,25 @@
+@use "../../style/parcials/_mixin" as *;
+@use "../../style/parcials/_variables" as *;
+
+.footer {
+  background-color: $generalbackground;
+  color: $generaltext;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  &__links {
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+
+    margin-bottom: 1rem;
+    padding: 0%;
+  }
+  &__link {
+    color: $generaltext;
+    text-decoration: none;
+  }
+}

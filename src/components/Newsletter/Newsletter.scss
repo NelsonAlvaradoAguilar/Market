@@ -1,0 +1,19 @@
+@use "../../style/parcials/_mixin" as *;
+@use "../../style/parcials/_variables" as *;
+
+.newsletter {
+  background-color: $generalbackground;
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem;
+
+  &__form {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+  &__input {
+    width: 100%;
+    border-radius: 0.5rem;
+  }
+}
