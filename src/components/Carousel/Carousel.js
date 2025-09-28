@@ -1,7 +1,7 @@
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
-import data from "../../data/ProductsData.json";
+import data from "../../data/StoreData.json";
 import "./Carousel.scss";
 export default function FeaturedCarousel() {
   // Example: show featured products

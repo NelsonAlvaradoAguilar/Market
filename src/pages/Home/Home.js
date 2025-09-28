@@ -28,7 +28,7 @@ export default function Home() {
             Short teaser about your business...
           </Link>
         </section>
-        <Embed url={""} />
+        <Embed url={"home__about"} />
       </>
     </section>
   );

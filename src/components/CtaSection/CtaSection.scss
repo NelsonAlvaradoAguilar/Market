@@ -1,0 +1,28 @@
+@use "../../style/parcials/_mixin" as *;
+@use "../../style/parcials/_variables" as *;
+
+.section {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 9rem;
+  width: 100%;
+  text-decoration: none;
+
+  border-radius: 0.5rem;
+  @include title();
+  color: #fff;
+  &__produce {
+    background-image: url("../../assets/images/download.jpeg");
+  }
+  &__grocery {
+    background-image: url("../../assets/images/1000_F_95053810_bKixh3rHnrbKtND6laMUcbIO3TTds2EK.jpg");
+  }
+  &__kitchen {
+    background-image: url("../../assets/images/healthy-food-delivery-services-update-66338f1e8fb0a.avif");
+  }
+}
