@@ -1,0 +1,5 @@
+@use "../../style/parcials/_mixin" as *;
+
+.navbar {
+  @include navbarset();
+}

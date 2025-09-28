@@ -1,0 +1,11 @@
+@use "../../style/parcials/_mixin" as *;
+@use "../../style/parcials/_variables" as *;
+
+.embed {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}

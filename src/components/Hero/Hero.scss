@@ -1,0 +1,37 @@
+@use "../../style/parcials/_mixin" as *;
+@use "../../style/parcials/_variables" as *;
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  background-image: url("../../assets/Logo.jpg");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  align-items: center;
+  position: relative;
+  top: 5rem;
+  height: 100vh;
+
+  &__title {
+    text-align: center;
+    padding: 1rem;
+    margin-top: 0%;
+    color: $generaltext;
+    position: relative;
+    bottom: 4rem;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2), 0 1px 0 #fff;
+  }
+  &__description {
+    text-align: center;
+    padding: 1rem;
+    color: $generaltext;
+    position: relative;
+    bottom: 5rem;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2), 0 1px 0 #b59999;
+  }
+  &__cta {
+    position: relative;
+    bottom: 15.5rem;
+  }
+}
