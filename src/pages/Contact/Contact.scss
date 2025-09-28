@@ -1,0 +1,16 @@
+@use "../../style/parcials/_mixin" as *;
+@use "../../style/parcials/_variables" as *;
+
+.contact {
+  background-color: $generalbackground;
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem;
+  &__title {
+    @include title();
+  }
+  &__description {
+    @include font();
+    padding: 0.5rem;
+  }
+}
