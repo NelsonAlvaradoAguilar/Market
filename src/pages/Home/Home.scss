@@ -16,6 +16,7 @@
   &__subtitle {
     @include title();
     margin: 0%;
+
     margin-bottom: 0.5rem;
   }
   &__paragrph {

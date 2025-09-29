@@ -3,12 +3,15 @@ import Hero from "../../components/Hero/Hero";
 import Embed from "../../components/Embed/Embed";
 import "./Home.scss";
 import NewsletterSignup from "../../components/Newsletter/Newsletter";
-
+import FeaturedCarousel from "../../components/Carousel/Carousel";
+import { images } from "../../data/images";
 export default function Home() {
   return (
     <section className="home">
       <>
-        <Hero />
+        <h3 className="home__subtitle"> Seasonal</h3>
+        <FeaturedCarousel items={images} />
+
         <NewsletterSignup />
         <section className="home__info">
           <h3 className="home__subtitle">Business Hours</h3>
