@@ -14,6 +14,7 @@ import Store from "./pages/Store/Store.js";
 import Legal from "./components/Legal/Legal.js";
 import Footer from "./components/Footer/Footer.js";
 import StoreSection from "./components/StoreSection/StoreSection.js";
+import Header from "./components/Header/Header.js";
 export default function App() {
   const produceData = {
     categories: storeData.store.produce.categories,
@@ -29,7 +30,7 @@ export default function App() {
   };
   return (
     <BrowserRouter>
-      <Navbar />
+      <Header />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
