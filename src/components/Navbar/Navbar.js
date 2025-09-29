@@ -19,16 +19,6 @@ export default function Navbar() {
             Store
           </Link>
         </li>
-        <li>
-          <Link className="navbar__link" to="/contact">
-            Contact
-          </Link>
-        </li>
-        <li>
-          <Link className="navbar__link" to="/legal">
-            Legal
-          </Link>
-        </li>
       </ul>
     </nav>
   );
