@@ -1,21 +1,35 @@
 import { Link } from "react-router-dom";
 import Hero from "../../components/Hero/Hero";
 import Embed from "../../components/Embed/Embed";
+import storeData from "../../data/StoreData.json";
 import "./Home.scss";
 import NewsletterSignup from "../../components/Newsletter/Newsletter";
 import FeaturedCarousel from "../../components/Carousel/Carousel";
 import { images } from "../../data/images";
 export default function Home() {
+  const workingHours = storeData?.store?.workingHours?.workingHours || {};
   return (
     <section className="home">
       <>
-        <h3 className="home__subtitle"> Seasonal</h3>
+        <div className="home__banner">
+          <h4 className="home__title">Weekly Sales $$$$</h4>
+        </div>
+
         <FeaturedCarousel items={images} />
 
         <NewsletterSignup />
+        <Hero />
         <section className="home__info">
-          <h3 className="home__subtitle">Business Hours</h3>
-          <p className="home__paragrph">Mon-Fri: 9am-6pm</p>
+          <div>
+            <h3 className="home__subtitle">Business Hours</h3>
+            <ul className="home__hours">
+              {Object.entries(workingHours).map(([day, time]) => (
+                <li key={day}>
+                  {day}: {time}
+                </li>
+              ))}
+            </ul>
+          </div>
           <h3 className="home__subtitle">Location</h3>
           <Embed
             url={
