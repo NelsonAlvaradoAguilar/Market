@@ -17,17 +17,26 @@ import StoreSection from "./components/StoreSection/StoreSection.js";
 import Header from "./components/Header/Header.js";
 export default function App() {
   const produceData = {
-    categories: storeData.store.produce.categories,
-    items: storeData.store.produce.items,
+    categories: storeData?.store?.produce?.categories || {},
+    items: storeData?.store?.produce?.items || [],
   };
   const groceryData = {
-    categories: { Grocery: storeData.store.grocery.category },
-    items: storeData.store.grocery.items,
+    categories: { Grocery: storeData?.store?.grocery?.category || {} },
+    items: storeData?.store?.grocery?.items || [],
   };
   const kitchenData = {
-    categories: { "Kitchen Plates": storeData.store.kitchen.category },
-    items: storeData.store.kitchen.items,
+    categories: { "Kitchen Plates": storeData?.store?.kitchen?.category || {} },
+    items: storeData?.store?.kitchen?.items || [],
   };
+  const workingHours = storeData?.store?.workingHours?.workingHours || {};
+  console.log("storeData:", storeData);
+  console.log("storeData.store:", storeData?.store);
+  console.log("storeData.store.workingHours:", storeData?.store?.workingHours);
+  console.log(
+    "storeData.store.workingHours.workingHours:",
+    storeData?.store?.workingHours?.workingHours
+  );
+
   return (
     <BrowserRouter>
       <Header />

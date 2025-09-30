@@ -1,5 +1,16 @@
 {
   "store": {
+    "workingHours": {
+      "workingHours": {
+        "Monday": "Closed",
+        "Tuesday": "10 a.m.–6 p.m.",
+        "Wednesday": "10 a.m.–6 p.m.",
+        "Thursday": "10 a.m.–6 p.m.",
+        "Friday": "10 a.m.–6 p.m.",
+        "Saturday": "10 a.m.–6 p.m.",
+        "Sunday": "Closed"
+      }
+    },
     "about": {
       "headline": "About Our Business",
       "intro": "The Market & Smør is more than just a local market—it’s a community hub dedicated to connecting people with the best local, seasonal, and specialty foods. Founded in the heart of Cobourg, our mission is to create a welcoming space where customers can discover fresh produce, unique pantry staples, and delicious prepared foods, all sourced with care and integrity.",

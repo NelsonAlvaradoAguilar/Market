@@ -70,3 +70,34 @@
     }
   }
 }
+@mixin background-glow($color: #ffd700, $duration: 1.5s) {
+  @keyframes background-glow {
+    0% {
+      background-color: lighten($color, 10%);
+    }
+    50% {
+      background-color: $color;
+    }
+    100% {
+      background-color: lighten($color, 10%);
+    }
+  }
+  animation: background-glow $duration infinite alternate;
+  background-color: $color;
+}
+@keyframes gradient-glow {
+  0% {
+    background: linear-gradient(90deg, #ffe066 0%, #ffd700 100%);
+  }
+  50% {
+    background: linear-gradient(90deg, #ffd700 0%, #ffe066 100%);
+  }
+  100% {
+    background: linear-gradient(90deg, #ffe066 0%, #ffd700 100%);
+  }
+}
+
+@mixin gradient-glow($duration: 2s) {
+  animation: gradient-glow $duration infinite alternate;
+  background-size: 200% 200%;
+}
