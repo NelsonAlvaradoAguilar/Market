@@ -2,15 +2,17 @@ import { Link } from "react-router-dom";
 import Hero from "../../components/Hero/Hero";
 import Embed from "../../components/Embed/Embed";
 import storeData from "../../data/StoreData.json";
+import BusinessHours from "../../components/BusinessHours/BusinesHours";
 import "./Home.scss";
 import NewsletterSignup from "../../components/Newsletter/Newsletter";
 import FeaturedCarousel from "../../components/Carousel/Carousel";
 import { images } from "../../data/images";
+import Hero2 from "../../components/Hero2/Hero2";
 export default function Home() {
-  const workingHours = storeData?.store?.workingHours?.workingHours || {};
   return (
     <section className="home">
       <>
+        <Hero2 />
         <div className="home__banner">
           <h4 className="home__title">Weekly Sales $$$$</h4>
         </div>
@@ -19,17 +21,8 @@ export default function Home() {
 
         <NewsletterSignup />
         <Hero />
+        <Embed url={"home__about"} />
         <section className="home__info">
-          <div>
-            <h3 className="home__subtitle">Business Hours</h3>
-            <ul className="home__hours">
-              {Object.entries(workingHours).map(([day, time]) => (
-                <li key={day}>
-                  {day}: {time}
-                </li>
-              ))}
-            </ul>
-          </div>
           <h3 className="home__subtitle">Location</h3>
           <Embed
             url={
@@ -38,14 +31,6 @@ export default function Home() {
           />
           <p className="home__paragrph">123 Main St, Cobourg, ON</p>
         </section>
-
-        <section className="home__about">
-          <h3 className="home__subtitle">About Us</h3>
-          <Link className="home__paragrph" to="/about">
-            Short teaser about your business...
-          </Link>
-        </section>
-        <Embed url={"home__about"} />
       </>
     </section>
   );

@@ -8,7 +8,21 @@
   &__title {
     @include title();
   }
-  &__description {
+
+  &__banner {
+    background-image: url("../../assets/images/PXL_20250930_174844532.PANO.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 15rem;
+    width: 100%;
+  }
+  &__box {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1rem;
+  }
+  &__text {
     @include font();
     padding: 0.5rem;
   }

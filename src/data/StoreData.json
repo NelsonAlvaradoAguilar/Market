@@ -1,15 +1,15 @@
 {
   "store": {
     "workingHours": {
-      "workingHours": {
-        "Monday": "Closed",
-        "Tuesday": "10 a.m.–6 p.m.",
-        "Wednesday": "10 a.m.–6 p.m.",
-        "Thursday": "10 a.m.–6 p.m.",
-        "Friday": "10 a.m.–6 p.m.",
-        "Saturday": "10 a.m.–6 p.m.",
-        "Sunday": "Closed"
-      }
+      "workingHours": [
+        { "day": "Monday", "time": "Closed" },
+        { "day": "Tuesday", "time": "10 a.m.–6 p.m." },
+        { "day": "Wednesday", "time": "10 a.m.–6 p.m." },
+        { "day": "Thursday", "time": "10 a.m.–6 p.m." },
+        { "day": "Friday", "time": "10 a.m.–6 p.m." },
+        { "day": "Saturday", "time": "10 a.m.–6 p.m." },
+        { "day": "Sunday", "time": "Closed" }
+      ]
     },
     "about": {
       "headline": "About Our Business",

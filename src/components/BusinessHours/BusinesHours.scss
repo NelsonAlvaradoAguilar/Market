@@ -1,0 +1,34 @@
+@use "../../style/parcials/_mixin" as *;
+@use "../../style/parcials/_variables" as *;
+
+.business-hours {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid black;
+  &__ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 0.4rem;
+    list-style: none;
+    padding: 0%;
+    margin: 0.5rem;
+  }
+  &__li {
+    // padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: start;
+  }
+  &__day {
+    @include font();
+    font-size: 0.7rem;
+  }
+  &__time {
+    @include font();
+    font-size: 0.6rem;
+  }
+}
