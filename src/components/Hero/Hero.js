@@ -6,13 +6,19 @@ export default function Hero() {
     <div className="hero">
       <div className="hero__box">
         <img className="hero__img" src={image2} />{" "}
-        <p className="hero__text">
-          {" "}
-          Cobourg’s fresh market for quality produce and healthy to-go meals.
-        </p>
+        <div className="hero__info">
+          <p className="hero__text">
+            {" "}
+            Cobourg’s fresh market for quality produce and healthy to-go meals.
+          </p>
+          <Cta btnName="About Us" btnLink={"/about"} />
+        </div>
       </div>
       <div className="hero__box">
-        <p className="hero__text">Fresh and sustainable products</p>{" "}
+        <div className="hero__info">
+          <p className="hero__text">Fresh and sustainable products</p>{" "}
+          <Cta btnName="Shop Now" btnLink="/store" />
+        </div>
         <img className="hero__img" src={image3} />
       </div>
     </div>
