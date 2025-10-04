@@ -3,13 +3,12 @@
 
 .footer {
   background-color: $generalbackground;
-  color: $generaltext;
-  text-decoration: none;
+
   display: flex;
-  flex-direction: column;
+  flex-flow: row wrap;
   justify-content: center;
   align-items: center;
-
+  margin-top: 1rem;
   &__links {
     display: flex;
     flex-flow: row;
@@ -18,8 +17,9 @@
     margin-bottom: 1rem;
     padding: 0%;
   }
-  &__link {
-    color: $generaltext;
-    text-decoration: none;
+  &__icons {
+    display: flex;
+    justify-content: space-between;
+    gap: 4rem;
   }
 }
