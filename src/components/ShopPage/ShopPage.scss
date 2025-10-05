@@ -4,13 +4,15 @@
 .shop-page {
   display: flex;
   flex-direction: column;
-  //justify-content: space-between;
 
-  &__content {
+  &__menu {
     display: flex;
     flex-direction: row;
-    // justify-content: center;
-    // justify-content: space-between;
+    justify-content: space-between;
+    align-items: start;
+  }
+  &__search {
+    display: flex;
     width: 100%;
   }
 }
