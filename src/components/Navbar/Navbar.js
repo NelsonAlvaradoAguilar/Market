@@ -9,12 +9,12 @@ export default function Navbar() {
             Home
           </Link>
         </li>
-        <li>
+        <li className="navbar__item">
           <Link className="navbar__link" to="/about">
             About
           </Link>
         </li>
-        <li>
+        <li className="navbar__item">
           <Link className="navbar__link" to="/shoppage">
             Shop Now
           </Link>
