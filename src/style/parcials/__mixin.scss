@@ -101,3 +101,66 @@
   animation: gradient-glow $duration infinite alternate;
   background-size: 200% 200%;
 }
+@mixin product-card {
+  border: 1px solid #223b6b;
+  border-radius: 12px;
+  background: #fafbfc;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 6rem;
+  transition: box-shadow 0.2s;
+  text-align: center;
+  padding: 0.5rem;
+  // height: 8rem;
+
+  max-height: 9rem;
+  min-height: fit-content;
+  justify-content: space-evenly;
+  &__img {
+    width: 100%;
+    height: 5rem;
+    object-fit: contain;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    background: #fff;
+    border: 1px solid #e3e7ef;
+  }
+  &__title {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #223b6b;
+    margin: 0 0 4px 0;
+  }
+  &__origin {
+    font-size: 0.8rem;
+    color: #223b6b;
+    margin: 0;
+    opacity: 0.85;
+  }
+  &:hover {
+    box-shadow: 0 2px 8px rgba(34, 59, 107, 0.1);
+  }
+}
+
+/* img {
+  
+  }
+
+  h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #223b6b;
+    margin: 0 0 4px 0;
+  }
+
+  p {
+    font-size: 0.95rem;
+    color: #223b6b;
+    margin: 0;
+    opacity: 0.85;
+  }
+
+  &:hover {
+    box-shadow: 0 2px 8px rgba(34, 59, 107, 0.1);
+  }*/

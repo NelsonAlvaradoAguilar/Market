@@ -1,0 +1,37 @@
+@use "../../style/parcials/_mixin" as *;
+@use "../../style/parcials/_variables" as *;
+
+.filter {
+  display: flex;
+  flex-direction: column;
+  // align-items: start;
+  //position: fixed;
+  // top: 17rem;
+  margin-top: 0.5rem;
+  background-color: $generalbackground;
+  margin-left: 0.5rem;
+
+  &__list {
+    display: flex;
+    flex-flow: column wrap;
+    @include font();
+    list-style: none;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    justify-content: space-between;
+    gap: 0.5rem;
+    border: 1px solid black;
+    margin-top: 0%;
+    margin-bottom: 1rem;
+    border-radius: $border-radius;
+  }
+  &__filtering {
+    display: inline;
+  }
+  &__filtering:first-child {
+    margin-top: 0.3rem;
+  }
+  &__filtering:last-child {
+    margin-bottom: 0.3rem;
+  }
+}

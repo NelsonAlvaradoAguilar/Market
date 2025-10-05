@@ -8,6 +8,7 @@ export default function Footer() {
   const workingHours = storeData?.store?.workingHours?.workingHours || [];
   return (
     <footer className="footer">
+      <BusinessHours workingHours={workingHours} />
       <div className="footer__icons">
         <div className="footer__links">&copy; {new Date().getFullYear()}</div>
         <IconsBar
@@ -17,7 +18,6 @@ export default function Footer() {
           emailicon={emailicon}
         />
       </div>
-      <BusinessHours workingHours={workingHours} />
     </footer>
   );
 }
