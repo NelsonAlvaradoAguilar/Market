@@ -4,14 +4,15 @@
 .container {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+
   align-items: center;
-  // margin-top: 1rem;
+
   &__grid {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    // justify-content: space-between;
-    gap: 0.5rem;
+    justify-content: space-around;
+
+    margin-right: 0.5rem;
   }
 }
