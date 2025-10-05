@@ -11,7 +11,7 @@ export default function Navbar() {
         </li>
         <li>
           <Link className="navbar__link" to="/about">
-            About Us
+            About
           </Link>
         </li>
         <li>
