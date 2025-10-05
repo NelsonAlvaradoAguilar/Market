@@ -1,0 +1,16 @@
+@use "../../style/parcials/_mixin" as *;
+@use "../../style/parcials/_variables" as *;
+
+.shop-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-right: 0.5rem;
+  &__content {
+    display: flex;
+    flex-direction: row;
+    // justify-content: center;
+    // justify-content: space-between;
+    // gap: 0.1rem;
+  }
+}

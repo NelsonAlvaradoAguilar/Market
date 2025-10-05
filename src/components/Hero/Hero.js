@@ -17,7 +17,7 @@ export default function Hero() {
       <div className="hero__box">
         <div className="hero__info">
           <p className="hero__text">Fresh and sustainable products</p>{" "}
-          <Cta btnName="Shop Now" btnLink="/store" />
+          <Cta btnName="Shop Now" btnLink="/shoppage" />
         </div>
         <img className="hero__img" src={image3} />
       </div>
