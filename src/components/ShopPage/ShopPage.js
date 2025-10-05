@@ -9,7 +9,7 @@ const categoryList = Object.keys(inventory);
 
 const ShopPage = () => {
   const [selectedCategory, setSelectedCategory] = useState(categoryList[0]);
-
+  const [searchTerm, setSearchTerm] = useState("");
   const categoryData = inventory[selectedCategory];
   const subCategories = categoryData.categories
     ? Object.keys(categoryData.categories)
@@ -28,26 +28,21 @@ const ShopPage = () => {
   }, [selectedCategory]);
   return (
     <div className="shop-page">
-      {/* Sidebar or dropdown for category selection */}
-      <Sidebar
-        categoryList={categoryList}
-        selectedCategory={selectedCategory}
-        onSelectCategory={setSelectedCategory}
-      />
+      {
+        console.log(
+          categoryList
+        ) /* Sidebar or dropdown for category selection */
+      }
 
       {/* Main Content */}
       <main>
-        <CategoryInfo data={categoryData.category} />
         {/* Sub-category navigation for produce */}
         <div className="shop-page__content">
-          {subCategories && (
-            <SubcategoryNav
-              subCategories={subCategories}
-              categoryData={categoryData.categories}
-              selectedSub={selectedSub}
-              onSelectSub={setSelectedSub}
-            />
-          )}
+          <Sidebar
+            categoryList={categoryList}
+            selectedCategory={selectedCategory}
+            onSelectCategory={setSelectedCategory}
+          />
           <ProductGrid items={filteredItems} />
         </div>
       </main>

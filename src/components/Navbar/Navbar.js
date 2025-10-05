@@ -9,10 +9,14 @@ export default function Navbar() {
             Home
           </Link>
         </li>
-
         <li>
-          <Link className="navbar__link" to="/store">
-            Store
+          <Link className="navbar__link" to="/about">
+            About Us
+          </Link>
+        </li>
+        <li>
+          <Link className="navbar__link" to="/shoppage">
+            Shop Now
           </Link>
         </li>
       </ul>

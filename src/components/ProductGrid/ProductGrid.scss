@@ -1,11 +1,17 @@
 @use "../../style/parcials/_mixin" as *;
 @use "../../style/parcials/_variables" as *;
 
-.item-grid {
+.container {
   display: flex;
-  flex-flow: row wrap;
-  height: fit-content;
-  //justify-content: space-around;
-
-  //gap: 0.5rem;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
+  margin-top: 1rem;
+  &__grid {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    // justify-content: space-between;
+    gap: 0.5rem;
+  }
 }
