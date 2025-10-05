@@ -4,8 +4,10 @@ import Sidebar from "../Sidebar/Sidebar";
 import CategoryInfo from "../CategoryInfo/CategoryInfo";
 import SubcategoryNav from "../SubCategory/SubCategory";
 import ProductGrid from "../ProductGrid/ProductGrid";
+import { images } from "../../data/images";
 import "./ShopPage.scss";
 import SearchBar from "../SearchBar/SearchBar";
+import FeaturedCarousel from "../Carousel/Carousel";
 const categoryList = Object.keys(inventory);
 
 const ShopPage = () => {
@@ -39,9 +41,14 @@ const ShopPage = () => {
     setSelectedSub(subCategories[0] || null);
   }, [selectedCategory]);
   const itemsToDisplay = searchTerm ? searchedItems : filteredItems;
-
+  const settings = {
+    dots: false,
+  };
   return (
     <section className="shop-page">
+      <div className="shop-page__carousel">
+        <FeaturedCarousel items={images} settings={settings} />
+      </div>
       {
         console.log(
           categoryList

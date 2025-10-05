@@ -5,7 +5,7 @@ import "./Carousel.scss";
 
 export default function FeaturedCarousel({ items }) {
   const settings = {
-    dots: true,
+    dots: false,
     infinite: true,
     speed: 500,
     slidesToShow: 1,
