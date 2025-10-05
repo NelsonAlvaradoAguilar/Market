@@ -15,6 +15,7 @@ import Legal from "./components/Legal/Legal.js";
 import Footer from "./components/Footer/Footer.js";
 import StoreSection from "./components/StoreSection/StoreSection.js";
 import Header from "./components/Header/Header.js";
+import ShopPage from "./components/ShopPage/ShopPage.js";
 export default function App() {
   const produceData = {
     categories: storeData?.store?.produce?.categories || {},
@@ -45,6 +46,7 @@ export default function App() {
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/store" element={<Store />} />
+        <Route path="/shoppage" element={<ShopPage />} />
         <Route path="/produce" element={<StoreSection data={produceData} />} />
         <Route path="/grocery" element={<StoreSection data={groceryData} />} />
         <Route path="/kitchen" element={<StoreSection data={kitchenData} />} />
