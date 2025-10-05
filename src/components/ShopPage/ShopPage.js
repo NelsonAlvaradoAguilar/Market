@@ -5,6 +5,7 @@ import CategoryInfo from "../CategoryInfo/CategoryInfo";
 import SubcategoryNav from "../SubCategory/SubCategory";
 import ProductGrid from "../ProductGrid/ProductGrid";
 import "./ShopPage.scss";
+import SearchBar from "../SearchBar/SearchBar";
 const categoryList = Object.keys(inventory);
 
 const ShopPage = () => {
@@ -14,9 +15,20 @@ const ShopPage = () => {
   const subCategories = categoryData.categories
     ? Object.keys(categoryData.categories)
     : [];
-
+  const allItems = Object.values(inventory)
+    .map((section) => section.items || [])
+    .flat();
   const [selectedSub, setSelectedSub] = useState(subCategories[0] || null);
   const items = categoryData.items;
+
+  const searchedItems = searchTerm
+    ? allItems.filter(
+        (item) =>
+          item.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          (item.description &&
+            item.description.toLowerCase().includes(searchTerm.toLowerCase()))
+      )
+    : [];
 
   // Filtered items for subcategory
   const filteredItems =
@@ -26,28 +38,31 @@ const ShopPage = () => {
   useEffect(() => {
     setSelectedSub(subCategories[0] || null);
   }, [selectedCategory]);
+  const itemsToDisplay = searchTerm ? searchedItems : filteredItems;
+
   return (
-    <div className="shop-page">
+    <section className="shop-page">
       {
         console.log(
           categoryList
         ) /* Sidebar or dropdown for category selection */
       }
-
-      {/* Main Content */}
-      <main>
-        {/* Sub-category navigation for produce */}
-        <div className="shop-page__content">
-          <Sidebar
-            categoryList={categoryList}
-            selectedCategory={selectedCategory}
-            onSelectCategory={setSelectedCategory}
-          />
-          <ProductGrid items={filteredItems} />
-        </div>
-      </main>
-    </div>
+      {/* Main Content */}{" "}
+      <div className="shop-page__search">
+        <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+      </div>
+      <div className="shop-page__menu">
+        {" "}
+        <Sidebar
+          categoryList={categoryList}
+          selectedCategory={selectedCategory}
+          onSelectCategory={setSelectedCategory}
+        />
+        <ProductGrid items={itemsToDisplay} />
+      </div>
+    </section>
   );
 };
 
 export default ShopPage;
+//   <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
