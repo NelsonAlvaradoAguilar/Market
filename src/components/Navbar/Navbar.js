@@ -23,3 +23,8 @@ export default function Navbar() {
     </nav>
   );
 }
+/**        <li className="navbar__item">
+          <Link className="navbar__cart" to="/cart">
+            Cart
+          </Link>
+        </li> */

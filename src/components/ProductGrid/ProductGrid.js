@@ -3,16 +3,20 @@ import "./ProductGrid.scss";
 import ProductCard from "../ProductCard/ProductCard";
 import SearchBar from "../SearchBar/SearchBar";
 
-const ProductGrid = ({ items = [] }) => (
-  <div className="container">
-    <div className="container__grid">
-      {items.length > 0 ? (
-        items.map((item) => <ProductCard key={item.name} item={item} />)
-      ) : (
+const ProductGrid = ({ items = [], addToCart }) => (
+  <ul className="product">
+    {items.length > 0 ? (
+      items.map((item) => (
+        <li className="product__card" key={item.name}>
+          <ProductCard item={item} addToCart={addToCart} />
+        </li>
+      ))
+    ) : (
+      <li>
         <p>No products found.</p>
-      )}
-    </div>
-  </div>
+      </li>
+    )}
+  </ul>
 );
 
 export default ProductGrid;
