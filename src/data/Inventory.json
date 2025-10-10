@@ -223,7 +223,7 @@
         "imageUrl": "/images/kiwi.jpg"
       },
       {
-        "name": "Red Mango",
+        "name": "Red",
         "brand": "G",
         "origin": "Mexico",
         "category": "Mangoes",
@@ -231,7 +231,7 @@
         "imageUrl": "/images/red-mango.jpg"
       },
       {
-        "name": "Ataulfo Mango",
+        "name": "Ataulfo",
         "brand": "G",
         "origin": "Mexico",
         "category": "Mangoes",
@@ -247,7 +247,7 @@
         "imageUrl": "/images/bananas.jpg"
       },
       {
-        "name": "Honey Crisp Apples",
+        "name": "Honey Crisp",
         "brand": "G",
         "origin": "USA",
         "category": "Apples",
@@ -255,7 +255,7 @@
         "imageUrl": "/images/honeycrisp-apples.jpg"
       },
       {
-        "name": "Pink Lady Apples",
+        "name": "Pink Lady",
         "brand": "G",
         "origin": "USA",
         "category": "Apples",
@@ -263,7 +263,7 @@
         "imageUrl": "/images/pink-lady-apples.jpg"
       },
       {
-        "name": "Moores Apples Ginger Gold",
+        "name": "Moores Ginger Gold",
         "brand": "M",
         "origin": "Canada",
         "category": "Apples",
@@ -271,7 +271,7 @@
         "imageUrl": "/images/ginger-gold-apples.jpg"
       },
       {
-        "name": "Moores Apples Paulared",
+        "name": "Moores  Paulared",
         "brand": "M",
         "origin": "Canada",
         "category": "Apples",
@@ -279,7 +279,7 @@
         "imageUrl": "/images/paulared-apples.jpg"
       },
       {
-        "name": "Moores Apples (Half pecks) Empire",
+        "name": "Moores (Half pecks) Empire",
         "brand": "M",
         "origin": "Canada",
         "category": "Apples",
@@ -287,7 +287,7 @@
         "imageUrl": "/images/empire-apples.jpg"
       },
       {
-        "name": "Moores Apples (Half pecks) Gala",
+        "name": "Moores (Half pecks) Gala",
         "brand": "M",
         "origin": "Canada",
         "category": "Apples",
@@ -408,7 +408,7 @@
         "imageUrl": "/images/red-grapes.jpg"
       },
       {
-        "name": "Nectarines (8x2L baskets)",
+        "name": "Nectarines",
         "brand": "L",
         "origin": "Canada",
         "category": "Stone Fruit",

@@ -108,14 +108,15 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 6rem;
+  width: 6.5rem;
   transition: box-shadow 0.2s;
   text-align: center;
   padding: 0.5rem;
-  // height: 8rem;
+  height: 11rem;
 
-  max-height: 9rem;
-  min-height: fit-content;
+  max-height: 11rem;
+  min-height: 12rem;
+  min-width: 6.8rem;
   justify-content: space-evenly;
   &__img {
     width: 100%;
@@ -140,6 +141,25 @@
   }
   &:hover {
     box-shadow: 0 2px 8px rgba(34, 59, 107, 0.1);
+  }
+}
+
+@mixin button($bg, $color) {
+  padding: 0.5rem 1.2rem;
+  border: none;
+  border-radius: 8px;
+  display: inline;
+
+  background: $bg;
+  color: $color;
+  font-weight: 100;
+  min-height: 2rem;
+  max-width: 8rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+
+  &:hover {
+    background: darken($bg, 8%);
   }
 }
 
