@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   BrowserRouter as Router,
   Routes,
@@ -16,27 +16,47 @@ import Footer from "./components/Footer/Footer.js";
 import StoreSection from "./components/StoreSection/StoreSection.js";
 import Header from "./components/Header/Header.js";
 import ShopPage from "./components/ShopPage/ShopPage.js";
+import Cart from "./components/Cart/Cart.js";
 export default function App() {
+  const [cart, setCart] = useState(() => {
+    const saved = localStorage.getItem("cart");
+    return saved ? JSON.parse(saved) : [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);
+  const addToCart = (item) => {
+    setCart((prevCart) => {
+      const existing = prevCart.find((cartItem) => cartItem.name === item.name);
+      if (existing) {
+        return prevCart.map((cartItem) =>
+          cartItem.name === item.name
+            ? { ...cartItem, quantity: cartItem.quantity + 1 }
+            : cartItem
+        );
+      }
+      return [...prevCart, { ...item, quantity: 1 }];
+    });
+  };
+
+  const removeFromCart = (itemName) => {
+    setCart((prevCart) =>
+      prevCart
+        .map((cartItem) =>
+          cartItem.name === itemName
+            ? { ...cartItem, quantity: cartItem.quantity - 1 }
+            : cartItem
+        )
+        .filter((cartItem) => cartItem.quantity > 0)
+    );
+  };
+
+  // Example: passing data to StoreSection (optional)
   const produceData = {
     categories: storeData?.store?.produce?.categories || {},
     items: storeData?.store?.produce?.items || [],
   };
-  const groceryData = {
-    categories: { Grocery: storeData?.store?.grocery?.category || {} },
-    items: storeData?.store?.grocery?.items || [],
-  };
-  const kitchenData = {
-    categories: { "Kitchen Plates": storeData?.store?.kitchen?.category || {} },
-    items: storeData?.store?.kitchen?.items || [],
-  };
-  const workingHours = storeData?.store?.workingHours?.workingHours || {};
-  console.log("storeData:", storeData);
-  console.log("storeData.store:", storeData?.store);
-  console.log("storeData.store.workingHours:", storeData?.store?.workingHours);
-  console.log(
-    "storeData.store.workingHours.workingHours:",
-    storeData?.store?.workingHours?.workingHours
-  );
 
   return (
     <BrowserRouter>
@@ -46,12 +66,21 @@ export default function App() {
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/store" element={<Store />} />
-        <Route path="/shoppage" element={<ShopPage />} />
-        <Route path="/produce" element={<StoreSection data={produceData} />} />
-        <Route path="/grocery" element={<StoreSection data={groceryData} />} />
-        <Route path="/kitchen" element={<StoreSection data={kitchenData} />} />
-        <Route path="/legal" element={<Legal />} />
-
+        <Route
+          path="/shoppage"
+          element={
+            <ShopPage
+              cart={cart}
+              addToCart={addToCart}
+              removeFromCart={removeFromCart}
+            />
+          }
+        />
+        <Route
+          path="/cart"
+          element={<Cart cart={cart} removeFromCart={removeFromCart} />}
+        />
+        {/* ...other routes */}
         <Route path="*" element={<Home />} />
       </Routes>
       <Footer />
@@ -59,3 +88,4 @@ export default function App() {
   );
 }
 //    <Route path="/grocery" element={<StoreSection data={data} />} />
+// <Route path="/cart" element={<Cart />} />

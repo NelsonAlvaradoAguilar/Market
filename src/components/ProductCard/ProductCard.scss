@@ -6,4 +6,12 @@
   margin-right: 0.5rem;
   margin-left: 0.5rem;
   margin-top: 0.5rem;
+
+  &__add-btn {
+    @include button(#28a745, #fff);
+  }
+
+  &__remove-btn {
+    @include button(#dc3545, #fff);
+  }
 }

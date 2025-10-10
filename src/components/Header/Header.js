@@ -10,16 +10,19 @@ import "./Header.scss";
 export default function Header() {
   return (
     <header className="header">
-      <IconsBar
-        faceicon={faceicon}
-        emailicon={emailicon}
-        instgicon={instgicon}
-        phoneicon={phoneicon}
-        facelink={"https://www.facebook.com/MarketSmor"}
-        emailink={"mailto:marketsmorproduce@gmail.com"}
-        instlink={"https://www.instagram.com/marketsmor/"}
-        phonelink={"tel:+19052691614"}
-      />
+      <div className="header__icons">
+        <IconsBar
+          faceicon={faceicon}
+          emailicon={emailicon}
+          instgicon={instgicon}
+          phoneicon={phoneicon}
+          facelink={"https://www.facebook.com/MarketSmor"}
+          emailink={"mailto:marketsmorproduce@gmail.com"}
+          instlink={"https://www.instagram.com/marketsmor/"}
+          phonelink={"tel:+19052691614"}
+        />
+        <Link to="/cart">Go to Cart</Link>
+      </div>
       <Link className="header__logo" to="/">
         <img className="header__logo header__logo--img" alt="logo" src={logo} />
       </Link>

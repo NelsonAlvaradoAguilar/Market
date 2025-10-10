@@ -8,9 +8,11 @@ import { images } from "../../data/images";
 import "./ShopPage.scss";
 import SearchBar from "../SearchBar/SearchBar";
 import FeaturedCarousel from "../Carousel/Carousel";
+import Cart from "../Cart/Cart";
+
 const categoryList = Object.keys(inventory);
 
-const ShopPage = () => {
+const ShopPage = ({ addToCart, removeFromCart, cart }) => {
   const [selectedCategory, setSelectedCategory] = useState(categoryList[0]);
   const [searchTerm, setSearchTerm] = useState("");
   const categoryData = inventory[selectedCategory];
@@ -44,6 +46,7 @@ const ShopPage = () => {
   const settings = {
     dots: false,
   };
+
   return (
     <section className="shop-page">
       <div className="shop-page__carousel">
@@ -60,12 +63,32 @@ const ShopPage = () => {
       </div>
       <div className="shop-page__menu">
         {" "}
-        <Sidebar
-          categoryList={categoryList}
-          selectedCategory={selectedCategory}
-          onSelectCategory={setSelectedCategory}
-        />
-        <ProductGrid items={itemsToDisplay} />
+        <div>
+          {" "}
+          <Sidebar
+            categoryList={categoryList}
+            selectedCategory={selectedCategory}
+            onSelectCategory={setSelectedCategory}
+          />
+          <CategoryInfo
+            categoryData={categoryData}
+            selectedCategory={selectedCategory}
+          />
+          <SubcategoryNav
+            subCategories={subCategories}
+            categoryData={categoryData.categories} // <-- note this!
+            selectedSub={selectedSub}
+            onSelectSub={setSelectedSub}
+          />
+        </div>
+        <div>
+          <ProductGrid
+            items={itemsToDisplay}
+            addToCart={addToCart}
+            removeFromCart={removeFromCart}
+            cart={cart}
+          />
+        </div>
       </div>
     </section>
   );
