@@ -39,9 +39,15 @@ const ShopPage = ({ addToCart, removeFromCart, cart }) => {
     selectedSub && items
       ? items.filter((item) => item.category === selectedSub)
       : items;
-  useEffect(() => {
-    setSelectedSub(subCategories[0] || null);
-  }, [selectedCategory]);
+
+  useEffect(
+    () => {
+      setSelectedSub(subCategories[0] || null);
+    },
+    [selectedCategory],
+    [subCategories]
+  );
+
   const itemsToDisplay = searchTerm ? searchedItems : filteredItems;
   const settings = {
     dots: false,

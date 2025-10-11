@@ -17,15 +17,13 @@ import StoreSection from "./components/StoreSection/StoreSection.js";
 import Header from "./components/Header/Header.js";
 import ShopPage from "./components/ShopPage/ShopPage.js";
 import Cart from "./components/Cart/Cart.js";
+import CartPage from "./pages/CartPage/CartPage.js";
 export default function App() {
   const [cart, setCart] = useState(() => {
     const saved = localStorage.getItem("cart");
     return saved ? JSON.parse(saved) : [];
   });
 
-  useEffect(() => {
-    localStorage.setItem("cart", JSON.stringify(cart));
-  }, [cart]);
   const addToCart = (item) => {
     setCart((prevCart) => {
       const existing = prevCart.find((cartItem) => cartItem.name === item.name);
@@ -39,7 +37,17 @@ export default function App() {
       return [...prevCart, { ...item, quantity: 1 }];
     });
   };
-
+  const updateCartQty = (itemName, newQty) => {
+    setCart((prevCart) =>
+      prevCart
+        .map((cartItem) =>
+          cartItem.name === itemName
+            ? { ...cartItem, quantity: newQty }
+            : cartItem
+        )
+        .filter((cartItem) => cartItem.quantity > 0)
+    );
+  };
   const removeFromCart = (itemName) => {
     setCart((prevCart) =>
       prevCart
@@ -74,10 +82,19 @@ export default function App() {
             />
           }
         />
+
         <Route
           path="/cart"
-          element={<Cart cart={cart} removeFromCart={removeFromCart} />}
+          element={
+            <CartPage
+              cartItems={cart}
+              onRemove={removeFromCart}
+              onUpdateQty={updateCartQty}
+              setCart={setCart}
+            />
+          }
         />
+
         {/* ...other routes */}
         <Route path="*" element={<Home />} />
       </Routes>
