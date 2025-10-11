@@ -159,28 +159,7 @@
   transition: background 0.2s, color 0.2s;
 
   &:hover {
-    background: darken($bg, 8%);
+    background: darken($bg, 15%);
+    color: brighten($color, 100%);
   }
 }
-
-/* img {
-  
-  }
-
-  h4 {
-    font-size: 1rem;
-    font-weight: 600;
-    color: #223b6b;
-    margin: 0 0 4px 0;
-  }
-
-  p {
-    font-size: 0.95rem;
-    color: #223b6b;
-    margin: 0;
-    opacity: 0.85;
-  }
-
-  &:hover {
-    box-shadow: 0 2px 8px rgba(34, 59, 107, 0.1);
-  }*/
