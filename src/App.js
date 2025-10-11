@@ -52,11 +52,9 @@ export default function App() {
     );
   };
 
-  // Example: passing data to StoreSection (optional)
-  const produceData = {
-    categories: storeData?.store?.produce?.categories || {},
-    items: storeData?.store?.produce?.items || [],
-  };
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);
 
   return (
     <BrowserRouter>
