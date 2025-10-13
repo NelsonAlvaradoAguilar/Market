@@ -1,120 +1,11 @@
 {
   "produce": {
     "categories": {
-      "Seasonal": {
-        "title": "Seasonal",
-        "info": "Our seasonal section features a rotating selection of the freshest local fruit, including apricots, plums, cherries, peaches, and nectarines. The variety changes throughout the year, offering customers the best of what Ontario and nearby regions have to offer. Shopping seasonally means you enjoy produce at its peak flavor and nutrition.",
-        "health": "Seasonal fruits are loaded with vitamins, antioxidants, and fiber. They support immune health, skin glow, and digestive wellness.",
-        "recipe": "Stone Fruit Salad – Slice a mix of apricots, peaches, plums, and nectarines. Toss with a squeeze of lemon, a drizzle of honey, and fresh mint for a refreshing summer salad."
-      },
-      "Tropical": {
-        "title": "Tropical",
-        "info": "Explore our tropical offerings such as passion fruit and pineapple. These fruits bring a burst of exotic flavor and color to your plate, sourced from trusted growers in Colombia and Costa Rica.",
-        "health": "Tropical fruits are rich in vitamin C, enzymes, and hydration. They aid digestion, support immune function, and provide natural energy.",
-        "recipe": "Pineapple-Passion Fruit Smoothie – Blend pineapple chunks, passion fruit pulp, banana, and coconut water for a tangy, tropical smoothie."
-      },
-      "Vegetables": {
-        "title": "Vegetables",
-        "info": "From Ontario corn to green beans, brussel sprouts, zucchini, eggplant, and more, our vegetable selection is diverse and always fresh. Perfect for roasting, grilling, or eating raw.",
-        "health": "Vegetables are packed with fiber, vitamins A, C, and K, and essential minerals. They support heart health, digestion, and overall wellness.",
-        "recipe": "Grilled Veggie Platter – Slice zucchini, eggplant, and corn. Toss with olive oil, salt, and pepper. Grill until tender and serve with a sprinkle of fresh herbs."
-      },
-      "Fruit": {
-        "title": "Fruit",
-        "info": "This category covers a wide range of favorites like Asian pears, pomegranates, and kiwi. Our fruit selection is perfect for snacking, desserts, or adding to salads.",
-        "health": "Fruits are a natural source of energy, vitamins, and antioxidants. They help hydrate the body and support cellular health.",
-        "recipe": "Fruit Parfait – Layer sliced pears, kiwi, and pomegranate seeds with Greek yogurt and granola for a nutritious breakfast or snack."
-      },
-      "Mangoes": {
-        "title": "Mangoes",
-        "info": "Enjoy both red and Ataulfo mangoes, known for their sweet, juicy flesh and versatility. Perfect for eating fresh, in salsas, or as smoothie ingredients.",
-        "health": "Mangoes are high in vitamin A, C, and folate, supporting vision, immunity, and skin health.",
-        "recipe": "Mango Salsa – Dice mangoes, red onion, cilantro, and jalapeño. Toss with lime juice and serve with grilled fish or tortilla chips."
-      },
-      "Apples": {
-        "title": "Apples",
-        "info": "From Honey Crisp to Pink Lady, Ginger Gold, Paulared, Empire, and Gala, our apple selection is sourced from top growers in Canada and the USA. Apples are a classic, healthy snack and baking staple.",
-        "health": "Apples are rich in fiber and vitamin C, supporting gut health and immunity.",
-        "recipe": "Baked Apple Slices – Slice apples, toss with cinnamon and a touch of maple syrup, and bake until soft. Serve warm as a dessert or snack."
-      },
-      "Avocados": {
-        "title": "Avocados",
-        "info": "Our avocados are always fresh and creamy, perfect for toast, guacamole, or salads.",
-        "health": "Avocados are rich in healthy fats, fiber, and potassium, supporting heart and brain health.",
-        "recipe": "Classic Guacamole – Mash avocados with lime, salt, diced tomatoes, onion, and cilantro."
-      },
-      "Berries": {
-        "title": "Berries",
-        "info": "Stock up on blackberries, blueberries, raspberries, and strawberries. Berries are a highlight of our produce section, perfect for breakfast, desserts, or healthy snacking.",
-        "health": "Berries are full of antioxidants, vitamin C, and fiber. They help fight inflammation and support brain health.",
-        "recipe": "Berry Yogurt Bowl – Top Greek yogurt with a mix of berries, a drizzle of honey, and a sprinkle of seeds or granola."
-      },
-      "Citrus": {
-        "title": "Citrus",
-        "info": "Find clementines, grapefruit, lemons, limes, pomelo, oranges, and blood oranges in our citrus section. Great for juicing, snacking, or brightening up any dish.",
-        "health": "Citrus fruits are high in vitamin C and flavonoids, boosting immunity and skin health.",
-        "recipe": "Citrus Salad – Segment a mix of citrus fruits, toss with a little olive oil and fresh mint for a refreshing side dish."
-      },
-      "Grapes": {
-        "title": "Grapes",
-        "info": "Choose from green and red seedless grapes for easy snacking or as lunchbox favorites. Always crisp, sweet, and ready to eat.",
-        "health": "Grapes contain antioxidants and vitamins that support heart health and hydration.",
-        "recipe": "Frozen Grapes – Freeze grapes for a cool, healthy treat on hot days."
-      },
-      "Stone Fruit": {
-        "title": "Stone Fruit",
-        "info": "Enjoy nectarines and other stone fruit options in season. These fruits are juicy, sweet, and perfect for summer treats.",
-        "health": "Stone fruits are rich in vitamins A and C, supporting skin and immune health.",
-        "recipe": "Stone Fruit Crisp – Slice nectarines, toss with a bit of sugar and lemon, top with oat crumble, and bake until golden."
-      },
-      "Melons": {
-        "title": "Melons",
-        "info": "Honeydew, cantaloupe, and papaya bring a taste of summer to your table. Perfect for fruit salads or as a refreshing snack.",
-        "health": "Melons are hydrating and provide vitamins A and C.",
-        "recipe": "Melon Salad – Mix melon cubes with fresh mint and a squeeze of lime for a light dessert."
-      },
-      "Herbs": {
-        "title": "Herbs",
-        "info": "Basil, cilantro, dill, mint, parsley, rosemary, sage, thyme, oregano, and chives are always fresh and fragrant. Use them to enhance the flavor and nutrition of any meal.",
-        "health": "Fresh herbs are loaded with antioxidants, vitamins, and anti-inflammatory compounds.",
-        "recipe": "Herb Chimichurri – Blend parsley, cilantro, oregano, garlic, olive oil, vinegar, and chili for a zesty sauce."
-      },
-      "Roots": {
-        "title": "Roots",
-        "info": "Find parsnips, carrots, ginger, rutabaga, and garlic for soups, roasting, and more. Our root vegetables are hearty and full of flavor.",
-        "health": "Root veggies provide fiber, vitamins, and minerals for lasting energy and digestive health.",
-        "recipe": "Roasted Root Vegetables – Cube a mix of roots, toss with olive oil, salt, and pepper, and roast until caramelized."
-      },
-      "Potatoes": {
-        "title": "Potatoes",
-        "info": "Fingerling, sweet, Yukon, and russet potatoes are perfect for any meal, from breakfast hash to dinner sides.",
-        "health": "Potatoes are a good source of potassium, fiber, and vitamin C.",
-        "recipe": "Garlic Mashed Potatoes – Boil potatoes, mash with roasted garlic, butter, and a splash of milk for a creamy classic."
-      },
-      "Cabbage": {
-        "title": "Cabbage",
-        "info": "Choose from green, red, and nappa cabbage for slaws, stir-fries, and more. Our cabbages are crisp and versatile.",
-        "health": "Cabbage is rich in vitamin K, C, and fiber, supporting digestion and immune health.",
-        "recipe": "Simple Coleslaw – Shred cabbage, toss with carrots, mayo, vinegar, and a pinch of sugar."
-      },
-      "Kale": {
-        "title": "Kale",
-        "info": "Green, red, and Tuscan kale are available for salads, smoothies, and sautés. Kale is a nutrient powerhouse.",
-        "health": "Kale is loaded with vitamins A, C, and K, plus antioxidants and fiber.",
-        "recipe": "Kale Chips – Toss kale leaves with olive oil and salt, bake until crisp."
-      },
-      "Lettuce": {
-        "title": "Lettuce",
-        "info": "Romaine, green leaf, and radicchio are always fresh for salads, wraps, and more.",
-        "health": "Lettuce is low in calories and a good source of hydration and vitamins.",
-        "recipe": "Classic Caesar Salad – Toss romaine with Caesar dressing, croutons, and parmesan."
-      },
-      "Spinach": {
-        "title": "Spinach",
-        "info": "Fresh bunched spinach is perfect for salads, omelets, and sautés.",
-        "health": "Spinach is high in iron, folate, and vitamins A and C.",
-        "recipe": "Spinach Omelet – Sauté spinach, add to eggs, and cook until set."
-      }
+      "Seasonal": {},
+      "Tropical": {},
+      "Vegetables": {},
+      "Berries": {},
+      "Citrus": {}
     },
     "items": [
       {
@@ -123,55 +14,72 @@
         "origin": "Ontario",
         "category": "Seasonal",
         "featured": false,
-        "imageUrl": "/images/apricot.jpg"
+        "imageUrl": "/images/apricot.jpg",
+        "price": 4.99
       },
       {
-        "name": "Yellow Plums",
+        "name": "Peach",
         "brand": "Lakelee",
         "origin": "Ontario",
         "category": "Seasonal",
         "featured": false,
-        "imageUrl": "/images/yellow-plums.jpg"
+        "imageUrl": "/images/peach.jpg",
+        "price": 5.49
       },
       {
-        "name": "Red Plums",
+        "name": "Nectarine",
         "brand": "Lakelee",
         "origin": "Ontario",
         "category": "Seasonal",
         "featured": false,
-        "imageUrl": "/generated-image-2025-09-27 (1).png"
+        "imageUrl": "/images/nectarine.jpg",
+        "price": 5.29
       },
       {
-        "name": "Cherries",
+        "name": "Plum",
         "brand": "Lakelee",
         "origin": "Ontario",
         "category": "Seasonal",
         "featured": false,
-        "imageUrl": "/generated-image-2025-09-27.png"
+        "imageUrl": "/images/plum.jpg",
+        "price": 4.79
       },
       {
-        "name": "Watermelon",
-        "brand": "Bondi",
-        "origin": "USA",
-        "category": "Seasonal",
-        "featured": false,
-        "imageUrl": "/generated-image-2025-09-27 (2).png"
-      },
-      {
-        "name": "Peaches",
+        "name": "Cherry",
         "brand": "Lakelee",
         "origin": "Ontario",
         "category": "Seasonal",
         "featured": false,
-        "imageUrl": "/images/peaches.jpg"
+        "imageUrl": "/images/cherry.jpg",
+        "price": 6.99
+      },
+
+      {
+        "name": "Pineapple",
+        "brand": "G",
+        "origin": "Costa Rica",
+        "category": "Tropical",
+        "featured": false,
+        "imageUrl": "/images/pineapple.jpg",
+        "price": 3.99
       },
       {
-        "name": "Nectarines",
-        "brand": "Lakelee",
-        "origin": "Ontario",
-        "category": "Seasonal",
+        "name": "Mango",
+        "brand": "G",
+        "origin": "Mexico",
+        "category": "Tropical",
         "featured": false,
-        "imageUrl": "/images/nectarines.jpg"
+        "imageUrl": "/images/mango.jpg",
+        "price": 2.49
+      },
+      {
+        "name": "Papaya",
+        "brand": "B",
+        "origin": "Mexico",
+        "category": "Tropical",
+        "featured": false,
+        "imageUrl": "/images/papaya.jpg",
+        "price": 3.49
       },
       {
         "name": "Passion Fruit",
@@ -179,297 +87,36 @@
         "origin": "Colombia",
         "category": "Tropical",
         "featured": false,
-        "imageUrl": "/images/passion-fruit.jpg"
+        "imageUrl": "/images/passion-fruit.jpg",
+        "price": 4.29
       },
+      {
+        "name": "Banana",
+        "brand": "G",
+        "origin": "Colombia",
+        "category": "Tropical",
+        "featured": false,
+        "imageUrl": "/images/banana.jpg",
+        "price": 1.99
+      },
+
       {
         "name": "Corn",
         "brand": "Gambles",
         "origin": "Ontario",
         "category": "Vegetables",
         "featured": false,
-        "imageUrl": "/images/corn.jpg"
+        "imageUrl": "/images/corn.jpg",
+        "price": 2.99
       },
       {
-        "name": "Pineapple",
-        "brand": "G",
-        "origin": "Costa Rica",
-        "category": "Tropical",
-        "featured": false,
-        "imageUrl": "/images/pineapple.jpg"
-      },
-
-      {
-        "name": "Asian Pears",
-        "brand": "b",
-        "origin": "China",
-        "category": "Fruit",
-        "featured": false,
-        "imageUrl": "/images/asian-pears.jpg"
-      },
-      {
-        "name": "Pomegranate",
-        "brand": "G",
-        "origin": "Peru",
-        "category": "Fruit",
-        "featured": false,
-        "imageUrl": "/images/pomegranate.jpg"
-      },
-      {
-        "name": "Kiwi Green",
-        "brand": "G",
-        "origin": "Greece",
-        "category": "Fruit",
-        "featured": false,
-        "imageUrl": "/images/kiwi.jpg"
-      },
-      {
-        "name": "Red",
-        "brand": "G",
-        "origin": "Mexico",
-        "category": "Mangoes",
-        "featured": false,
-        "imageUrl": "/images/red-mango.jpg"
-      },
-      {
-        "name": "Ataulfo",
-        "brand": "G",
-        "origin": "Mexico",
-        "category": "Mangoes",
-        "featured": false,
-        "imageUrl": "/images/ataulfo-mango.jpg"
-      },
-      {
-        "name": "Organic Bananas",
-        "brand": "G",
-        "origin": "Colombia",
-        "category": "Fruit",
-        "featured": false,
-        "imageUrl": "/images/bananas.jpg"
-      },
-      {
-        "name": "Honey Crisp",
-        "brand": "G",
-        "origin": "USA",
-        "category": "Apples",
-        "featured": false,
-        "imageUrl": "/images/honeycrisp-apples.jpg"
-      },
-      {
-        "name": "Pink Lady",
-        "brand": "G",
-        "origin": "USA",
-        "category": "Apples",
-        "featured": false,
-        "imageUrl": "/images/pink-lady-apples.jpg"
-      },
-      {
-        "name": "Moores Ginger Gold",
-        "brand": "M",
-        "origin": "Canada",
-        "category": "Apples",
-        "featured": false,
-        "imageUrl": "/images/ginger-gold-apples.jpg"
-      },
-      {
-        "name": "Moores  Paulared",
-        "brand": "M",
-        "origin": "Canada",
-        "category": "Apples",
-        "featured": false,
-        "imageUrl": "/images/paulared-apples.jpg"
-      },
-      {
-        "name": "Moores (Half pecks) Empire",
-        "brand": "M",
-        "origin": "Canada",
-        "category": "Apples",
-        "featured": false,
-        "imageUrl": "/images/empire-apples.jpg"
-      },
-      {
-        "name": "Moores (Half pecks) Gala",
-        "brand": "M",
-        "origin": "Canada",
-        "category": "Apples",
-        "featured": false,
-        "imageUrl": "/images/gala-apples.jpg"
-      },
-      {
-        "name": "Avocados",
-        "brand": "G",
-        "origin": "Mexico",
-        "category": "Avocados",
-        "featured": false,
-        "imageUrl": "/images/avocados.jpg"
-      },
-      {
-        "name": "Blackberries (170g)",
-        "brand": "G",
-        "origin": "USA",
-        "category": "Berries",
-        "featured": false,
-        "imageUrl": "/images/blackberries.jpg"
-      },
-      {
-        "name": "Blueberries (551mL)",
-        "brand": "G",
-        "origin": "USA",
-        "category": "Berries",
-        "featured": false,
-        "imageUrl": "/images/blueberries.jpg"
-      },
-      {
-        "name": "Raspberries (170g)",
-        "brand": "G",
-        "origin": "Ontario",
-        "category": "Berries",
-        "featured": false,
-        "imageUrl": "/images/raspberries.jpg"
-      },
-      {
-        "name": "Strawberries (454g)",
-        "brand": "G",
-        "origin": "Canada",
-        "category": "Berries",
-        "featured": false,
-        "imageUrl": "/images/strawberries.jpg"
-      },
-
-      {
-        "name": "Clementines",
-        "brand": "G",
-        "origin": "Egypt",
-        "category": "Citrus",
-        "featured": false,
-        "imageUrl": "/images/clementines.jpg"
-      },
-      {
-        "name": "Grapefruit Red",
-        "brand": "G",
-        "origin": "Israel",
-        "category": "Citrus",
-        "featured": false,
-        "imageUrl": "/images/grapefruit.jpg"
-      },
-      {
-        "name": "Lemon",
-        "brand": "G",
-        "origin": "USA",
-        "category": "Citrus",
-        "featured": false,
-        "imageUrl": "/images/lemon.jpg"
-      },
-      {
-        "name": "Limes",
-        "brand": "G",
-        "origin": "Mexico",
-        "category": "Citrus",
-        "featured": false,
-        "imageUrl": "/images/limes.jpg"
-      },
-      {
-        "name": "Pomelo",
-        "brand": "B",
-        "origin": "Mexico",
-        "category": "Citrus",
-        "featured": false,
-        "imageUrl": "/images/pomelo.jpg"
-      },
-      {
-        "name": "Oranges Navel",
-        "brand": "G",
-        "origin": "Egypt",
-        "category": "Citrus",
-        "featured": false,
-        "imageUrl": "/images/oranges.jpg"
-      },
-      {
-        "name": "Blood Orange",
-        "brand": "",
-        "origin": "USA",
-        "category": "Citrus",
-        "featured": false,
-        "imageUrl": "/images/blood-orange.jpg"
-      },
-      {
-        "name": "Green Seedless Grapes",
-        "brand": "G",
-        "origin": "Mexico",
-        "category": "Grapes",
-        "featured": false,
-        "imageUrl": "/images/green-grapes.jpg"
-      },
-      {
-        "name": "Red Seedless Grapes",
-        "brand": "G",
-        "origin": "Mexico",
-        "category": "Grapes",
-        "featured": false,
-        "imageUrl": "/images/red-grapes.jpg"
-      },
-      {
-        "name": "Nectarines",
-        "brand": "L",
-        "origin": "Canada",
-        "category": "Stone Fruit",
-        "featured": false,
-        "imageUrl": "/images/nectarines-basket.jpg"
-      },
-      {
-        "name": "Honeydew",
-        "brand": "L",
-        "origin": "Guatemala",
-        "category": "Melons",
-        "featured": false,
-        "imageUrl": "/images/honeydew.jpg"
-      },
-      {
-        "name": "Cantaloupe",
-        "brand": "",
-        "origin": "Guatemala",
-        "category": "Melons",
-        "featured": false,
-        "imageUrl": "/images/cantaloupe.jpg"
-      },
-      {
-        "name": "Papaya",
-        "brand": "B",
-        "origin": "Mexico",
-        "category": "Melons",
-        "featured": false,
-        "imageUrl": "/images/papaya.jpg"
-      },
-      {
-        "name": "Snap Peas",
-        "brand": "G",
-        "origin": "China",
-        "category": "Vegetables",
-        "featured": false,
-        "imageUrl": "/images/snap-peas.jpg"
-      },
-      {
-        "name": "Green Beans",
+        "name": "Zucchini",
         "brand": "G",
         "origin": "Ontario",
         "category": "Vegetables",
         "featured": false,
-        "imageUrl": "/images/green-beans.jpg"
-      },
-      {
-        "name": "Brussel Sprouts",
-        "brand": "G",
-        "origin": "USA",
-        "category": "Vegetables",
-        "featured": false,
-        "imageUrl": "/images/brussel-sprouts.jpg"
-      },
-      {
-        "name": "Green Zucchini",
-        "brand": "G",
-        "origin": "Ontario",
-        "category": "Vegetables",
-        "featured": false,
-        "imageUrl": "/images/green-zucchini.jpg"
+        "imageUrl": "/images/zucchini.jpg",
+        "price": 1.79
       },
       {
         "name": "Eggplant",
@@ -477,23 +124,17 @@
         "origin": "Ontario",
         "category": "Vegetables",
         "featured": false,
-        "imageUrl": "/images/eggplant.jpg"
+        "imageUrl": "/images/eggplant.jpg",
+        "price": 2.49
       },
       {
-        "name": "Cucumber English ",
+        "name": "Green Beans",
         "brand": "G",
         "origin": "Ontario",
         "category": "Vegetables",
         "featured": false,
-        "imageUrl": "/images/cucumber.jpg"
-      },
-      {
-        "name": "Cauliflower White",
-        "brand": "G",
-        "origin": "USA",
-        "category": "Vegetables",
-        "featured": false,
-        "imageUrl": "/images/cauliflower.jpg"
+        "imageUrl": "/images/green-beans.jpg",
+        "price": 3.29
       },
       {
         "name": "Broccoli",
@@ -501,320 +142,350 @@
         "origin": "USA",
         "category": "Vegetables",
         "featured": false,
-        "imageUrl": "/images/broccoli.jpg"
+        "imageUrl": "/images/broccoli.jpg",
+        "price": 2.59
+      },
+
+      {
+        "name": "Strawberries",
+        "brand": "G",
+        "origin": "Canada",
+        "category": "Berries",
+        "featured": false,
+        "imageUrl": "/images/strawberries.jpg",
+        "price": 4.99
       },
       {
-        "name": "Celery (Chips)",
+        "name": "Blueberries",
+        "brand": "G",
+        "origin": "USA",
+        "category": "Berries",
+        "featured": false,
+        "imageUrl": "/images/blueberries.jpg",
+        "price": 3.99
+      },
+      {
+        "name": "Raspberries",
         "brand": "G",
         "origin": "Ontario",
-        "category": "Vegetables",
+        "category": "Berries",
         "featured": false,
-        "imageUrl": "/images/celery.jpg"
+        "imageUrl": "/images/raspberries.jpg",
+        "price": 5.49
       },
       {
-        "name": "Leeks",
+        "name": "Blackberries",
+        "brand": "G",
+        "origin": "USA",
+        "category": "Berries",
+        "featured": false,
+        "imageUrl": "/images/blackberries.jpg",
+        "price": 5.29
+      },
+      {
+        "name": "Gooseberries",
+        "brand": "G",
+        "origin": "Canada",
+        "category": "Berries",
+        "featured": false,
+        "imageUrl": "/images/gooseberries.jpg",
+        "price": 6.49
+      },
+
+      {
+        "name": "Orange",
+        "brand": "G",
+        "origin": "Egypt",
+        "category": "Citrus",
+        "featured": false,
+        "imageUrl": "/images/orange.jpg",
+        "price": 1.49
+      },
+      {
+        "name": "Lemon",
+        "brand": "G",
+        "origin": "USA",
+        "category": "Citrus",
+        "featured": false,
+        "imageUrl": "/images/lemon.jpg",
+        "price": 0.99
+      },
+      {
+        "name": "Lime",
         "brand": "G",
         "origin": "Mexico",
-        "category": "Vegetables",
+        "category": "Citrus",
         "featured": false,
-        "imageUrl": "/images/leeks.jpg"
+        "imageUrl": "/images/lime.jpg",
+        "price": 0.89
       },
       {
-        "name": "Bok Choy Shanghai",
+        "name": "Grapefruit",
         "brand": "G",
-        "origin": "Ontario",
-        "category": "Vegetables",
+        "origin": "Israel",
+        "category": "Citrus",
         "featured": false,
-        "imageUrl": "/images/bok-choy.jpg"
+        "imageUrl": "/images/grapefruit.jpg",
+        "price": 1.79
       },
       {
-        "name": "Green Cabbage",
+        "name": "Clementine",
         "brand": "G",
-        "origin": "Ontario",
-        "category": "Cabbage",
+        "origin": "Egypt",
+        "category": "Citrus",
         "featured": false,
-        "imageUrl": "/images/green-cabbage.jpg"
-      },
-      {
-        "name": "Red Cabbage",
-        "brand": "G",
-        "origin": "Ontario",
-        "category": "Cabbage",
-        "featured": false,
-        "imageUrl": "/images/red-cabbage.jpg"
-      },
-      {
-        "name": "Nappa Cabbage",
-        "brand": "G",
-        "origin": "Canada",
-        "category": "Cabbage",
-        "featured": false,
-        "imageUrl": "/images/nappa-cabbage.jpg"
-      },
-      {
-        "name": "Green Kale",
-        "brand": "G",
-        "origin": "Ontario",
-        "category": "Kale",
-        "featured": false,
-        "imageUrl": "/images/green-kale.jpg"
-      },
-      {
-        "name": "Red Kale",
-        "brand": "D",
-        "origin": "Mexico",
-        "category": "Kale",
-        "featured": false,
-        "imageUrl": "/images/red-kale.jpg"
-      },
-      {
-        "name": "Black Kale Tuscan",
-        "brand": "G",
-        "origin": "Ontario",
-        "category": "Kale",
-        "featured": false,
-        "imageUrl": "/images/black-kale.jpg"
-      },
-      {
-        "name": "Parsnip",
-        "brand": "B",
-        "origin": "Ontario",
-        "category": "Roots",
-        "featured": false,
-        "imageUrl": "/images/parsnip.jpg"
-      },
-      {
-        "name": "Carrot Bunch",
-        "brand": "G",
-        "origin": "Canada",
-        "category": "Roots",
-        "featured": false,
-        "imageUrl": "/images/carrots.jpg"
-      },
-      {
-        "name": "Romaine Lettuce",
-        "brand": "G",
-        "origin": "USA",
-        "category": "Lettuce",
-        "featured": false,
-        "imageUrl": "/images/romaine.jpg"
-      },
-      {
-        "name": "Green Leaf Lettuce",
-        "brand": "G",
-        "origin": "USA",
-        "category": "Lettuce",
-        "featured": false,
-        "imageUrl": "/images/green-leaf-lettuce.jpg"
-      },
-      {
-        "name": "Radicchio",
-        "brand": "G",
-        "origin": "USA",
-        "category": "Lettuce",
-        "featured": false,
-        "imageUrl": "/images/radicchio.jpg"
-      },
-      {
-        "name": "Spinach Bunched",
-        "brand": "G",
-        "origin": "USA",
-        "category": "Spinach",
-        "featured": false,
-        "imageUrl": "/images/spinach.jpg"
-      },
-      {
-        "name": "Basil",
-        "brand": "G",
-        "origin": "Colombia",
-        "category": "Herbs",
-        "featured": false,
-        "imageUrl": "/images/basil.jpg"
-      },
-      {
-        "name": "Cilantro",
-        "brand": "G",
-        "origin": "Canada",
-        "category": "Herbs",
-        "featured": false,
-        "imageUrl": "/images/cilantro.jpg"
-      },
-      {
-        "name": "Dill",
-        "brand": "B",
-        "origin": "USA",
-        "category": "Herbs",
-        "featured": false,
-        "imageUrl": "/images/dill.jpg"
-      },
-      {
-        "name": "Mint",
-        "brand": "G",
-        "origin": "South America",
-        "category": "Herbs",
-        "featured": false,
-        "imageUrl": "/images/mint.jpg"
-      },
-      {
-        "name": "Parsley (Italian)",
-        "brand": "B",
-        "origin": "USA",
-        "category": "Herbs",
-        "featured": false,
-        "imageUrl": "/images/parsley.jpg"
-      },
-      {
-        "name": "Rosemary",
-        "brand": "G",
-        "origin": "South America",
-        "category": "Herbs",
-        "featured": false,
-        "imageUrl": "/images/rosemary.jpg"
-      },
-      {
-        "name": "Sage",
-        "brand": "G",
-        "origin": "South America",
-        "category": "Herbs",
-        "featured": false,
-        "imageUrl": "/images/sage.jpg"
-      },
-      {
-        "name": "Thyme",
-        "brand": "G",
-        "origin": "South America",
-        "category": "Herbs",
-        "featured": false,
-        "imageUrl": "/images/thyme.jpg"
-      },
-      {
-        "name": "Oregano",
-        "brand": "G",
-        "origin": "South America",
-        "category": "Herbs",
-        "featured": false,
-        "imageUrl": "/images/oregano.jpg"
-      },
-      {
-        "name": "Chives",
-        "brand": "G",
-        "origin": "South America",
-        "category": "Herbs",
-        "featured": false,
-        "imageUrl": "/images/chives.jpg"
-      },
-      {
-        "name": "Ginger, Organic",
-        "brand": "G",
-        "origin": "Peru",
-        "category": "Roots",
-        "featured": false,
-        "imageUrl": "/images/ginger.jpg"
-      },
-      {
-        "name": "Rutabaga",
-        "brand": "G",
-        "origin": "Canada",
-        "category": "Roots",
-        "featured": false,
-        "imageUrl": "/images/rutabaga.jpg"
-      },
-      {
-        "name": "Garlic",
-        "brand": "G",
-        "origin": "Ontario",
-        "category": "Roots",
-        "featured": false,
-        "imageUrl": "/images/garlic.jpg"
-      },
-      {
-        "name": "Fingerling Potatoes (yellow)",
-        "brand": "G",
-        "origin": "Canada",
-        "category": "Potatoes",
-        "featured": false,
-        "imageUrl": "/images/fingerling-potatoes.jpg"
-      },
-      {
-        "name": "Sweet Potatoes #1",
-        "brand": "G",
-        "origin": "USA",
-        "category": "Potatoes",
-        "featured": false,
-        "imageUrl": "/images/sweet-potatoes.jpg"
-      },
-      {
-        "name": "Yukon Potatoes",
-        "brand": "G",
-        "origin": "Canada",
-        "category": "Potatoes",
-        "featured": false,
-        "imageUrl": "/images/yukon-potatoes.jpg"
-      },
-      {
-        "name": "RUSSET Potatoes",
-        "brand": "G",
-        "origin": "Canada",
-        "category": "Potatoes",
-        "featured": false,
-        "imageUrl": "/images/russet-potatoes.jpg"
+        "imageUrl": "/images/clementine.jpg",
+        "price": 2.99
       }
     ]
   },
   "grocery": {
     "categories": {
-      "Grocery": {
-        "title": "Grocery",
-        "info": "Our grocery section features pantry staples, dairy, bread, snacks, beverages, and specialty ingredients. We highlight local and artisanal products alongside trusted everyday brands.",
-        "health": "We curate our grocery selection for quality and wholesome ingredients, supporting both local makers and well-known favorites.",
-        "recipe": "Market Bruschetta – Top fresh sourdough with local goat cheese, cherry tomato jam, and a drizzle of olive oil for an easy appetizer."
-      }
+      "Bakery": {},
+      "Dairy": {},
+      "Pantry": {},
+      "Snacks": {},
+      "Beverages": {}
     },
     "items": [
       {
         "name": "Sourdough Bread",
         "brand": "Local Bakery",
         "origin": "Cobourg",
-        "category": "Grocery",
+        "category": "Bakery",
         "featured": true,
-        "imageUrl": "/images/sourdough-bread.jpg"
+        "imageUrl": "/images/sourdough-bread.jpg",
+        "price": 5.99
       },
       {
-        "name": "Artisan Jam",
-        "brand": "Northumberland Preserves",
-        "origin": "Ontario",
-        "category": "Grocery",
+        "name": "Whole Wheat Bread",
+        "brand": "Local Bakery",
+        "origin": "Cobourg",
+        "category": "Bakery",
         "featured": false,
-        "imageUrl": "/images/artisan-jam.jpg"
+        "imageUrl": "/images/whole-wheat-bread.jpg",
+        "price": 4.99
+      },
+      {
+        "name": "Baguette",
+        "brand": "Local Bakery",
+        "origin": "Cobourg",
+        "category": "Bakery",
+        "featured": false,
+        "imageUrl": "/images/baguette.jpg",
+        "price": 3.49
+      },
+      {
+        "name": "Ciabatta",
+        "brand": "Local Bakery",
+        "origin": "Cobourg",
+        "category": "Bakery",
+        "featured": false,
+        "imageUrl": "/images/ciabatta.jpg",
+        "price": 3.99
+      },
+      {
+        "name": "Multigrain Loaf",
+        "brand": "Local Bakery",
+        "origin": "Cobourg",
+        "category": "Bakery",
+        "featured": false,
+        "imageUrl": "/images/multigrain-loaf.jpg",
+        "price": 5.49
+      },
+
+      {
+        "name": "Milk",
+        "brand": "Dairyland",
+        "origin": "Ontario",
+        "category": "Dairy",
+        "featured": false,
+        "imageUrl": "/images/milk.jpg",
+        "price": 2.99
+      },
+      {
+        "name": "Cheddar Cheese",
+        "brand": "Local Creamery",
+        "origin": "Ontario",
+        "category": "Dairy",
+        "featured": false,
+        "imageUrl": "/images/cheddar-cheese.jpg",
+        "price": 6.99
+      },
+      {
+        "name": "Yogurt",
+        "brand": "Local Creamery",
+        "origin": "Ontario",
+        "category": "Dairy",
+        "featured": false,
+        "imageUrl": "/images/yogurt.jpg",
+        "price": 4.49
+      },
+      {
+        "name": "Butter",
+        "brand": "Local Creamery",
+        "origin": "Ontario",
+        "category": "Dairy",
+        "featured": false,
+        "imageUrl": "/images/butter.jpg",
+        "price": 5.29
+      },
+      {
+        "name": "Eggs",
+        "brand": "Farm Fresh",
+        "origin": "Ontario",
+        "category": "Dairy",
+        "featured": false,
+        "imageUrl": "/images/eggs.jpg",
+        "price": 3.99
+      },
+
+      {
+        "name": "Pasta",
+        "brand": "Barilla",
+        "origin": "Italy",
+        "category": "Pantry",
+        "featured": false,
+        "imageUrl": "/images/pasta.jpg",
+        "price": 2.49
+      },
+      {
+        "name": "Rice",
+        "brand": "Uncle Ben's",
+        "origin": "USA",
+        "category": "Pantry",
+        "featured": false,
+        "imageUrl": "/images/rice.jpg",
+        "price": 3.99
+      },
+      {
+        "name": "Canned Tomatoes",
+        "brand": "Mutti",
+        "origin": "Italy",
+        "category": "Pantry",
+        "featured": false,
+        "imageUrl": "/images/canned-tomatoes.jpg",
+        "price": 1.99
+      },
+      {
+        "name": "Olive Oil",
+        "brand": "Bertolli",
+        "origin": "Italy",
+        "category": "Pantry",
+        "featured": false,
+        "imageUrl": "/images/olive-oil.jpg",
+        "price": 8.99
+      },
+      {
+        "name": "Peanut Butter",
+        "brand": "Kraft",
+        "origin": "Canada",
+        "category": "Pantry",
+        "featured": false,
+        "imageUrl": "/images/peanut-butter.jpg",
+        "price": 4.49
+      },
+
+      {
+        "name": "Potato Chips",
+        "brand": "Lays",
+        "origin": "Canada",
+        "category": "Snacks",
+        "featured": false,
+        "imageUrl": "/images/potato-chips.jpg",
+        "price": 2.99
+      },
+      {
+        "name": "Granola Bars",
+        "brand": "Nature Valley",
+        "origin": "USA",
+        "category": "Snacks",
+        "featured": false,
+        "imageUrl": "/images/granola-bars.jpg",
+        "price": 3.49
+      },
+      {
+        "name": "Pretzels",
+        "brand": "Rold Gold",
+        "origin": "USA",
+        "category": "Snacks",
+        "featured": false,
+        "imageUrl": "/images/pretzels.jpg",
+        "price": 2.79
+      },
+      {
+        "name": "Trail Mix",
+        "brand": "Planters",
+        "origin": "USA",
+        "category": "Snacks",
+        "featured": false,
+        "imageUrl": "/images/trail-mix.jpg",
+        "price": 4.99
+      },
+      {
+        "name": "Chocolate Bar",
+        "brand": "Cadbury",
+        "origin": "UK",
+        "category": "Snacks",
+        "featured": false,
+        "imageUrl": "/images/chocolate-bar.jpg",
+        "price": 1.89
+      },
+
+      {
+        "name": "Orange Juice",
+        "brand": "Tropicana",
+        "origin": "USA",
+        "category": "Beverages",
+        "featured": false,
+        "imageUrl": "/images/orange-juice.jpg",
+        "price": 3.99
+      },
+      {
+        "name": "Apple Juice",
+        "brand": "Minute Maid",
+        "origin": "USA",
+        "category": "Beverages",
+        "featured": false,
+        "imageUrl": "/images/apple-juice.jpg",
+        "price": 3.49
+      },
+      {
+        "name": "Coffee",
+        "brand": "Starbucks",
+        "origin": "USA",
+        "category": "Beverages",
+        "featured": false,
+        "imageUrl": "/images/coffee.jpg",
+        "price": 8.99
+      },
+      {
+        "name": "Tea",
+        "brand": "Tetley",
+        "origin": "UK",
+        "category": "Beverages",
+        "featured": false,
+        "imageUrl": "/images/tea.jpg",
+        "price": 4.49
+      },
+      {
+        "name": "Sparkling Water",
+        "brand": "Perrier",
+        "origin": "France",
+        "category": "Beverages",
+        "featured": false,
+        "imageUrl": "/images/sparkling-water.jpg",
+        "price": 1.49
       }
     ]
   },
   "kitchen": {
     "categories": {
-      "Bread": {
-        "title": "Bread",
-        "info": "Freshly baked breads and quiches, perfect for sandwiches or as a side.",
-        "health": "Our breads are baked fresh daily and provide a good source of energy.",
-        "recipe": "Quiche Toast – Toast a slice of bread, top with a warm slice of market quiche, and garnish with fresh herbs."
-      },
-      "Sides": {
-        "title": "Sides",
-        "info": "Tasty accompaniments to round out any meal.",
-        "health": "Our sides are made with fresh, local ingredients and offer wholesome nutrition.",
-        "recipe": "Soup & Frittata Combo – Pair our soup of the day with a slice of daily frittata for a nourishing lunch."
-      },
-      "Mains": {
-        "title": "Mains",
-        "info": "Hearty main courses to satisfy any appetite.",
-        "health": "Our mains are balanced meals, prepared with high-quality proteins and fresh produce.",
-        "recipe": "Chicken Plate Deluxe – Serve roast chicken with a side of garlic mashed potatoes and sautéed greens."
-      },
-      "Salads": {
-        "title": "Salads",
-        "info": "Fresh, seasonal salads made daily.",
-        "health": "Our salads are packed with vitamins, minerals, and fiber.",
-        "recipe": "Seasonal Salad Bowl – Toss mixed greens with roasted root veggies, grains, and toasted seeds. Dress with house vinaigrette."
-      }
+      "Bread": {},
+      "Sides": {},
+      "Mains": {},
+      "Salads": {},
+      "Desserts": {}
     },
     "items": [
       {
@@ -822,70 +493,201 @@
         "description": "Flaky pastry filled with eggs, cheese, and seasonal vegetables.",
         "featured": true,
         "imageUrl": "/images/market-quiche.jpg",
-        "category": "Bread"
+        "category": "Bread",
+        "price": 7.0
       },
+      {
+        "name": "Sourdough Roll",
+        "description": "Individually baked sourdough roll.",
+        "featured": false,
+        "imageUrl": "/images/sourdough-roll.jpg",
+        "category": "Bread",
+        "price": 1.5
+      },
+      {
+        "name": "Brioche Bun",
+        "description": "Soft, buttery brioche bun.",
+        "featured": false,
+        "imageUrl": "/images/brioche-bun.jpg",
+        "category": "Bread",
+        "price": 2.0
+      },
+      {
+        "name": "Focaccia Slice",
+        "description": "Herb-infused focaccia, sliced.",
+        "featured": false,
+        "imageUrl": "/images/focaccia.jpg",
+        "category": "Bread",
+        "price": 2.25
+      },
+      {
+        "name": "Cheddar Biscuit",
+        "description": "Savory biscuit with sharp cheddar.",
+        "featured": false,
+        "imageUrl": "/images/cheddar-biscuit.jpg",
+        "category": "Bread",
+        "price": 1.75
+      },
+
       {
         "name": "Hearty Soup of the Day",
         "description": "Chef’s choice—always made with fresh, local ingredients. Served with sourdough.",
         "featured": false,
         "imageUrl": "/images/soup-of-the-day.jpg",
-        "category": "Sides"
+        "category": "Sides",
+        "price": 5.0
       },
       {
         "name": "Daily Frittata",
         "description": "Eggs baked with seasonal vegetables, fresh herbs, and cheese. Served warm.",
         "featured": false,
         "imageUrl": "/images/daily-frittata.jpg",
-        "category": "Sides"
+        "category": "Sides",
+        "price": 4.5
+      },
+      {
+        "name": "Roasted Potatoes",
+        "description": "Crispy roasted potatoes with herbs.",
+        "featured": false,
+        "imageUrl": "/images/roasted-potatoes.jpg",
+        "category": "Sides",
+        "price": 3.5
+      },
+      {
+        "name": "Grilled Veggies",
+        "description": "Seasonal vegetables, grilled to perfection.",
+        "featured": false,
+        "imageUrl": "/images/grilled-veggies.jpg",
+        "category": "Sides",
+        "price": 4.0
+      },
+      {
+        "name": "Garlic Bread",
+        "description": "Toasted bread with garlic butter.",
+        "featured": false,
+        "imageUrl": "/images/garlic-bread.jpg",
+        "category": "Sides",
+        "price": 2.25
       },
       {
         "name": "Roast Chicken Plate",
         "description": "Herb-roasted chicken served with garlic mashed potatoes and sautéed greens.",
         "featured": false,
         "imageUrl": "/images/roast-chicken.jpg",
-        "category": "Mains"
+        "category": "Mains",
+        "price": 12.0
       },
       {
         "name": "Vegetarian Lasagna",
         "description": "Layers of pasta, ricotta, spinach, and roasted vegetables in a rich tomato sauce.",
         "featured": false,
         "imageUrl": "/images/vegetarian-lasagna.jpg",
-        "category": "Mains"
+        "category": "Mains",
+        "price": 10.5
       },
       {
         "name": "Pulled Pork Sandwich",
         "description": "Slow-cooked pork, tangy slaw, and house BBQ sauce on a fresh bun.",
         "featured": false,
         "imageUrl": "/images/pulled-pork-sandwich.jpg",
-        "category": "Mains"
+        "category": "Mains",
+        "price": 9.5
       },
       {
         "name": "Grilled Veggie Panini",
         "description": "Zucchini, peppers, eggplant, and goat cheese pressed on artisan bread.",
         "featured": false,
         "imageUrl": "/images/veggie-panini.jpg",
-        "category": "Mains"
-      },
-      {
-        "name": "Chicken Caesar Wrap",
-        "description": "Grilled chicken, crisp romaine, parmesan, and house Caesar dressing in a wrap.",
-        "featured": false,
-        "imageUrl": "/images/chicken-caesar-wrap.jpg",
-        "category": "Mains"
+        "category": "Mains",
+        "price": 8.75
       },
       {
         "name": "Mac & Cheese",
         "description": "Classic comfort—elbow macaroni in creamy cheddar sauce, baked with a crunchy topping.",
         "featured": false,
         "imageUrl": "/images/mac-and-cheese.jpg",
-        "category": "Mains"
+        "category": "Mains",
+        "price": 8.0
       },
       {
         "name": "Seasonal Salad Bowl",
         "description": "Mixed greens, roasted root veggies, grains, and toasted seeds with a house vinaigrette.",
         "featured": false,
         "imageUrl": "/images/seasonal-salad.jpg",
-        "category": "Salads"
+        "category": "Salads",
+        "price": 7.0
+      },
+      {
+        "name": "Greek Salad",
+        "description": "Tomato, cucumber, feta, olives, and red onion with Greek dressing.",
+        "featured": false,
+        "imageUrl": "/images/greek-salad.jpg",
+        "category": "Salads",
+        "price": 6.5
+      },
+      {
+        "name": "Caesar Salad",
+        "description": "Romaine, parmesan, croutons, and house Caesar dressing.",
+        "featured": false,
+        "imageUrl": "/images/caesar-salad.jpg",
+        "category": "Salads",
+        "price": 6.0
+      },
+      {
+        "name": "Spinach & Berry Salad",
+        "description": "Spinach, mixed berries, goat cheese, and candied pecans with raspberry vinaigrette.",
+        "featured": false,
+        "imageUrl": "/images/spinach-berry-salad.jpg",
+        "category": "Salads",
+        "price": 7.5
+      },
+      {
+        "name": "Chickpea Salad",
+        "description": "Chickpeas, cucumber, tomato, parsley, and lemon vinaigrette.",
+        "featured": false,
+        "imageUrl": "/images/chickpea-salad.jpg",
+        "category": "Salads",
+        "price": 6.25
+      },
+      {
+        "name": "Chocolate Brownie",
+        "description": "Rich chocolate brownie with walnuts.",
+        "featured": false,
+        "imageUrl": "/images/chocolate-brownie.jpg",
+        "category": "Desserts",
+        "price": 3.0
+      },
+      {
+        "name": "Fruit Parfait",
+        "description": "Layers of fruit, yogurt, and granola.",
+        "featured": false,
+        "imageUrl": "/images/fruit-parfait.jpg",
+        "category": "Desserts",
+        "price": 4.5
+      },
+      {
+        "name": "Apple Pie Slice",
+        "description": "Classic apple pie with a flaky crust.",
+        "featured": false,
+        "imageUrl": "/images/apple-pie.jpg",
+        "category": "Desserts",
+        "price": 3.75
+      },
+      {
+        "name": "Cheesecake",
+        "description": "Creamy cheesecake with a graham cracker crust.",
+        "featured": false,
+        "imageUrl": "/images/cheesecake.jpg",
+        "category": "Desserts",
+        "price": 4.25
+      },
+      {
+        "name": "Rice Pudding",
+        "description": "Creamy rice pudding with cinnamon.",
+        "featured": false,
+        "imageUrl": "/images/rice-pudding.jpg",
+        "category": "Desserts",
+        "price": 3.25
       }
     ]
   }
