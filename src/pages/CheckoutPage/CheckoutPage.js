@@ -77,6 +77,16 @@ export default function CheckoutPage({ cartItems = [], onOrderSubmit }) {
           />
         </label>
         <label>
+          Phone Number
+          <input
+            type="number"
+            name="phone"
+            value={shippingInfo.name}
+            onChange={handleShippingChange}
+            required
+          />
+        </label>
+        <label>
           email
           <input
             type="email"
