@@ -7,6 +7,7 @@ import emailicon from "../../assets/icons/icons8-email-32.png";
 import instgicon from "../../assets/icons/icons8-instagram-32.png";
 import phoneicon from "../../assets/icons/icons8-phone-32.png";
 import "./Header.scss";
+import Cta from "../Cta/Cta";
 export default function Header() {
   return (
     <header className="header">
@@ -21,7 +22,7 @@ export default function Header() {
           instlink={"https://www.instagram.com/marketsmor/"}
           phonelink={"tel:+19052691614"}
         />
-        <Link to="/cart">Go to Cart</Link>
+        <Cta btnName="Go to Cart" btnLink="/cart" />
       </div>
       <Link className="header__logo" to="/">
         <img className="header__logo header__logo--img" alt="logo" src={logo} />
