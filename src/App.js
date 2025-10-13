@@ -18,6 +18,7 @@ import Header from "./components/Header/Header.js";
 import ShopPage from "./components/ShopPage/ShopPage.js";
 import Cart from "./components/Cart/Cart.js";
 import CartPage from "./pages/CartPage/CartPage.js";
+import CheckoutPage from "./pages/CheckoutPage/CheckoutPage.js";
 export default function App() {
   const [cart, setCart] = useState(() => {
     const saved = localStorage.getItem("cart");
@@ -82,7 +83,7 @@ export default function App() {
             />
           }
         />
-
+        <Route path="/checkout" element={<CheckoutPage cartItems={cart} />} />
         <Route
           path="/cart"
           element={

@@ -39,10 +39,12 @@
     transform: translateY(-4px) scale(1.03);
   }
   &__buttons {
+    margin-top: auto;
+    margin-bottom: 0.5rem;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    gap: 1rem;
+    gap: 0.8rem;
   }
 }
 @mixin navbarset {
