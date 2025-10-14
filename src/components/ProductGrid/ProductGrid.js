@@ -7,7 +7,7 @@ const ProductGrid = ({ items = [], addToCart }) => (
   <ul className="product">
     {items.length > 0 ? (
       items.map((item) => (
-        <li className="product__card" key={item.name}>
+        <li className="product__card" key={item.id}>
           <ProductCard item={item} addToCart={addToCart} />
         </li>
       ))

@@ -5,8 +5,7 @@ import {
   Route,
   BrowserRouter,
 } from "react-router-dom";
-import storeData from "./data/StoreData.json";
-import Navbar from "./components/Navbar/Navbar.js";
+
 import Home from "./pages/Home/Home.js";
 import About from "./components/About/About.js";
 import Contact from "./pages/Contact/Contact.js";
@@ -19,6 +18,9 @@ import ShopPage from "./components/ShopPage/ShopPage.js";
 import Cart from "./components/Cart/Cart.js";
 import CartPage from "./pages/CartPage/CartPage.js";
 import CheckoutPage from "./pages/CheckoutPage/CheckoutPage.js";
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
+const stripePromise = loadStripe("pk_test_..."); // Your Stripe TEST publishable key
 export default function App() {
   const [cart, setCart] = useState(() => {
     const saved = localStorage.getItem("cart");
@@ -83,7 +85,14 @@ export default function App() {
             />
           }
         />
-        <Route path="/checkout" element={<CheckoutPage cartItems={cart} />} />
+        <Route
+          path="/checkout"
+          element={
+            <Elements stripe={stripePromise}>
+              <CheckoutPage cartItems={cart} setCart={setCart} />
+            </Elements>
+          }
+        />
         <Route
           path="/cart"
           element={

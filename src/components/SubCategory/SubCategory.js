@@ -8,13 +8,15 @@ const SubcategoryNav = ({
 }) => (
   <nav className="filter">
     <ul className="filter__list">
-      {subCategories?.map((sub) => (
+      {subCategories.map((sub) => (
         <li
-          key={sub}
-          className={`filter__filtering${sub === selectedSub ? " active" : ""}`}
-          onClick={() => onSelectSub(sub)}
+          key={sub.id}
+          className={`filter__filtering${
+            sub.id === selectedSub ? " active" : ""
+          }`}
+          onClick={() => onSelectSub(sub.id)}
         >
-          {categoryData?.[sub]?.title || sub}
+          {sub.name}
         </li>
       ))}
     </ul>
