@@ -6,11 +6,11 @@ const Sidebar = ({ categoryList, selectedCategory, onSelectCategory }) => (
     <ul className="sidebar__list">
       {categoryList.map((cat) => (
         <li
-          key={cat}
-          className={cat === selectedCategory ? "active" : ""}
-          onClick={() => onSelectCategory(cat)}
+          key={cat.id}
+          className={cat.id === selectedCategory ? "active" : ""}
+          onClick={() => onSelectCategory(cat.id)}
         >
-          {cat.charAt(0).toUpperCase() + cat.slice(1)}
+          {cat.name.charAt(0).toUpperCase() + cat.name.slice(1)}
         </li>
       ))}
     </ul>
