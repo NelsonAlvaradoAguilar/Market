@@ -24,6 +24,7 @@ export default function Header() {
         />
         <Cta btnName="Go to Cart" btnLink="/cart" />
       </div>
+
       <Link className="header__logo" to="/">
         <img className="header__logo header__logo--img" alt="logo" src={logo} />
       </Link>
