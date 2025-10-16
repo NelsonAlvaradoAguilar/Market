@@ -1,5 +1,5 @@
 import axios from "axios";
-
+export const token = sessionStorage.getItem("JWTtoken");
 //const API_BASE = "http://localhost:4242/api";
 const API_BASE = "https://marketserver-7r02.onrender.com/api";
 
@@ -87,6 +87,68 @@ const createOrderItem = async (data) => {
     return null;
   }
 };
+const signUp = async (name, email, password) => {
+  try {
+    const response = await axios.post(
+      `${API_BASE}/users/register`,
+      { name, email, password },
+      {
+        headers: { "Content-Type": "application/json" },
+      }
+    );
+    // Optionally store token and user for global auth
+    if (response.data.token) {
+      localStorage.setItem("token", response.data.token);
+      localStorage.setItem("user", JSON.stringify(response.data.user));
+    }
+    return response.data; // { token, user }
+  } catch (error) {
+    console.log(
+      `Failed to register user with error message: ${
+        error.response?.data?.error || error.message
+      }`
+    );
+    // Optionally: throw for form error handling
+    throw new Error(error.response?.data?.error || "Registration failed");
+  }
+};
+const loginUser = async (email, password) => {
+  try {
+    const response = await axios.post(
+      `${API_BASE}/users/login`,
+      { email, password },
+      {
+        headers: { "Content-Type": "application/json" },
+      }
+    );
+    // Optionally store token and user for global auth
+    if (response.data.token) {
+      localStorage.setItem("token", response.data.token);
+      localStorage.setItem("user", JSON.stringify(response.data.user));
+    }
+    return response.data; // { token, user }
+  } catch (error) {
+    console.log(
+      `Failed to login with error message: ${
+        error.response?.data?.error || error.message
+      }`
+    );
+    throw new Error(error.response?.data?.error || "Login failed");
+  }
+};
+const getUserProfile = async () => {
+    });
+    return response.data; // { id, name, email, role, ... }
+  } catch (error) {
+    console.log(
+      `Failed to get user profile with error message: ${
+        error.response?.data?.error || error.message
+      }`
+    );
+    throw new Error(error.response?.data?.error || "Could not fetch profile");
+  }
+};
+
 // PRODUCTS
 /*
 export const createProduct = async (data) => {
@@ -215,4 +277,8 @@ export {
   createOrder,
   getOrderItems,
   createOrderItem,
+  signUp,
+  loginUser,
+  getUserProfile,
+  token,
 };
