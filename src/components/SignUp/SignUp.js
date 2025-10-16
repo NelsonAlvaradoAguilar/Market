@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { signUp } from "../../utils/api";
+import { useNavigate } from "react-router-dom";
 
 export default function SignUpForm({ onRegister }) {
   const [form, setForm] = useState({ name: "", email: "", password: "" });
@@ -10,7 +11,7 @@ export default function SignUpForm({ onRegister }) {
     setForm({ ...form, [e.target.name]: e.target.value });
     setError("");
   }
-
+  const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
@@ -22,6 +23,7 @@ export default function SignUpForm({ onRegister }) {
       localStorage.setItem("token", res.token);
       localStorage.setItem("user", JSON.stringify(res.user));
       onRegister && onRegister(res.user);
+      navigate("/profile");
     } catch (err) {
       setError("Registration failed: " + (err.message || "Unknown error"));
     }
