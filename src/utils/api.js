@@ -1,5 +1,5 @@
 import axios from "axios";
-export const token = sessionStorage.getItem("JWTtoken");
+const token = sessionStorage.getItem("JWTtoken");
 //const API_BASE = "http://localhost:4242/api";
 const API_BASE = "https://marketserver-7r02.onrender.com/api";
 
@@ -137,6 +137,9 @@ const loginUser = async (email, password) => {
   }
 };
 const getUserProfile = async () => {
+  try {
+    const response = await axios.get(`${API_BASE}/users/profile`, {
+      headers: { Authorization: `Bearer ${token}` },
     });
     return response.data; // { id, name, email, role, ... }
   } catch (error) {
