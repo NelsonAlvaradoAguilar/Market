@@ -10,7 +10,10 @@ import { images } from "../../data/images";
 import Hero2 from "../../components/Hero2/Hero2";
 import SignUpForm from "../../components/SignUp/SignUp";
 import Cta from "../../components/Cta/Cta";
+import { token } from "../../utils/api";
 export default function Home() {
+  console.log(token);
+
   return (
     <section className="home">
       <>
@@ -33,7 +36,13 @@ export default function Home() {
 
           <p className="home__paragrph">123 Main St, Cobourg, ON</p>
         </section>
-        <Cta btnName="User Dashboard" btnLink="/user-landing-page" />
+        <>
+          {!token ? (
+            <Cta btnName="Profile Dashboard" btnLink="/profile" />
+          ) : (
+            <Cta btnName="User Dashboard" btnLink="/user-landing-page" />
+          )}
+        </>
       </>
     </section>
   );

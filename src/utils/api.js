@@ -113,43 +113,27 @@ const signUp = async (name, email, password) => {
   }
 };
 const loginUser = async (email, password) => {
-  try {
-    const response = await axios.post(
-      `${API_BASE}/users/login`,
-      { email, password },
-      {
-        headers: { "Content-Type": "application/json" },
-      }
-    );
-    // Optionally store token and user for global auth
-    if (response.data.token) {
-      localStorage.setItem("token", response.data.token);
-      localStorage.setItem("user", JSON.stringify(response.data.user));
-    }
-    return response.data; // { token, user }
-  } catch (error) {
-    console.log(
-      `Failed to login with error message: ${
-        error.response?.data?.error || error.message
-      }`
-    );
-    throw new Error(error.response?.data?.error || "Login failed");
-  }
+  const response = await axios.post(`${API_BASE}/users/login`, {
+    email,
+    password,
+  });
+  localStorage.setItem("token", response.data.token);
+  localStorage.setItem("user", JSON.stringify(response.data.user));
+  return response.data;
 };
+
 const getUserProfile = async () => {
-  try {
-    const response = await axios.get(`${API_BASE}/users/profile`, {
-      headers: { Authorization: `Bearer ${token}` },
-    });
-    return response.data; // { id, name, email, role, ... }
-  } catch (error) {
-    console.log(
-      `Failed to get user profile with error message: ${
-        error.response?.data?.error || error.message
-      }`
-    );
-    throw new Error(error.response?.data?.error || "Could not fetch profile");
-  }
+  const token = localStorage.getItem("token");
+  if (!token) throw new Error("No token found. Please log in.");
+  const response = await axios.get(`${API_BASE}/users/profile`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  return response.data;
+};
+
+const logoutUser = () => {
+  localStorage.removeItem("token");
+  localStorage.removeItem("user");
 };
 
 // PRODUCTS
@@ -284,4 +268,5 @@ export {
   loginUser,
   getUserProfile,
   token,
+  logoutUser,
 };
