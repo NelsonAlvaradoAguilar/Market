@@ -22,6 +22,7 @@ import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import SignUpForm from "./components/SignUp/SignUp.js";
 import UsersLandingPage from "./pages/UserLandingPage/UserLAndingPg.js";
+import Profile from "./components/Profile/Profile.js";
 const stripePromise = loadStripe("pk_test_..."); // Your Stripe TEST publishable key
 export default function App() {
   const [cart, setCart] = useState(() => {
@@ -96,6 +97,7 @@ export default function App() {
             </Elements>
           }
         />
+        <Route path="/profile" element={<Profile />} />
         <Route
           path="/cart"
           element={
