@@ -11,7 +11,9 @@ import Hero2 from "../../components/Hero2/Hero2";
 import SignUpForm from "../../components/SignUp/SignUp";
 import Cta from "../../components/Cta/Cta";
 import { token } from "../../utils/api";
+import { use, useEffect } from "react";
 export default function Home() {
+  const token = localStorage.getItem("token");
   console.log(token);
 
   return (
@@ -25,7 +27,13 @@ export default function Home() {
         <FeaturedCarousel items={images} />
 
         <Hero />
-
+        <>
+          {token && token !== "undefined" && token !== "null" ? (
+            <Cta btnName="Profile Dashboard" btnLink="/profile" />
+          ) : (
+            <Cta btnName="User Dashboard" btnLink="/user-landing-page" />
+          )}
+        </>
         <section className="home__info">
           <h3 className="home__subtitle">Location</h3>
           <Embed
@@ -36,13 +44,6 @@ export default function Home() {
 
           <p className="home__paragrph">123 Main St, Cobourg, ON</p>
         </section>
-        <>
-          {!token ? (
-            <Cta btnName="Profile Dashboard" btnLink="/profile" />
-          ) : (
-            <Cta btnName="User Dashboard" btnLink="/user-landing-page" />
-          )}
-        </>
       </>
     </section>
   );

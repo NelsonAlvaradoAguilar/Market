@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./CheckoutPage.scss";
-import { createOrder, createOrderItem } from "../../utils/api";
+import { createOrder } from "../../utils/api";
 
 export default function CheckoutPage({
   cartItems = [],
@@ -64,17 +64,6 @@ export default function CheckoutPage({
         setError("Failed to create order.");
         setSubmitting(false);
         return;
-      }
-
-      // 2. Create order items
-      for (const item of cartItems) {
-        const orderItemData = {
-          order_id: orderResponse.id,
-          product_id: item.id,
-          quantity: item.quantity,
-          price: item.price,
-        };
-        await createOrderItem(orderItemData);
       }
 
       // 3. Optionally call parent handler
