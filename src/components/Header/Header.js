@@ -29,7 +29,6 @@ export default function Header() {
         <img className="header__logo header__logo--img" alt="logo" src={logo} />
       </Link>
       <Navbar />
-      <Cta btnName="user Profile" btnLink="/profile" />
     </header>
   );
 }

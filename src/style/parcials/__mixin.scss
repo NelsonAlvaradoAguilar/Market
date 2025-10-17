@@ -172,3 +172,15 @@
     color: brighten($color, 100%);
   }
 }
+@mixin cta-button($color: #fff, $bg: #c2a890) {
+  text-decoration: none;
+  color: $color;
+  background-color: $bg;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  justify-content: center;
+  display: inline-block;
+  width: 5rem;
+  text-align: center;
+  @include font();
+}

@@ -7,7 +7,12 @@ export default function CartItem({ item, onIncrease, onDecrease, onRemove }) {
       <div className="card__info">
         <span className="card__name">{item.name}</span>
         <span className="card__price">
-          ${typeof item.price === "number" ? item.price.toFixed(2) : "0.00"}
+          $
+          {item.price
+            ? Number(item.price).toFixed(2)
+            : item.product_price
+            ? Number(item.product_price).toFixed(2)
+            : "0.00"}
         </span>
       </div>
 
