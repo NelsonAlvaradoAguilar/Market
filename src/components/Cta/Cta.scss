@@ -2,16 +2,6 @@
 @use "../../style/parcials/_variables" as *;
 
 .cta {
-  text-decoration: none;
-  color: #fff;
-  background-color: #c2a890;
-  padding: 0.5rem;
-  border-radius: 0.5rem;
-
-  justify-content: center;
-  display: inline;
-  width: 5rem;
-  text-align: center;
-  @include font();
+  @include cta-button(#c2a890);
   color: #fff;
 }
