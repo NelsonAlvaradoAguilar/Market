@@ -13,9 +13,6 @@ import Cta from "../../components/Cta/Cta";
 import { token } from "../../utils/api";
 import { use, useEffect } from "react";
 export default function Home() {
-  const token = localStorage.getItem("token");
-  console.log(token);
-
   return (
     <section className="home">
       <>
@@ -27,13 +24,7 @@ export default function Home() {
         <FeaturedCarousel items={images} />
 
         <Hero />
-        <>
-          {token && token !== "undefined" && token !== "null" ? (
-            <Cta btnName="Profile Dashboard" btnLink="/profile" />
-          ) : (
-            <Cta btnName="User Dashboard" btnLink="/user-landing-page" />
-          )}
-        </>
+
         <section className="home__info">
           <h3 className="home__subtitle">Location</h3>
           <Embed

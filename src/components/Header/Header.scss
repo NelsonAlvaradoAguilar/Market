@@ -7,7 +7,7 @@
   align-items: center;
   border-bottom: 0.5px solid black;
   padding-bottom: 1rem;
-  margin-top: 0.5rem;
+  margin-top: 0rem;
   &__logo {
     display: flex;
     flex-direction: column;
@@ -22,11 +22,18 @@
     text-align: center;
   }
   &__icons {
+    width: 100%;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    gap: 5rem;
+
+    gap: 6rem;
     align-items: center;
     margin-bottom: 0.5rem;
+  }
+  &__cta {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+    margin-right: 1rem;
   }
 }

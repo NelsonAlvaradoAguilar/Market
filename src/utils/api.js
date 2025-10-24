@@ -90,7 +90,7 @@ const createOrderItem = async (data) => {
 const signUp = async (name, email, password) => {
   try {
     const response = await axios.post(
-      `${API_BASE}/users/register`,
+      `${API_BASE}/users/signup`,
       { name, email, password },
       {
         headers: { "Content-Type": "application/json" },

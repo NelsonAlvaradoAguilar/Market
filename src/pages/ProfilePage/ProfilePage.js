@@ -1,37 +1,38 @@
 import { useEffect, useState } from "react";
-import { getUserProfile, logoutUser, token } from "../../utils/api"; // Adjust the path if needed
+import { getUserProfile, logoutUser, token } from "../../utils/api";
 import { useNavigate } from "react-router-dom";
 import Profile from "../../components/Profile/Profile";
-export default function Profile(isLoggedIn) {
+
+export default function ProfilePage() {
   const [user, setUser] = useState(null);
   const [error, setError] = useState("");
-
-  const getUserProfile = async () => {
-    try {
-      const resp = await getUserProfile();
-      setUser(resp);
-      console.log(resp);
-
-      setError("Success");
-    } catch (error) {
-      console.log(
-        `Failed to get user profile from API with error message: ${error}`
-      );
-    }
-  };
+  const [isLoading, setIsLoading] = useState(true);
+  const [signUpStatus, setSignUpStatus] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    if (isLoggedIn) {
-      getUserProfile();
+    if (!token) {
+      setIsLoading(false);
+      setError("No token found. Please log in.");
+      return;
     }
-  }, []);
+    const fetchProfile = async () => {
+      try {
+        const resp = await getUserProfile();
+        setUser(resp);
+        setSignUpStatus("Success");
+        setError("");
+      } catch (error) {
+        setError(`Failed to get user profile: ${error.message}`);
+      } finally {
+        setIsLoading(false);
+      }
+    };
 
-  if (error) return <div style={{ color: "red" }}>{error}</div>;
-  if (user) return <div>Loading or not logged in.</div>;
+    fetchProfile();
+  }, [token]);
 
-  return (
-    <>
-      <Profile user={user} />
-    </>
-  );
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>{error}</div>;
+  return <Profile user={user} />;
 }
