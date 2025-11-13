@@ -3,7 +3,6 @@ import { getAuthorized, logOut, token } from "../../utils/api";
 import Profile from "../../components/Profile/Profile";
 import Home from "../Home/Home";
 
-import UsersLandingPage from "../UserLandingPage/UserLandingPg";
 import { useNavigate } from "react-router-dom";
 
 export default function ProfilePage() {
