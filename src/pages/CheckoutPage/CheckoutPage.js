@@ -3,14 +3,15 @@ import "./CheckoutPage.scss";
 import { createOrder } from "../../utils/api";
 
 export default function CheckoutPage({
+  user,
   cartItems = [],
   setCart,
   onOrderSubmit,
 }) {
   const [shippingInfo, setShippingInfo] = useState({
-    name: "",
+    name: user?.name,
     phone: "",
-    email: "",
+    email: user?.email,
     date: "",
     time: "",
     cardNumber: "",
@@ -19,7 +20,10 @@ export default function CheckoutPage({
     accountHolder: "",
     routingNumber: "",
     accountNumber: "",
+    userId: user?.id,
   });
+  console.log(user);
+  console.log(cartItems);
 
   const [paymentType, setPaymentType] = useState("card");
   const [submitting, setSubmitting] = useState(false);

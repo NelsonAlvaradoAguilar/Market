@@ -1,32 +1,38 @@
 import { useState } from "react";
-import axios from "axios";
 import { signUp } from "../../utils/api";
 import { useNavigate } from "react-router-dom";
 
 export default function SignUpForm({ onRegister }) {
   const [form, setForm] = useState({ name: "", email: "", password: "" });
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   function handleChange(e) {
     setForm({ ...form, [e.target.name]: e.target.value });
     setError("");
   }
-  const navigate = useNavigate();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
-    try {
-      // If signUp expects (name, email, password):
-      const res = await signUp(form.name, form.email, form.password);
-      // If signUp expects ({ name, email, password }): use await signUp(form);
-
-      localStorage.setItem("token", res.token);
-      localStorage.setItem("user", JSON.stringify(res.user));
-      onRegister && onRegister(res.user);
-      navigate("/profile");
-    } catch (err) {
-      setError("Registration failed: " + (err.message || "Unknown error"));
+    const { data, error: apiError } = await signUp(
+      form.name,
+      form.email,
+      form.password
+    );
+    if (apiError) {
+      setError("Registration failed: " + apiError);
+      return;
     }
+    if (data.token) {
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("user", JSON.stringify(data.user));
+      window.dispatchEvent(new Event("tokenChange")); // Header update
+      setTimeout(() => navigate("/profile"), 20); // Redirect to profile page after signup
+    } else {
+      setError("No token received from server.");
+    }
+    onRegister && onRegister(data.user);
   };
 
   return (

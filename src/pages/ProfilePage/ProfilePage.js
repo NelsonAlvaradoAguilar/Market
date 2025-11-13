@@ -1,37 +1,51 @@
 import { useEffect, useState } from "react";
-import { getUserProfile, logoutUser, token } from "../../utils/api"; // Adjust the path if needed
-import { useNavigate } from "react-router-dom";
+import { getAuthorized, logOut, token } from "../../utils/api";
 import Profile from "../../components/Profile/Profile";
-export default function Profile(isLoggedIn) {
-  const [user, setUser] = useState(null);
+import Home from "../Home/Home";
+
+import UsersLandingPage from "../UserLandingPage/UserLandingPg";
+import { useNavigate } from "react-router-dom";
+
+export default function ProfilePage() {
+  const [isLoading, setIsLoading] = useState(true);
+  const [userInfo, setUserInfo] = useState(null);
   const [error, setError] = useState("");
+  const [signUpStatus, setSignUpStatus] = useState(null);
 
-  const getUserProfile = async () => {
-    try {
-      const resp = await getUserProfile();
-      setUser(resp);
-      console.log(resp);
-
-      setError("Success");
-    } catch (error) {
-      console.log(
-        `Failed to get user profile from API with error message: ${error}`
-      );
-    }
+  const navigate = useNavigate();
+  const token = localStorage.getItem("token");
+  const handleLogout = () => {
+    logOut();
+    navigate("/home");
+    logOut();
   };
-
   useEffect(() => {
-    if (isLoggedIn) {
-      getUserProfile();
-    }
-  }, []);
+    // Debug: Check token in localStorage at mount
 
-  if (error) return <div style={{ color: "red" }}>{error}</div>;
-  if (user) return <div>Loading or not logged in.</div>;
+    console.log("Token at ProfilePage mount:", token);
 
-  return (
-    <>
-      <Profile user={user} />
-    </>
+    const getProfile = async () => {
+      // Debug: Check token right before API call
+      console.log("Token before profile fetch:", localStorage.getItem("token"));
+      setIsLoading(false);
+      const response = await getAuthorized();
+      console.log(response.data);
+      setUserInfo(response.data);
+    };
+    getProfile();
+  }, [token]);
+  console.log(userInfo);
+
+  return !userInfo ? (
+    <div>No user data found.</div>
+  ) : (
+    <div className="profile">
+      <h1 className="profile__name">{userInfo?.name}</h1>
+      <p className="profile__email">Email: {userInfo?.email}</p>
+
+      <button className="profile__logout" onClick={handleLogout}>
+        Logout
+      </button>
+    </div>
   );
 }

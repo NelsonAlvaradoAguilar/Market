@@ -4,7 +4,8 @@ import phoneicon from "../../assets/icons/icons8-phone-32.png";
 import emailicon from "../../assets/icons/icons8-email-32.png";
 import BusinessHours from "../BusinessHours/BusinesHours";
 import storeData from "../../data/StoreData.json";
-export default function Footer() {
+import { Link } from "react-router-dom";
+export default function Footer(user) {
   const workingHours = storeData?.store?.workingHours?.workingHours || [];
   return (
     <footer className="footer">
@@ -17,6 +18,9 @@ export default function Footer() {
           emailink={"mailto:marketsmorproduce@gmail.com"}
           emailicon={emailicon}
         />
+        {user ? (
+          <Link className="footer__cta-user" to="/userlanding"></Link>
+        ) : null}
       </div>
     </footer>
   );
