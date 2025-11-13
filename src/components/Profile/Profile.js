@@ -1,43 +1,21 @@
-import { useEffect, useState } from "react";
-import { getUserProfile, logoutUser } from "../../utils/api";
 import { useNavigate } from "react-router-dom";
-
-export default function Profile() {
-  const [user, setUser] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState("");
+import "./Profile.scss";
+export default function Profile({ userInfo, onLogout }) {
   const navigate = useNavigate();
 
-  const logout = () => {
-    logoutUser();
+  const handleLogout = () => {
+    onLogout();
     navigate("/home");
   };
 
-  useEffect(() => {
-    const fetchProfile = async () => {
-      try {
-        const resp = await getUserProfile();
-        setUser(resp);
-      } catch (error) {
-        setError(error.message || "Failed to load profile.");
-      } finally {
-        setIsLoading(false);
-      }
-    };
-    fetchProfile();
-  }, []);
-
-  if (isLoading) return <div>Loading...</div>;
-  if (error) return <div style={{ color: "red" }}>{error}</div>;
-  if (!user) return <div>Not logged in.</div>;
-
   return (
-    <>
-      <div>
-        <h2>Welcome, {user.name}</h2>
-        <p>Email: {user.email}</p>
-      </div>
-      <button onClick={logout}>Logout</button>
-    </>
+    <div className="profile">
+      <h1 className="profile__name">{userInfo?.name}</h1>
+      <p className="profile__email">Email: {userInfo?.email}</p>
+
+      <button className="profile__logout" onClick={handleLogout}>
+        Logout
+      </button>
+    </div>
   );
 }

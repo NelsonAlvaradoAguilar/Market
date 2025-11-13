@@ -46,4 +46,9 @@
     padding: 0%;
     gap: 0.5rem;
   }
+  &__cta {
+    @include button(#c2bd90db, #3d3737);
+    text-align: center;
+    text-decoration: none;
+  }
 }

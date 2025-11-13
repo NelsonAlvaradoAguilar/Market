@@ -4,8 +4,15 @@ import {
   Routes,
   Route,
   BrowserRouter,
+  Await,
 } from "react-router-dom";
-
+import {
+  addToCart,
+  getAuthorized,
+  getCart,
+  removeFromCart,
+  updateCartQty,
+} from "./utils/api.js";
 import Home from "./pages/Home/Home.js";
 import About from "./components/About/About.js";
 import Contact from "./pages/Contact/Contact.js";
@@ -21,71 +28,96 @@ import CheckoutPage from "./pages/CheckoutPage/CheckoutPage.js";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import SignUpForm from "./components/SignUp/SignUp.js";
-import UsersLandingPage from "./pages/UserLandingPage/UserLAndingPg.js";
+import UsersLandingPage from "./pages/UserLandingPage/UserLandingPg.js";
 import Profile from "./components/Profile/Profile.js";
+import ProfilePage from "./pages/ProfilePage/ProfilePage.js";
+import LoginForm from "./components/Login/Login.js";
+import Products from "./components/StoreSection/StoreSection.js";
 const stripePromise = loadStripe("pk_test_..."); // Your Stripe TEST publishable key
 export default function App() {
-  const [cart, setCart] = useState(() => {
-    const saved = localStorage.getItem("cart");
-    return saved ? JSON.parse(saved) : [];
-  });
+  const [cart, setCart] = useState([]);
+  const [token, setToken] = useState(localStorage.getItem("token"));
+  const [user, setUser] = useState(null);
 
-  const addToCart = (item) => {
-    setCart((prevCart) => {
-      const existing = prevCart.find((cartItem) => cartItem.name === item.name);
-      if (existing) {
-        return prevCart.map((cartItem) =>
-          cartItem.name === item.name
-            ? { ...cartItem, quantity: cartItem.quantity + 1 }
-            : cartItem
-        );
-      }
-      return [...prevCart, { ...item, quantity: 1 }];
-    });
-  };
-  const updateCartQty = (itemName, newQty) => {
-    setCart((prevCart) =>
-      prevCart
-        .map((cartItem) =>
-          cartItem.name === itemName
-            ? { ...cartItem, quantity: newQty }
-            : cartItem
-        )
-        .filter((cartItem) => cartItem.quantity > 0)
-    );
-  };
-  const removeFromCart = (itemName) => {
-    setCart((prevCart) =>
-      prevCart
-        .map((cartItem) =>
-          cartItem.name === itemName
-            ? { ...cartItem, quantity: cartItem.quantity - 1 }
-            : cartItem
-        )
-        .filter((cartItem) => cartItem.quantity > 0)
-    );
+  // Utility to reload cart from backend
+  const reloadCart = async () => {
+    const data = await getCart();
+    console.log(data);
+
+    setCart(data);
   };
 
+  // Handler: Add to cart
+  const handleAddToCart = async (productId, quantity) => {
+    try {
+      await addToCart(productId, quantity);
+      await reloadCart();
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  // Handler: Update cart quantity
+  const handleUpdateCartQty = async (itemId, newQty) => {
+    try {
+      await updateCartQty(itemId, newQty);
+      await reloadCart();
+    } catch (err) {
+      // handle error
+    }
+  };
+
+  // Handler: Remove from cart
+  const handleRemoveFromCart = async (itemId) => {
+    try {
+      await removeFromCart(itemId);
+      await reloadCart();
+    } catch (err) {
+      // handle error
+    }
+  };
+
+  // Load user profile on token change
   useEffect(() => {
-    localStorage.setItem("cart", JSON.stringify(cart));
-  }, [cart]);
+    const getProfile = async () => {
+      const data = await getAuthorized();
+      setUser(data.data);
+    };
+    getProfile();
+  }, [token]);
+
+  // Load cart on token change
+  useEffect(() => {
+    if (token) {
+      reloadCart();
+    }
+  }, [token]);
+
+  // Debug: log user updates
+  useEffect(() => {
+    if (user) {
+      console.log("User updated:", user);
+    }
+  }, [user]);
 
   return (
     <BrowserRouter>
-      <Header />
+      <Header user={user} />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/store" element={<Store />} />
-        <Route path="/user-landing-page" element={<UsersLandingPage />} />
+        <Route path="/userlanding" element={<UsersLandingPage />} />
+        <Route path="/signup" element={<SignUpForm />} />
+        <Route path="/login" element={<LoginForm />} />
         <Route
           path="/shoppage"
           element={
             <ShopPage
               cart={cart}
-              addToCart={addToCart}
-              removeFromCart={removeFromCart}
+              addToCart={handleAddToCart}
+              removeFromCart={handleRemoveFromCart}
             />
           }
         />
@@ -93,18 +125,19 @@ export default function App() {
           path="/checkout"
           element={
             <Elements stripe={stripePromise}>
-              <CheckoutPage cartItems={cart} setCart={setCart} />
+              <CheckoutPage user={user} cartItems={cart} setCart={setCart} />
             </Elements>
           }
         />
-        <Route path="/profile" element={<Profile />} />
+
+        <Route path="/profile" element={<ProfilePage user={user} />} />
         <Route
           path="/cart"
           element={
             <CartPage
               cartItems={cart}
-              onRemove={removeFromCart}
-              onUpdateQty={updateCartQty}
+              onRemove={handleRemoveFromCart}
+              onUpdateQty={handleUpdateCartQty}
               setCart={setCart}
             />
           }
@@ -113,7 +146,7 @@ export default function App() {
         {/* ...other routes */}
         <Route path="*" element={<Home />} />
       </Routes>
-      <Footer />
+      <Footer user={user} />
     </BrowserRouter>
   );
 }
