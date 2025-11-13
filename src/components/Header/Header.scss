@@ -32,8 +32,17 @@
   }
   &__cta {
     display: flex;
+    justify-content: space-between;
     flex-direction: row;
     gap: 0.5rem;
     margin-right: 1rem;
+  }
+  &__ctatext {
+    background-image: url("../../assets/icons/icons8-profile-ios-17-filled/icons8-profile-50.png");
+    display: flex;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 2rem;
   }
 }

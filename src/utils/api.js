@@ -49,7 +49,7 @@ const getCategories = async () => {
 };
 const getOrders = async () => {
   try {
-    const response = await axios.get(`\${API_BASE}/orders`);
+    const response = await axios.get(`${API_BASE}/orders`);
     return response.data;
   } catch (error) {
     console.log(`Failed to get orders from API with error message: \${error}`);
@@ -57,8 +57,18 @@ const getOrders = async () => {
   }
 };
 const createOrder = async (data) => {
+  const token = localStorage.getItem("token");
+  if (!token) {
+    console.log("No token found. User must be logged in.");
+    return null;
+  }
   try {
-    const response = await axios.post(`${API_BASE}/orders`, data);
+    const response = await axios.post(`${API_BASE}/orders`, data, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+    });
     return response.data; // { id: ... }
   } catch (error) {
     console.log(`Failed to create order from API with error message: ${error}`);
@@ -89,53 +99,122 @@ const createOrderItem = async (data) => {
 };
 const signUp = async (name, email, password) => {
   try {
-    const response = await axios.post(
-      `${API_BASE}/users/signup`,
-      { name, email, password },
-      {
-        headers: { "Content-Type": "application/json" },
-      }
-    );
-    // Optionally store token and user for global auth
+    const response = await axios.post(`${API_BASE}/users/signup`, {
+      name,
+      email,
+      password,
+    });
+    return { data: response.data, error: null };
+  } catch (error) {
+    return {
+      data: null,
+      error: error.response?.data?.error || "Registration failed",
+    };
+  }
+};
+
+// Login - expects backend to return { token, user }
+const loginUser = async (email, password) => {
+  try {
+    const response = await axios.post(`${API_BASE}/users/login`, {
+      email,
+      password,
+    });
     if (response.data.token) {
       localStorage.setItem("token", response.data.token);
       localStorage.setItem("user", JSON.stringify(response.data.user));
     }
-    return response.data; // { token, user }
+    return { data: response.data, error: null };
   } catch (error) {
-    console.log(
-      `Failed to register user with error message: ${
-        error.response?.data?.error || error.message
-      }`
-    );
-    // Optionally: throw for form error handling
-    throw new Error(error.response?.data?.error || "Registration failed");
+    return { data: null, error: error.response?.data?.error || "Login failed" };
   }
 };
-const loginUser = async (email, password) => {
-  const response = await axios.post(`${API_BASE}/users/login`, {
-    email,
-    password,
-  });
-  localStorage.setItem("token", response.data.token);
-  localStorage.setItem("user", JSON.stringify(response.data.user));
-  return response.data;
-};
 
-const getUserProfile = async () => {
+// Get profile - always reads token fresh from storage
+const getAuthorized = async () => {
   const token = localStorage.getItem("token");
-  if (!token) throw new Error("No token found. Please log in.");
-  const response = await axios.get(`${API_BASE}/users/profile`, {
-    headers: { Authorization: `Bearer ${token}` },
-  });
-  return response.data;
+  console.log("Token before API call:", token); // For debugging
+
+  if (!token) {
+    return { data: null, error: "No token found. Please log in." };
+  }
+
+  try {
+    const response = await axios.get(`${API_BASE}/users/profile`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    return { data: response.data, error: null };
+  } catch (error) {
+    return {
+      data: null,
+      error:
+        error.response?.data?.error ||
+        error.message ||
+        "Could not fetch profile",
+    };
+  }
 };
 
-const logoutUser = () => {
+// Logout
+const logOut = () => {
   localStorage.removeItem("token");
-  localStorage.removeItem("user");
+  localStorage.removeItem("user"); // <-- this is key!
 };
-
+export const addToCart = async (productId, quantity = 1) => {
+  const token = localStorage.getItem("token");
+  if (!token) {
+    throw new Error("You must be logged in to add to cart.");
+  }
+  try {
+    const response = await axios.post(
+      `${API_BASE}/cart/add-to-cart`,
+      { productId, quantity },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Error adding to cart:", error);
+    throw error;
+  }
+};
+export const getCart = async () => {
+  const token = localStorage.getItem("token");
+  if (!token) {
+    throw new Error("You must be logged in to view cart.");
+  }
+  try {
+    const response = await axios.get(`${API_BASE}/cart`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    return response.data; // should be an array of cart items
+  } catch (error) {
+    console.error("Error fetching cart:", error);
+    throw error;
+  }
+};
+export const updateCartQty = async (productId, newQty) => {
+  const token = localStorage.getItem("token");
+  if (!token) throw new Error("You must be logged in to update cart.");
+  await axios.patch(
+    `${API_BASE}/cart/${productId}`,
+    { quantity: newQty }, // <-- Only send this!
+    { headers: { Authorization: `Bearer ${token}` } }
+  );
+};
+export const removeFromCart = async (productId) => {
+  const token = localStorage.getItem("token");
+  if (!token) throw new Error("You must be logged in to remove from cart.");
+  await axios.delete(`${API_BASE}/cart/${productId}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+};
 // PRODUCTS
 /*
 export const createProduct = async (data) => {
@@ -266,7 +345,7 @@ export {
   createOrderItem,
   signUp,
   loginUser,
-  getUserProfile,
+  getAuthorized,
   token,
-  logoutUser,
+  logOut,
 };

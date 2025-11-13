@@ -5,11 +5,13 @@ import IconsBar from "../IconsBar/IconsBar";
 import faceicon from "../../assets/icons/icons8-facebook-32.png";
 import emailicon from "../../assets/icons/icons8-email-32.png";
 import instgicon from "../../assets/icons/icons8-instagram-32.png";
+import { getAuthorized, token } from "../../utils/api";
 import phoneicon from "../../assets/icons/icons8-phone-32.png";
 import "./Header.scss";
 import Cta from "../Cta/Cta";
-import { token } from "../../utils/api";
-export default function Header() {
+
+import { use, useEffect, useState } from "react";
+export default function Header(user) {
   return (
     <header className="header">
       <div className="header__icons">
@@ -26,13 +28,9 @@ export default function Header() {
 
         <div className="header__cta">
           <Cta btnName="Cart" btnLink="/cart" />
-          <>
-            {token && token !== "undefined" && token !== "null" ? (
-              <Cta btnName="Profile Dashboard" btnLink="/profile" />
-            ) : (
-              <Cta btnName="Users" btnLink="/user-landing-page" />
-            )}
-          </>
+          {!user && user ? (
+            <Link className="header__ctatext " to="/profile"></Link>
+          ) : null}
         </div>
       </div>
 

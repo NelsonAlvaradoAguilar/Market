@@ -1,34 +1,35 @@
 import CartItem from "../../components/CartItem/CartItem";
 import CartSummary from "../../components/CartSummary/CartSummary";
 import "./CartPage.scss";
+import { removeFromCart, updateCartQty, getCart } from "../../utils/api";
 export default function CartPage({
   cartItems = [],
   onUpdateQty,
-  onRemove,
+
   onCheckout,
   setCart,
+  onRemove,
 }) {
-  const increaseQty = (itemName) => {
-    setCart((prevCart) =>
-      prevCart.map((cartItem) =>
-        cartItem.name === itemName
-          ? { ...cartItem, quantity: cartItem.quantity + 1 }
-          : cartItem
-      )
-    );
+  const increaseQty = async (productId, currentQty) => {
+    await onUpdateQty(productId, currentQty + 1);
+    const updatedCart = await getCart();
+    setCart(updatedCart);
   };
-  const remove = (itemName) => {
-    setCart((prevCart) => prevCart.filter((item) => item.name !== itemName));
-  };
-  const decreaseQty = (itemName) => {
-    const item = cartItems.find((i) => i.name === itemName);
-    if (item) {
-      if (item.quantity === 1) {
-        onRemove(itemName);
-      } else {
-        onUpdateQty(itemName, item.quantity - 1);
-      }
+
+  const decreaseQty = async (productId, currentQty) => {
+    if (currentQty <= 1) {
+      // Do nothing (or show a message)
+      return;
     }
+    await onUpdateQty(productId, currentQty - 1);
+    const updatedCart = await getCart();
+    setCart(updatedCart);
+  };
+
+  const remove = async (productId) => {
+    await onRemove(productId);
+    const updatedCart = await getCart();
+    setCart(updatedCart);
   };
 
   return (
@@ -55,9 +56,9 @@ export default function CartPage({
               >
                 <CartItem
                   item={item}
-                  onIncrease={increaseQty}
-                  onDecrease={decreaseQty}
-                  onRemove={remove}
+                  onIncrease={() => increaseQty(item.productId, item.quantity)}
+                  onDecrease={() => decreaseQty(item.productId, item.quantity)}
+                  onRemove={() => remove(item.productId)}
                 />
               </li>
             ))}

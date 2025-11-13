@@ -17,18 +17,16 @@ export default function CartItem({ item, onIncrease, onDecrease, onRemove }) {
       </div>
 
       <div className="card__buttons">
-        <button
-          onClick={() => onDecrease(item.name)}
-          disabled={item.quantity <= 0}
-        >
+        <button onClick={() => onDecrease(item.productId, item.quantity)}>
           –
         </button>
-        <span>{item.quantity}</span>
-        <button onClick={() => onIncrease(item.name)}>+</button>
+        <span>{item?.quantity}</span>
+        <button onClick={() => onIncrease(item.productId, item.quantity)}>
+          +
+        </button>
       </div>
 
-      <button onClick={() => onRemove(item.name)}>Remove All</button>
+      <button onClick={() => onRemove(item.productId)}>Remove All</button>
     </div>
   );
 }
-//   <div style={{ color: "#888", fontSize: 14 }}>{item.price}</div>

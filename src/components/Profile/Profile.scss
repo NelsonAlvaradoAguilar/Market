@@ -1,0 +1,11 @@
+@use "../../style/parcials/_mixin" as *;
+@use "../../style/parcials/_variables" as *;
+
+.profile {
+  margin: 1rem;
+  display: flex;
+  flex-direction: column;
+  &__logout {
+    @include button(#dc3545, #fff);
+  }
+}
