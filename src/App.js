@@ -28,7 +28,7 @@ import CheckoutPage from "./pages/CheckoutPage/CheckoutPage.js";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import SignUpForm from "./components/SignUp/SignUp.js";
-import UsersLandingPage from "./pages/UserLandingPage/UserLandingPg.js";
+
 import Profile from "./components/Profile/Profile.js";
 import ProfilePage from "./pages/ProfilePage/ProfilePage.js";
 import LoginForm from "./components/Login/Login.js";
