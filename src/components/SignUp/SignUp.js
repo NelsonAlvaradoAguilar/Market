@@ -2,7 +2,7 @@ import { useState } from "react";
 import { signUp } from "../../utils/api";
 import { useNavigate } from "react-router-dom";
 
-export default function SignUpForm({ onRegister }) {
+export default function SignUpForm({ onRegister, setToken }) {
   const [form, setForm] = useState({ name: "", email: "", password: "" });
   const [error, setError] = useState("");
   const navigate = useNavigate();
@@ -15,24 +15,36 @@ export default function SignUpForm({ onRegister }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
+
     const { data, error: apiError } = await signUp(
       form.name,
       form.email,
       form.password
     );
+
     if (apiError) {
       setError("Registration failed: " + apiError);
       return;
     }
-    if (data.token) {
-      localStorage.setItem("token", data.token);
-      localStorage.setItem("user", JSON.stringify(data.user));
-      window.dispatchEvent(new Event("tokenChange")); // Header update
-      setTimeout(() => navigate("/profile"), 20); // Redirect to profile page after signup
-    } else {
+
+    if (!data.token) {
       setError("No token received from server.");
+      return;
     }
+
+    // Store token and user
+    localStorage.setItem("token", data.token);
+    localStorage.setItem("user", JSON.stringify(data.user));
+
+    // Tell App that token changed so it can fetch profile
+    if (setToken) setToken(data.token);
+
+    window.dispatchEvent(new Event("tokenChange"));
+
     onRegister && onRegister(data.user);
+
+    // Navigate to profile
+    navigate("/profile");
   };
 
   return (
