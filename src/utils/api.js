@@ -133,28 +133,24 @@ const loginUser = async (email, password) => {
 // Get profile - always reads token fresh from storage
 const getAuthorized = async () => {
   const token = localStorage.getItem("token");
-  console.log("Token before API call:", token); // For debugging
+  console.log("Token before API call:", token);
 
   if (!token) {
-    return { data: null, error: "No token found. Please log in." };
+    throw new Error("No token found");
   }
 
   try {
     const response = await axios.get(`${API_BASE}/users/profile`, {
       headers: { Authorization: `Bearer ${token}` },
     });
-    return { data: response.data, error: null };
+    // Return the user object directly
+    return response.data; // { id, name, email, role, ... }
   } catch (error) {
-    return {
-      data: null,
-      error:
-        error.response?.data?.error ||
-        error.message ||
-        "Could not fetch profile",
-    };
+    console.log("Error in getAuthorized:", error);
+    // Re-throw so callers can handle it
+    throw error;
   }
 };
-
 // Logout
 const logOut = () => {
   localStorage.removeItem("token");
@@ -214,6 +210,26 @@ export const removeFromCart = async (productId) => {
       Authorization: `Bearer ${token}`,
     },
   });
+};
+export const createCheckoutSession = async () => {
+  const token = localStorage.getItem("token");
+  if (!token) throw new Error("No token");
+
+  try {
+    const res = await axios.post(
+      `${API_BASE}/subscriptions/session`,
+      {},
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    );
+    console.log(res);
+
+    return res.data; // { url }
+  } catch (err) {
+    console.error("Error creating checkout session:", err);
+    throw err;
+  }
 };
 // PRODUCTS
 /*
