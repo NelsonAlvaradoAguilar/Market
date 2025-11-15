@@ -124,7 +124,7 @@ export default function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/store" element={<Store />} />
 
-        <Route path="/signup" element={<SignUpForm />} />
+        <Route path="/signup" element={<SignUpForm setToken={setToken} />} />
         <Route path="/login" element={<LoginForm setToken={setToken} />} />
         <Route
           path="/profile"
