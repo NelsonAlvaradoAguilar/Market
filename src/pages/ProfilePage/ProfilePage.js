@@ -2,49 +2,36 @@ import { useEffect, useState } from "react";
 import { getAuthorized, logOut, token } from "../../utils/api";
 import Profile from "../../components/Profile/Profile";
 import Home from "../Home/Home";
-
+import { createCheckoutSession } from "../../utils/api";
 import { useNavigate } from "react-router-dom";
 
-export default function ProfilePage() {
-  const [isLoading, setIsLoading] = useState(true);
-  const [userInfo, setUserInfo] = useState(null);
-  const [error, setError] = useState("");
-  const [signUpStatus, setSignUpStatus] = useState(null);
-
-  const navigate = useNavigate();
-  const token = localStorage.getItem("token");
-  const handleLogout = () => {
-    logOut();
-    navigate("/home");
-    logOut();
+export default function ProfilePage({ user, onLogout }) {
+  const handleSubscribe = async () => {
+    try {
+      const { url } = await createCheckoutSession();
+      window.location.href = url; // redirect to Stripe Checkout
+    } catch (err) {
+      console.error("Subscribe error:", err);
+      alert("Could not start subscription. Please try again.");
+    }
   };
-  useEffect(() => {
-    // Debug: Check token in localStorage at mount
 
-    console.log("Token at ProfilePage mount:", token);
-
-    const getProfile = async () => {
-      // Debug: Check token right before API call
-      console.log("Token before profile fetch:", localStorage.getItem("token"));
-      setIsLoading(false);
-      const response = await getAuthorized();
-      console.log(response.data);
-      setUserInfo(response.data);
-    };
-    getProfile();
-  }, [token]);
-  console.log(userInfo);
-
-  return !userInfo ? (
+  const isActive = user.subscription_status === "active";
+  return !user ? (
     <div>No user data found.</div>
   ) : (
-    <div className="profile">
-      <h1 className="profile__name">{userInfo?.name}</h1>
-      <p className="profile__email">Email: {userInfo?.email}</p>
+    <>
+      <Profile user={user} onLogout={onLogout} />
+      {!isActive && (
+        <button onClick={handleSubscribe}>Subscribe to Monthly Box</button>
+      )}
 
-      <button className="profile__logout" onClick={handleLogout}>
-        Logout
-      </button>
-    </div>
+      {isActive && (
+        <p>
+          You are subscribed to the Monthly Box. Your box will be prepared for
+          pickup each month.
+        </p>
+      )}
+    </>
   );
 }

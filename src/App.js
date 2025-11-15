@@ -9,6 +9,7 @@ import {
   addToCart,
   getAuthorized,
   getCart,
+  getOrders,
   removeFromCart,
   updateCartQty,
 } from "./utils/api.js";
@@ -29,10 +30,10 @@ import { loadStripe } from "@stripe/stripe-js";
 import SignUpForm from "./components/SignUp/SignUp.js";
 
 import LandingPage from "./pages/LandingPage/LandingPague.js";
-
+import AdminDashboard from "./components/AdminDashboard/AdminDashboard.js";
 import ProfilePage from "./pages/ProfilePage/ProfilePage.js";
 import LoginForm from "./components/Login/Login.js";
-
+import AdminRoute from "./pages/AdminRoute/AdminRoute.js";
 const stripePromise = loadStripe("pk_test_..."); // Your Stripe TEST publishable key
 export default function App() {
   const [cart, setCart] = useState([]);
@@ -80,12 +81,21 @@ export default function App() {
   // Load user profile on token change
   useEffect(() => {
     const getProfile = async () => {
-      const data = await getAuthorized();
-      setUser(data.data);
+      try {
+        const userData = await getAuthorized(); // userData is the user object
+        setUser(userData);
+      } catch (err) {
+        console.error("Profile load error:", err);
+        setUser(null);
+      }
     };
-    getProfile();
-  }, [token]);
 
+    if (token) {
+      getProfile();
+    } else {
+      setUser(null);
+    }
+  }, [token]);
   // Load cart on token change
   useEffect(() => {
     if (token) {
@@ -99,19 +109,28 @@ export default function App() {
       console.log("User updated:", user);
     }
   }, [user]);
-
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    setToken(null);
+    setUser(null);
+  };
   return (
     <BrowserRouter>
-      <Header user={user} />
+      <Header user={user} onLogout={handleLogout} />
       <Routes>
-        <Route path="/" element={<LandingPage />} />
+        <Route path="/landing" element={<LandingPage user={user} />} />
         <Route path="/home" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/store" element={<Store />} />
 
         <Route path="/signup" element={<SignUpForm />} />
-        <Route path="/login" element={<LoginForm />} />
+        <Route path="/login" element={<LoginForm setToken={setToken} />} />
+        <Route
+          path="/profile"
+          element={<ProfilePage user={user} onLogout={handleLogout} />}
+        />
+
         <Route
           path="/shoppage"
           element={
@@ -122,6 +141,7 @@ export default function App() {
             />
           }
         />
+
         <Route
           path="/checkout"
           element={
@@ -131,7 +151,6 @@ export default function App() {
           }
         />
 
-        <Route path="/profile" element={<ProfilePage user={user} />} />
         <Route
           path="/cart"
           element={
@@ -144,7 +163,15 @@ export default function App() {
           }
         />
 
-        {/* ...other routes */}
+        <Route
+          path="/admin"
+          element={
+            <AdminRoute user={user}>
+              <AdminDashboard user={user} />
+            </AdminRoute>
+          }
+        />
+
         <Route path="*" element={<Home />} />
       </Routes>
       <Footer user={user} />

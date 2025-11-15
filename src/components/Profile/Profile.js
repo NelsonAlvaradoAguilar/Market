@@ -1,21 +1,20 @@
 import { useNavigate } from "react-router-dom";
 import "./Profile.scss";
-export default function Profile({ userInfo, onLogout }) {
-  const navigate = useNavigate();
-
-  const handleLogout = () => {
-    onLogout();
-    navigate("/home");
-  };
-
+export default function Profile({ user, onLogout }) {
+  if (!user) {
+    return <div>Please log in to view your profile.</div>;
+  }
   return (
     <div className="profile">
-      <h1 className="profile__name">{userInfo?.name}</h1>
-      <p className="profile__email">Email: {userInfo?.email}</p>
-
-      <button className="profile__logout" onClick={handleLogout}>
-        Logout
-      </button>
+      <h1 className="profile__title">Profile</h1>
+      <p className="profile__role">Role: {user.role}</p>
+      <p>Name: {user.name}</p>
+      <p>Email: {user.email}</p>
+      {onLogout && (
+        <button className="profile__logout" onClick={onLogout}>
+          Logout
+        </button>
+      )}
     </div>
   );
 }
