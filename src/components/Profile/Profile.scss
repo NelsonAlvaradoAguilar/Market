@@ -5,6 +5,7 @@
   margin: 1rem;
   display: flex;
   flex-direction: column;
+  text-align: left;
   &__logout {
     @include button(#dc3545, #fff);
   }

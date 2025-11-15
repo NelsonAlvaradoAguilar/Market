@@ -11,7 +11,7 @@ import "./Header.scss";
 import Cta from "../Cta/Cta";
 
 import { use, useEffect, useState } from "react";
-export default function Header(user) {
+export default function Header({ user, onLogout }) {
   return (
     <header className="header">
       <div className="header__icons">
@@ -28,9 +28,6 @@ export default function Header(user) {
 
         <div className="header__cta">
           <Cta btnName="Cart" btnLink="/cart" />
-          {!user && user ? (
-            <Link className="header__ctatext " to="/profile"></Link>
-          ) : null}
         </div>
       </div>
 
@@ -38,7 +35,7 @@ export default function Header(user) {
         <img className="header__logo header__logo--img" alt="logo" src={logo} />
       </Link>
 
-      <Navbar />
+      <Navbar user={user} onLogout={onLogout} />
     </header>
   );
 }
