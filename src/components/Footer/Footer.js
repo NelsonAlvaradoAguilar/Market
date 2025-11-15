@@ -18,9 +18,7 @@ export default function Footer(user) {
           emailink={"mailto:marketsmorproduce@gmail.com"}
           emailicon={emailicon}
         />
-        {user ? (
-          <Link className="footer__cta-user" to="/userlanding"></Link>
-        ) : null}
+        {user ? <Link className="footer__cta-user" to="/"></Link> : null}
       </div>
     </footer>
   );

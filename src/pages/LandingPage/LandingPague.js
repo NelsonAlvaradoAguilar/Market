@@ -3,7 +3,7 @@ import SignUpForm from "../../components/SignUp/SignUp";
 import LoginForm from "../../components/Login/Login";
 import { useNavigate } from "react-router-dom";
 
-function UsersLandingPage() {
+function LandingPage() {
   const [show, setShow] = useState("none");
   const navigate = useNavigate();
 
@@ -22,4 +22,4 @@ function UsersLandingPage() {
     </div>
   );
 }
-export default UsersLandingPage;
+export default LandingPage;
