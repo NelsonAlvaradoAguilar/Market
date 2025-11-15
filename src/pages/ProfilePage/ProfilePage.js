@@ -16,7 +16,7 @@ export default function ProfilePage({ user, onLogout }) {
     }
   };
 
-  const isActive = user.subscription_status === "active";
+  const isActive = user?.subscription_status === "active";
   return !user ? (
     <div>No user data found.</div>
   ) : (
