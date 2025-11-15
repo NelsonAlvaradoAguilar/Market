@@ -5,7 +5,7 @@ export default function Navbar() {
     <nav className="navbar">
       <ul className="navbar__list">
         <li className="navbar__item">
-          <Link className="navbar__link" to="/">
+          <Link className="navbar__link" to="/home">
             Home
           </Link>
         </li>

@@ -4,7 +4,6 @@ import {
   Routes,
   Route,
   BrowserRouter,
-  Await,
 } from "react-router-dom";
 import {
   addToCart,
@@ -17,22 +16,23 @@ import Home from "./pages/Home/Home.js";
 import About from "./components/About/About.js";
 import Contact from "./pages/Contact/Contact.js";
 import Store from "./pages/Store/Store.js";
-import Legal from "./components/Legal/Legal.js";
+
 import Footer from "./components/Footer/Footer.js";
-import StoreSection from "./components/StoreSection/StoreSection.js";
+
 import Header from "./components/Header/Header.js";
 import ShopPage from "./components/ShopPage/ShopPage.js";
-import Cart from "./components/Cart/Cart.js";
+
 import CartPage from "./pages/CartPage/CartPage.js";
 import CheckoutPage from "./pages/CheckoutPage/CheckoutPage.js";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import SignUpForm from "./components/SignUp/SignUp.js";
-import UsersLandingPage from "./pages/UserLandingPage/UserLAndingPg.js";
-import Profile from "./components/Profile/Profile.js";
+
+import LandingPage from "./pages/LandingPage/LandingPague.js";
+
 import ProfilePage from "./pages/ProfilePage/ProfilePage.js";
 import LoginForm from "./components/Login/Login.js";
-import Products from "./components/StoreSection/StoreSection.js";
+
 const stripePromise = loadStripe("pk_test_..."); // Your Stripe TEST publishable key
 export default function App() {
   const [cart, setCart] = useState([]);
@@ -104,11 +104,12 @@ export default function App() {
     <BrowserRouter>
       <Header user={user} />
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/home" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/store" element={<Store />} />
-        <Route path="/userlanding" element={<UsersLandingPage />} />
+
         <Route path="/signup" element={<SignUpForm />} />
         <Route path="/login" element={<LoginForm />} />
         <Route
