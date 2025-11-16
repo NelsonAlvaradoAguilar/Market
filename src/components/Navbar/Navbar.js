@@ -26,6 +26,11 @@ export default function Navbar({ user, onLogout }) {
               Admin
             </Link>
           )}
+          {user?.role === "user" && (
+            <Link className="navbar__link" to="/profile">
+              Profile
+            </Link>
+          )}
         </li>
         <li className="navbar__item">
           {!user ? (
