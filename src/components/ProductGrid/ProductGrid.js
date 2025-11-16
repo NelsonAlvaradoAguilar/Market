@@ -3,12 +3,24 @@ import "./ProductGrid.scss";
 import ProductCard from "../ProductCard/ProductCard";
 import SearchBar from "../SearchBar/SearchBar";
 
-const ProductGrid = ({ items = [], addToCart }) => (
+const ProductGrid = ({
+  items = [],
+  addToCart,
+  subtotal,
+  isSubscribed,
+  onRemove,
+}) => (
   <ul className="product">
     {items.length > 0 ? (
       items.map((item) => (
         <li className="product__card" key={item.id}>
-          <ProductCard item={item} addToCart={addToCart} />
+          <ProductCard
+            isSubscribed={isSubscribed}
+            subtotal={subtotal}
+            item={item}
+            addToCart={addToCart}
+            onRemove={onRemove}
+          />
         </li>
       ))
     ) : (

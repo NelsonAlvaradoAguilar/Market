@@ -34,11 +34,17 @@ import AdminDashboard from "./components/AdminDashboard/AdminDashboard.js";
 import ProfilePage from "./pages/ProfilePage/ProfilePage.js";
 import LoginForm from "./components/Login/Login.js";
 import AdminRoute from "./pages/AdminRoute/AdminRoute.js";
+import SubscribedRoute from "./routes/SuscribedRoute/SuscribedRoute.js";
 const stripePromise = loadStripe("pk_test_..."); // Your Stripe TEST publishable key
 export default function App() {
   const [cart, setCart] = useState([]);
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [user, setUser] = useState(null);
+  const [isSubscribed, setIsSubscribed] = useState("");
+
+  const [subtotal, setSubtotal] = useState();
+  console.log(subtotal);
+  console.log(isSubscribed);
 
   // Utility to reload cart from backend
   const reloadCart = async () => {
@@ -46,6 +52,9 @@ export default function App() {
     console.log(data);
 
     setCart(data);
+    setSubtotal(
+      data.reduce((sum, cart) => sum + cart.price * cart.quantity, 0)
+    );
   };
 
   // Handler: Add to cart
@@ -107,6 +116,7 @@ export default function App() {
   useEffect(() => {
     if (user) {
       console.log("User updated:", user);
+      setIsSubscribed(user.subscription_status);
     }
   }, [user]);
   const handleLogout = () => {
@@ -132,17 +142,6 @@ export default function App() {
         />
 
         <Route
-          path="/shoppage"
-          element={
-            <ShopPage
-              cart={cart}
-              addToCart={handleAddToCart}
-              removeFromCart={handleRemoveFromCart}
-            />
-          }
-        />
-
-        <Route
           path="/checkout"
           element={
             <Elements stripe={stripePromise}>
@@ -155,7 +154,11 @@ export default function App() {
           path="/cart"
           element={
             <CartPage
+              user={user}
               cartItems={cart}
+              isSubscribed={isSubscribed}
+              subtotal={subtotal}
+              addToCart={handleAddToCart}
               onRemove={handleRemoveFromCart}
               onUpdateQty={handleUpdateCartQty}
               setCart={setCart}
@@ -171,7 +174,20 @@ export default function App() {
             </AdminRoute>
           }
         />
-
+        <Route
+          path="/shoppage"
+          element={
+            <SubscribedRoute user={user}>
+              <ShopPage
+                user={user}
+                cart={cart}
+                addToCart={handleAddToCart}
+                removeFromCart={handleRemoveFromCart}
+                subtotal={subtotal}
+              />
+            </SubscribedRoute>
+          }
+        />
         <Route path="*" element={<Home />} />
       </Routes>
       <Footer user={user} />
@@ -180,3 +196,13 @@ export default function App() {
 }
 //    <Route path="/grocery" element={<StoreSection data={data} />} />
 // <Route path="/cart" element={<Cart />} />
+/* <Route
+   path="/shoppage"
+   element={
+     <ShopPage
+       cart={cart}
+       addToCart={handleAddToCart}
+       removeFromCart={handleRemoveFromCart}
+     />
+   }
+ />;*/

@@ -1,6 +1,6 @@
 import React from "react";
 import "./ProductCard.scss";
-const ProductCard = ({ item, addToCart }) => {
+const ProductCard = ({ item, addToCart, subtotal, isSubscribed, onRemove }) => {
   console.log(item.id);
 
   return (
@@ -9,12 +9,17 @@ const ProductCard = ({ item, addToCart }) => {
       <h4 className="product-card__title">{item.name}</h4>
       <p className="product-card__origin">{item.origin}</p>
 
-      <button
-        className="product-card__add-btn"
-        onClick={() => addToCart(item.id, 1)}
-      >
-        Add to Cart
-      </button>
+      {(subtotal <= 50 && (
+        <button
+          className="product-card__button"
+          onClick={() => addToCart(item.id)}
+        >
+          Add to Cart
+        </button>
+      )) ||
+        (subtotal >= 50 && (
+          <button onClick={() => onRemove(item.id)}>remove</button>
+        ))}
     </div>
   );
 };
