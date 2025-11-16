@@ -28,8 +28,8 @@ export default function ProfilePage({ user, onLogout }) {
 
       {isActive && (
         <p>
-          You are subscribed to the Monthly Box. Your box will be prepared for
-          pickup each month.
+          You are subscribed to the Weekly Box. Your box will be prepared for
+          pickup on Monday.
         </p>
       )}
     </>
