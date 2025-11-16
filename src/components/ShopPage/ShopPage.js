@@ -9,7 +9,14 @@ import SearchBar from "../SearchBar/SearchBar";
 import FeaturedCarousel from "../Carousel/Carousel";
 import { getProducts, getCategories, getSections } from "../../utils/api";
 
-const ShopPage = ({ addToCart, removeFromCart, cart }) => {
+const ShopPage = ({
+  addToCart,
+  removeFromCart,
+  cart,
+  user,
+  subtotal,
+  isSubscribed,
+}) => {
   // State
   const [sections, setSections] = useState([]);
   const [selectedSection, setSelectedSection] = useState(null);
@@ -122,8 +129,10 @@ const ShopPage = ({ addToCart, removeFromCart, cart }) => {
           <ProductGrid
             items={itemsToDisplay}
             addToCart={addToCart}
-            removeFromCart={removeFromCart}
+            onRemove={removeFromCart}
             cart={cart}
+            subtotal={subtotal}
+            isSubscribed={isSubscribed}
           />
         </div>
       </div>

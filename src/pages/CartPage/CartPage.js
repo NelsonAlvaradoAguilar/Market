@@ -2,13 +2,16 @@ import CartItem from "../../components/CartItem/CartItem";
 import CartSummary from "../../components/CartSummary/CartSummary";
 import "./CartPage.scss";
 import { removeFromCart, updateCartQty, getCart } from "../../utils/api";
+import { Link } from "react-router-dom";
 export default function CartPage({
   cartItems = [],
   onUpdateQty,
-
+  user,
   onCheckout,
   setCart,
   onRemove,
+  isSubscribed,
+  subtotal,
 }) {
   const increaseQty = async (productId, currentQty) => {
     await onUpdateQty(productId, currentQty + 1);
@@ -34,16 +37,11 @@ export default function CartPage({
 
   return (
     <div className="cartPage">
-      <h1>Your Cart</h1>
+      <h1>Your Box</h1>
       {cartItems.length === 0 ? (
         <div style={{ textAlign: "center", padding: 64 }}>
-          <p>Your cart is empty.</p>
-          <button
-            onClick={() => (window.location.href = "/")}
-            style={{ marginTop: 16 }}
-          >
-            Continue Shopping
-          </button>
+          <p>Your BOX is empty.</p>
+          <Link to="/shoppage">Continue Shopping</Link>
         </div>
       ) : (
         <>
@@ -55,6 +53,9 @@ export default function CartPage({
                 style={{ marginBottom: 24 }}
               >
                 <CartItem
+                  subtotal={subtotal}
+                  isSubscribed={isSubscribed}
+                  user={user}
                   item={item}
                   onIncrease={() => increaseQty(item.productId, item.quantity)}
                   onDecrease={() => decreaseQty(item.productId, item.quantity)}
@@ -63,7 +64,13 @@ export default function CartPage({
               </li>
             ))}
           </ul>
-          <CartSummary items={cartItems} onCheckout={onCheckout} />
+          <CartSummary
+            subtotal={subtotal}
+            isSubscribed={isSubscribed}
+            user={user}
+            items={cartItems}
+            onCheckout={onCheckout}
+          />
         </>
       )}
     </div>

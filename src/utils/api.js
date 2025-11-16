@@ -1,7 +1,8 @@
 import axios from "axios";
 const token = sessionStorage.getItem("JWTtoken");
-//const API_BASE = "http://localhost:4242/api";
-const API_BASE = "https://marketserver-7r02.onrender.com/api";
+
+const API_BASE = "http://localhost:4242/api";
+//const API_BASE = "https://marketserver-7r02.onrender.com/api";
 
 const getProducts = async () => {
     try {
@@ -228,6 +229,23 @@ export const createCheckoutSession = async () => {
     return res.data; // { url }
   } catch (err) {
     console.error("Error creating checkout session:", err);
+    throw err;
+  }
+};
+const cancelSubscription = async () => {
+  if (!token) throw new Error("No token");
+
+  try {
+    const res = await axios.post(
+      "/subscriptions/cancel",
+      {},
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    );
+    return res.data; // e.g. { message: "Subscription will cancel at period end" }
+  } catch (err) {
+    console.error("Error canceling subscription:", err);
     throw err;
   }
 };
