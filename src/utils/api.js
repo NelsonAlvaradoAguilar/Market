@@ -1,8 +1,8 @@
 import axios from "axios";
 const getToken = () => localStorage.getItem("token") || null;
 
-const API_BASE = "http://localhost:4242/api";
-//const API_BASE = "https://marketserver-7r02.onrender.com/api";
+//const API_BASE = "http://localhost:4242/api";
+const API_BASE = "https://marketserver-7r02.onrender.com/api";
 
 const getProducts = async () => {
     try {
