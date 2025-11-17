@@ -1,5 +1,5 @@
 import axios from "axios";
-const token = sessionStorage.getItem("JWTtoken");
+const getToken = () => localStorage.getItem("token") || null;
 
 const API_BASE = "http://localhost:4242/api";
 //const API_BASE = "https://marketserver-7r02.onrender.com/api";
@@ -58,7 +58,7 @@ const getOrders = async () => {
   }
 };
 const createOrder = async (data) => {
-  const token = localStorage.getItem("token");
+  const token = getToken();
   if (!token) {
     console.log("No token found. User must be logged in.");
     return null;
@@ -133,7 +133,7 @@ const loginUser = async (email, password) => {
 
 // Get profile - always reads token fresh from storage
 const getAuthorized = async () => {
-  const token = localStorage.getItem("token");
+  const token = getToken();
   console.log("Token before API call:", token);
 
   if (!token) {
@@ -158,7 +158,7 @@ const logOut = () => {
   localStorage.removeItem("user"); // <-- this is key!
 };
 export const addToCart = async (productId, quantity = 1) => {
-  const token = localStorage.getItem("token");
+  const token = getToken();
   if (!token) {
     throw new Error("You must be logged in to add to cart.");
   }
@@ -180,7 +180,7 @@ export const addToCart = async (productId, quantity = 1) => {
   }
 };
 export const getCart = async () => {
-  const token = localStorage.getItem("token");
+  const token = getToken();
   if (!token) {
     throw new Error("You must be logged in to view cart.");
   }
@@ -195,7 +195,7 @@ export const getCart = async () => {
   }
 };
 export const updateCartQty = async (productId, newQty) => {
-  const token = localStorage.getItem("token");
+  const token = getToken();
   if (!token) throw new Error("You must be logged in to update cart.");
   await axios.patch(
     `${API_BASE}/cart/${productId}`,
@@ -204,7 +204,7 @@ export const updateCartQty = async (productId, newQty) => {
   );
 };
 export const removeFromCart = async (productId) => {
-  const token = localStorage.getItem("token");
+  const token = getToken();
   if (!token) throw new Error("You must be logged in to remove from cart.");
   await axios.delete(`${API_BASE}/cart/${productId}`, {
     headers: {
@@ -213,7 +213,7 @@ export const removeFromCart = async (productId) => {
   });
 };
 export const createCheckoutSession = async () => {
-  const token = localStorage.getItem("token");
+  const token = getToken();
   if (!token) throw new Error("No token");
 
   try {
@@ -233,6 +233,7 @@ export const createCheckoutSession = async () => {
   }
 };
 const cancelSubscription = async () => {
+  const token = getToken();
   if (!token) throw new Error("No token");
 
   try {
@@ -380,6 +381,7 @@ export {
   signUp,
   loginUser,
   getAuthorized,
-  token,
+  getToken,
   logOut,
+  cancelSubscription,
 };
