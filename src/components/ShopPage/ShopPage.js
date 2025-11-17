@@ -8,6 +8,7 @@ import "./ShopPage.scss";
 import SearchBar from "../SearchBar/SearchBar";
 import FeaturedCarousel from "../Carousel/Carousel";
 import { getProducts, getCategories, getSections } from "../../utils/api";
+import Cta from "../Cta/Cta";
 
 const ShopPage = ({
   addToCart,
@@ -135,6 +136,9 @@ const ShopPage = ({
             isSubscribed={isSubscribed}
           />
         </div>
+      </div>
+      <div className="header__cta">
+        <Cta btnName="Cart" btnLink="/cart" />
       </div>
     </section>
   );

@@ -16,7 +16,7 @@ export default function Navbar({ user, onLogout }) {
         </li>
         <li className="navbar__item">
           <Link className="navbar__link" to="/shoppage">
-            Shop Now
+            Box
           </Link>
         </li>
         <li className="navbar__item">
