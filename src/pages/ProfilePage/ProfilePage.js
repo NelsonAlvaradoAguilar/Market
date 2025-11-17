@@ -4,7 +4,7 @@ import Profile from "../../components/Profile/Profile";
 import Home from "../Home/Home";
 import { createCheckoutSession } from "../../utils/api";
 import { useNavigate } from "react-router-dom";
-
+import "./ProfilePage.scss";
 export default function ProfilePage({ user, onLogout }) {
   const handleSubscribe = async () => {
     try {
@@ -27,10 +27,12 @@ export default function ProfilePage({ user, onLogout }) {
       )}
 
       {isActive && (
-        <p>
-          You are subscribed to the Weekly Box. Your box will be prepared for
-          pickup on Monday.
-        </p>
+        <div className="profile-page">
+          <p className="profile-page__message">
+            Thank you for being part of our Weekly Box program. Your box will be
+            prepared and available for pickup on Tuesday.
+          </p>
+        </div>
       )}
     </>
   );

@@ -25,10 +25,6 @@ export default function Header({ user, onLogout }) {
           instlink={"https://www.instagram.com/marketsmor/"}
           // phonelink={"tel:+19052691614"}
         />
-
-        <div className="header__cta">
-          <Cta btnName="Cart" btnLink="/cart" />
-        </div>
       </div>
 
       <Link className="header__logo" to="/">

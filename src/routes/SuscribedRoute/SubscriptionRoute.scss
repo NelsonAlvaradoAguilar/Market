@@ -1,0 +1,9 @@
+@use "../../style/parcials/_mixin" as *;
+@use "../../style/parcials/_variables" as *;
+
+.no-subscription {
+  @include font();
+  text-align: center;
+  padding: 1rem;
+  margin: 1rem;
+}

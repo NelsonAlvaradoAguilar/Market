@@ -1,0 +1,13 @@
+@use "../../style/parcials/_mixin" as *;
+@use "../../style/parcials/_variables" as *;
+
+.profile-page {
+  &__message {
+    margin: 1rem;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    @include font();
+  }
+}

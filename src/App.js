@@ -34,7 +34,7 @@ import AdminDashboard from "./components/AdminDashboard/AdminDashboard.js";
 import ProfilePage from "./pages/ProfilePage/ProfilePage.js";
 import LoginForm from "./components/Login/Login.js";
 import AdminRoute from "./pages/AdminRoute/AdminRoute.js";
-import SubscribedRoute from "./routes/SuscribedRoute/SuscribedRoute.js";
+import SubscribedRoute from "./routes/SuscribedRoute/SubscriptionRoute.js";
 const stripePromise = loadStripe("pk_test_..."); // Your Stripe TEST publishable key
 export default function App() {
   const [cart, setCart] = useState([]);
@@ -180,10 +180,14 @@ export default function App() {
             <SubscribedRoute user={user}>
               <ShopPage
                 user={user}
-                cart={cart}
-                addToCart={handleAddToCart}
-                removeFromCart={handleRemoveFromCart}
+                cartItems={cart}
+                isSubscribed={isSubscribed}
                 subtotal={subtotal}
+                addToCart={handleAddToCart}
+                onRemove={handleRemoveFromCart}
+                onUpdateQty={handleUpdateCartQty}
+                setCart={setCart}
+                getCart={getCart}
               />
             </SubscribedRoute>
           }
