@@ -13,6 +13,7 @@ import {
   removeFromCart,
   updateCartQty,
 } from "./utils/api.js";
+import { calculateSubtotal, isCartFull } from "./utils/cartUtil.js";
 import Home from "./pages/Home/Home.js";
 import About from "./components/About/About.js";
 import Contact from "./pages/Contact/Contact.js";
@@ -41,8 +42,9 @@ export default function App() {
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [user, setUser] = useState(null);
   const [isSubscribed, setIsSubscribed] = useState("");
+  const [subtotal, setSubtotal] = useState(0);
 
-  const [subtotal, setSubtotal] = useState();
+  const cartFull = isCartFull(cart);
   console.log(subtotal);
   console.log(isSubscribed);
 
@@ -52,9 +54,7 @@ export default function App() {
     console.log(data);
 
     setCart(data);
-    setSubtotal(
-      data.reduce((sum, cart) => sum + cart.price * cart.quantity, 0)
-    );
+    setSubtotal(calculateSubtotal(data));
   };
 
   // Handler: Add to cart
@@ -188,6 +188,8 @@ export default function App() {
                 onUpdateQty={handleUpdateCartQty}
                 setCart={setCart}
                 getCart={getCart}
+                cart={cart}
+                cartFull={cartFull}
               />
             </SubscribedRoute>
           }

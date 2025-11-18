@@ -250,6 +250,19 @@ const cancelSubscription = async () => {
     throw err;
   }
 };
+export const getWeeklyOrders = async (start, end) => {
+  try {
+    const token = localStorage.getItem("token");
+    const res = await axios.get(`${API_BASE}/orders/admin/weekly`, {
+      params: { start, end },
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    return res.data;
+  } catch (err) {
+    console.error("Error fetching weekly orders", err);
+    return [];
+  }
+};
 // PRODUCTS
 /*
 export const createProduct = async (data) => {

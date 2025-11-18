@@ -10,11 +10,13 @@ export default function CartItem({
   subtotal,
   isSubscribed,
 }) {
+  const numericSubtotal = Number(subtotal) || 0;
   return (
     <div className="card">
       <div className="card__info">
-        <span className="card__name">{item.name}</span>
+        <span className="card__name">{item?.name}</span>
       </div>
+
       {user?.subscription_status === "none" && (
         <span className="card__price">
           $
@@ -25,12 +27,14 @@ export default function CartItem({
             : "0.00"}
         </span>
       )}
+
       <div className="card__buttons">
         <button onClick={() => onDecrease(item.productId, item.quantity)}>
           –
         </button>
         <span>{item?.quantity}</span>
-        {subtotal < 60 && (
+
+        {numericSubtotal < 60 && (
           <button onClick={() => onIncrease(item.productId)}>+</button>
         )}
       </div>

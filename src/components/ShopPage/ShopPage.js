@@ -9,14 +9,16 @@ import SearchBar from "../SearchBar/SearchBar";
 import FeaturedCarousel from "../Carousel/Carousel";
 import { getProducts, getCategories, getSections } from "../../utils/api";
 import Cta from "../Cta/Cta";
+import { Link } from "react-router-dom";
 
 const ShopPage = ({
   addToCart,
-  removeFromCart,
+  onRemove,
   cart,
   user,
   subtotal,
   isSubscribed,
+  cartFull,
 }) => {
   // State
   const [sections, setSections] = useState([]);
@@ -60,6 +62,7 @@ const ShopPage = ({
       try {
         const data = await getProducts();
         setProducts(data);
+        console.log(data);
       } catch (error) {
         setApiError("Error fetching products.");
       }
@@ -88,13 +91,13 @@ const ShopPage = ({
 
   // 7. Apply search
   const itemsToDisplay = searchTerm
-    ? filteredItems.filter(
+    ? products.filter(
         (item) =>
           item.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
           (item.description &&
             item.description.toLowerCase().includes(searchTerm.toLowerCase()))
       )
-    : filteredItems;
+    : products;
 
   if (apiError) return <div>{apiError}</div>;
 
@@ -106,6 +109,7 @@ const ShopPage = ({
       <div className="shop-page__search">
         <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
       </div>
+
       <div className="shop-page__menu">
         <div>
           {/* SECTION NAVIGATION */}
@@ -125,20 +129,23 @@ const ShopPage = ({
             categoryData={categories.find((cat) => cat.id === selectedCategory)}
             selectedCategory={selectedCategory}
           />
+
+          <Link className="shop-page__box-cta" to="/cart">
+            Box Sumary{" "}
+          </Link>
         </div>
+
         <div>
           <ProductGrid
             items={itemsToDisplay}
             addToCart={addToCart}
-            onRemove={removeFromCart}
+            onRemove={onRemove}
             cart={cart}
             subtotal={subtotal}
             isSubscribed={isSubscribed}
+            cartFull={cartFull}
           />
         </div>
-      </div>
-      <div className="header__cta">
-        <Cta btnName="Cart" btnLink="/cart" />
       </div>
     </section>
   );
