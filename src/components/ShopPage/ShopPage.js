@@ -147,6 +147,9 @@ const ShopPage = ({
           />
         </div>
       </div>
+      <div className="header__cta">
+        <Cta btnName="Cart" btnLink="/cart" />
+      </div>
     </section>
   );
 };
