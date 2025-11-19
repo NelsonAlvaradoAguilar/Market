@@ -76,6 +76,19 @@ const createOrder = async (data) => {
     return null;
   }
 };
+export const getAllOrdersAdmin = async (start, end) => {
+  try {
+    const token = localStorage.getItem("token");
+    const res = await axios.get(`${API_BASE}/orders/list`, {
+      params: { start, end },
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    return res.data;
+  } catch (err) {
+    console.error("Error fetching all orders", err);
+    return [];
+  }
+};
 const getOrderItems = async () => {
   try {
     const response = await axios.get(`${API_BASE}/order-items`);
@@ -98,6 +111,19 @@ const createOrderItem = async (data) => {
     return null;
   }
 };
+export const getOrderByIdAdmin = async (orderId) => {
+  try {
+    const token = localStorage.getItem("token");
+    const res = await axios.get(`${API_BASE}/orders/${orderId}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    return res.data;
+  } catch (err) {
+    console.error("Error fetching order details", err);
+    throw err;
+  }
+};
+
 const signUp = async (name, email, password) => {
   try {
     const response = await axios.post(`${API_BASE}/users/signup`, {
