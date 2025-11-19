@@ -263,6 +263,32 @@ export const getWeeklyOrders = async (start, end) => {
     return [];
   }
 };
+export const getUsers = async () => {
+  try {
+    const token = localStorage.getItem("token");
+    const res = await axios.get(`${API_BASE}/users`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    return res.data;
+  } catch (err) {
+    console.error("Error fetching users", err);
+    return [];
+  }
+};
+
+export const getUserOrders = async (userId, { start, end, limit } = {}) => {
+  try {
+    const token = localStorage.getItem("token");
+    const res = await axios.get(`${API_BASE}/orders/user/${userId}`, {
+      params: { start, end, limit },
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    return res.data;
+  } catch (err) {
+    console.error("Error fetching user orders", err);
+    return [];
+  }
+};
 // PRODUCTS
 /*
 export const createProduct = async (data) => {
