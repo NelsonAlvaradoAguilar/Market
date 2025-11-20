@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { getAllOrdersAdmin, getOrderByIdAdmin } from "../../utils/api";
-
+import "./AllOrdersAdmin.scss";
 const AllOrdersAdmin = () => {
   const [start, setStart] = useState("");
   const [end, setEnd] = useState("");
@@ -43,10 +43,10 @@ const AllOrdersAdmin = () => {
   };
 
   return (
-    <div>
+    <div className="all-orders-admin">
       <h2>All Orders</h2>
 
-      <div style={{ display: "flex", gap: "1rem", marginBottom: "1rem" }}>
+      <div className="all-orders-admin__filters">
         <div>
           <label>Start date</label>
           <br />
@@ -81,63 +81,49 @@ const AllOrdersAdmin = () => {
       )}
 
       {!loading && orders.length > 0 && (
-        <table>
-          <thead>
-            <tr>
-              <th>Order ID</th>
-              <th>Created At</th>
-              <th>User</th>
-              <th>Pickup Date</th>
-              <th>Total</th>
-              <th>Payment Type</th>
-            </tr>
-          </thead>
-          <tbody>
-            {orders.map((o) => (
-              <tr
-                key={o.id}
-                style={{ cursor: "pointer" }}
-                onClick={() => handleRowClick(o.id)}
-              >
-                <td>{o.id}</td>
-                <td>{new Date(o.created_at).toLocaleString()}</td>
-                <td>
-                  {o.user_name ||
-                    o.customer_name ||
-                    o.user_email ||
-                    o.customer_email}{" "}
-                  (ID: {o.user_id})
-                </td>
-                <td>{o.pickup_date}</td>
-                <td>${Number(o.total).toFixed(2)}</td>
-                <td>{o.payment_type}</td>
+        <div className="all-orders-admin__table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Order ID</th>
+                <th>Created At</th>
+                <th>User</th>
+                <th>Pickup Date</th>
+                <th>Total</th>
+                <th>Payment Type</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {orders.map((o) => (
+                <tr
+                  key={o.id}
+                  style={{ cursor: "pointer" }}
+                  onClick={() => handleRowClick(o.id)}
+                >
+                  <td>{o.id}</td>
+                  <td>{new Date(o.created_at).toLocaleString()}</td>
+                  <td>
+                    {o.user_name ||
+                      o.customer_name ||
+                      o.user_email ||
+                      o.customer_email}{" "}
+                    (ID: {o.user_id})
+                  </td>
+                  <td>{o.pickup_date}</td>
+                  <td>${Number(o.total).toFixed(2)}</td>
+                  <td>{o.payment_type}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       )}
 
       {/* Simple modal for order details */}
       {selectedOrder && (
-        <div
-          style={{
-            position: "fixed",
-            inset: 0,
-            background: "rgba(0,0,0,0.4)",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            zIndex: 1000,
-          }}
-          onClick={closeModal}
-        >
+        <div className="all-orders-admin__overlay" onClick={closeModal}>
           <div
-            style={{
-              background: "#fff",
-              padding: "16px 24px",
-              maxWidth: "600px",
-              width: "100%",
-            }}
+            className="all-orders-admin__modal"
             onClick={(e) => e.stopPropagation()}
           >
             <h3>Order #{selectedOrder.id}</h3>
