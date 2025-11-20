@@ -1,0 +1,152 @@
+.all-orders-admin {
+  padding: 16px;
+
+  h2 {
+    margin-bottom: 12px;
+    font-size: 1.4rem;
+  }
+
+  // Filter bar
+  &__filters {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+  }
+
+  label {
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+
+  input[type="date"] {
+    padding: 4px 8px;
+    font-size: 0.9rem;
+  }
+
+  button {
+    padding: 6px 12px;
+    font-size: 0.9rem;
+    cursor: pointer;
+  }
+
+  // Table container for horizontal scroll on small screens
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+  }
+
+  thead {
+    background-color: #f5f5f5;
+  }
+
+  th,
+  td {
+    padding: 8px 10px;
+    border-bottom: 1px solid #e0e0e0;
+    text-align: left;
+    white-space: nowrap;
+  }
+
+  tbody tr:hover {
+    background-color: #fafafa;
+  }
+
+  // Wrap table in a scroll container on small screens
+  &__table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  // Modal overlay
+  &__overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 16px;
+  }
+
+  // Modal content
+  &__modal {
+    background: #fff;
+    padding: 16px 20px;
+    max-width: 600px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    border-radius: 4px;
+
+    h3 {
+      margin-top: 0;
+      margin-bottom: 8px;
+      font-size: 1.2rem;
+    }
+
+    h4 {
+      margin-top: 12px;
+      margin-bottom: 4px;
+      font-size: 1rem;
+    }
+
+    p {
+      margin: 2px 0;
+      font-size: 0.9rem;
+    }
+
+    table {
+      margin-top: 8px;
+      font-size: 0.85rem;
+    }
+
+    th,
+    td {
+      padding: 6px 8px;
+    }
+
+    button {
+      margin-top: 8px;
+    }
+  }
+
+  // Mobile adjustments
+  @media (max-width: 768px) {
+    padding: 12px;
+
+    h2 {
+      font-size: 1.2rem;
+    }
+
+    &__filters {
+      flex-direction: column;
+      align-items: flex-start;
+
+      > div {
+        width: 100%;
+      }
+
+      input[type="date"],
+      button {
+        width: 100%;
+      }
+    }
+
+    table {
+      font-size: 0.8rem;
+    }
+
+    th,
+    td {
+      padding: 6px 8px;
+    }
+
+    &__modal {
+      padding: 12px 14px;
+      max-width: 100%;
+    }
+  }
+}
