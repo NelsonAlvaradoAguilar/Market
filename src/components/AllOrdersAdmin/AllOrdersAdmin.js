@@ -90,7 +90,7 @@ const AllOrdersAdmin = () => {
                 <th>User</th>
                 <th>Pickup Date</th>
                 <th>Total</th>
-                <th>Payment Type</th>
+                <th>Payment TypE</th>
               </tr>
             </thead>
             <tbody>
