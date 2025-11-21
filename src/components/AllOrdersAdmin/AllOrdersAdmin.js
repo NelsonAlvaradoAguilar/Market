@@ -1,11 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { getAllOrdersAdmin, getOrderByIdAdmin } from "../../utils/api";
+import {
+  getAllOrdersAdmin,
+  getOrderByIdAdmin,
+  downloadOrdersPdf,
+} from "../../utils/api";
 import "./AllOrdersAdmin.scss";
 const AllOrdersAdmin = () => {
   const [start, setStart] = useState("");
   const [end, setEnd] = useState("");
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [pdfLoading, setPdfLoading] = useState(false);
 
   const [selectedOrder, setSelectedOrder] = useState(null);
   const [detailLoading, setDetailLoading] = useState(false);
@@ -41,7 +46,16 @@ const AllOrdersAdmin = () => {
     setSelectedOrder(null);
     setDetailError("");
   };
-
+  const handleDownloadPdf = async () => {
+    try {
+      setPdfLoading(true);
+      await downloadOrdersPdf(start || undefined, end || undefined);
+    } catch (err) {
+      // you could show a toast or message if you want
+    } finally {
+      setPdfLoading(false);
+    }
+  };
   return (
     <div className="all-orders-admin">
       <h2>All Orders</h2>
@@ -67,9 +81,12 @@ const AllOrdersAdmin = () => {
           />
         </div>
 
-        <div style={{ alignSelf: "flex-end" }}>
+        <div style={{ alignSelf: "flex-end", display: "flex", gap: "0.5rem" }}>
           <button onClick={loadOrders} disabled={loading}>
             {loading ? "Loading..." : "Apply filter"}
+          </button>
+          <button onClick={handleDownloadPdf} disabled={pdfLoading}>
+            {pdfLoading ? "Downloading..." : "Download PDF"}
           </button>
         </div>
       </div>

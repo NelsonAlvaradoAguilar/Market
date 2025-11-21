@@ -73,6 +73,8 @@ export default function CartPage({
           />
         </>
       )}
+
+      <Link to="/shoppage">Continue Shopping</Link>
     </div>
   );
 }

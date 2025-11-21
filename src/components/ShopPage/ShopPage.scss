@@ -22,5 +22,11 @@
     justify-content: center;
   }
   &__box-cta {
+    background-image: url("../../assets/icons/icons8-checkout-ios-17-outlined/icons8-checkout-50.png"); /* 16x16 */
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 5rem;
+    height: 5rem;
+    margin-left: 0.5rem;
   }
 }

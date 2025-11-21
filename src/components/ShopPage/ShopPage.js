@@ -89,16 +89,17 @@ const ShopPage = ({
     (item) => item.category_id === selectedCategory
   );
 
-  // 7. Apply search
+  // 7. Decide what to display
   const itemsToDisplay = searchTerm
-    ? products.filter(
+    ? // When searching: search across ALL products (ignore category/section)
+      products.filter(
         (item) =>
           item.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
           (item.description &&
             item.description.toLowerCase().includes(searchTerm.toLowerCase()))
       )
-    : products;
-
+    : // When not searching: show only the selected category
+      filteredItems;
   if (apiError) return <div>{apiError}</div>;
 
   return (
@@ -113,11 +114,13 @@ const ShopPage = ({
       <div className="shop-page__menu">
         <div>
           {/* SECTION NAVIGATION */}
+
           <Sidebar
             categoryList={sections}
             selectedCategory={selectedSection}
             onSelectCategory={setSelectedSection}
           />
+
           {/* CATEGORY NAVIGATION */}
           <SubcategoryNav
             subCategories={filteredCategories}
@@ -129,10 +132,6 @@ const ShopPage = ({
             categoryData={categories.find((cat) => cat.id === selectedCategory)}
             selectedCategory={selectedCategory}
           />
-
-          <Link className="shop-page__box-cta" to="/cart">
-            Box Sumary{" "}
-          </Link>
         </div>
 
         <div>
@@ -147,9 +146,7 @@ const ShopPage = ({
           />
         </div>
       </div>
-      <div className="header__cta">
-        <Cta btnName="Cart" btnLink="/cart" />
-      </div>
+      <Link className="shop-page__box-cta" to="/cart"></Link>
     </section>
   );
 };

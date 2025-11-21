@@ -17,18 +17,20 @@ const ProductCard = ({
       <h4 className="product-card__title">{item?.name}</h4>
       <p className="product-card__origin">{item?.origin}</p>
       <div>{item?.quantity}</div>
-      {!cartFull && !isInCart && (
+      {!isInCart && (
         <button
           className="product-card__button"
-          onClick={() => addToCart(productId)}
+          onClick={() => addToCart(item.id)}
+          disabled={cartFull}
         >
-          Buy
+          {cartFull ? "Box is full" : "Buy"}
         </button>
       )}
-      {cartFull && isInCart && (
+
+      {isInCart && (
         <button
           className="product-card__button product-card__button--remove"
-          onClick={() => onRemove(productId, item.quantity - 1)}
+          onClick={() => onRemove(item.id)}
         >
           Remove from box
         </button>

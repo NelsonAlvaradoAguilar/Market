@@ -315,6 +315,31 @@ export const getUserOrders = async (userId, { start, end, limit } = {}) => {
     return [];
   }
 };
+export const downloadOrdersPdf = async (start, end) => {
+  try {
+    const token = localStorage.getItem("token");
+    const res = await axios.get(`${API_BASE}/orders/admin/pdf`, {
+      params: { start, end },
+      headers: { Authorization: `Bearer ${token}` },
+      responseType: "blob", // important for binary
+    });
+
+    const blob = new Blob([res.data], { type: "application/pdf" });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    const fileName = `orders_${start || "all"}_${end || "all"}.pdf`;
+    a.download = fileName;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    window.URL.revokeObjectURL(url);
+  } catch (err) {
+    console.error("Error downloading orders PDF", err);
+    throw err;
+  }
+};
+
 // PRODUCTS
 /*
 export const createProduct = async (data) => {
