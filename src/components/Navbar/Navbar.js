@@ -31,8 +31,6 @@ export default function Navbar({ user, onLogout }) {
               Profile
             </Link>
           )}
-        </li>
-        <li className="navbar__item">
           {!user ? (
             <Link
               className="navbar__link"

@@ -10,6 +10,9 @@ import {
   getAuthorized,
   getCart,
   getOrders,
+  getToken,
+  getUserSession,
+  logOut,
   removeFromCart,
   updateCartQty,
 } from "./utils/api.js";
@@ -39,7 +42,8 @@ import SubscribedRoute from "./routes/SuscribedRoute/SubscriptionRoute.js";
 const stripePromise = loadStripe("pk_test_..."); // Your Stripe TEST publishable key
 export default function App() {
   const [cart, setCart] = useState([]);
-  const [token, setToken] = useState(localStorage.getItem("token"));
+  const [token, setToken] = useState(getToken());
+  const [userSession, setUserSession] = useState(getUserSession());
   const [user, setUser] = useState(null);
   const [isSubscribed, setIsSubscribed] = useState("");
   const [subtotal, setSubtotal] = useState(0);
@@ -49,19 +53,12 @@ export default function App() {
   console.log(isSubscribed);
 
   // Utility to reload cart from backend
-  const reloadCart = async () => {
-    const data = await getCart();
-    console.log(data);
-
-    setCart(data);
-    setSubtotal(calculateSubtotal(data));
-  };
 
   // Handler: Add to cart
   const handleAddToCart = async (productId, quantity) => {
     try {
       await addToCart(productId, quantity);
-      await reloadCart();
+      // await reloadCart();
     } catch (err) {
       console.log(err);
     }
@@ -71,7 +68,7 @@ export default function App() {
   const handleUpdateCartQty = async (itemId, newQty) => {
     try {
       await updateCartQty(itemId, newQty);
-      await reloadCart();
+      //await reloadCart();
     } catch (err) {
       // handle error
     }
@@ -81,7 +78,7 @@ export default function App() {
   const handleRemoveFromCart = async (itemId) => {
     try {
       await removeFromCart(itemId);
-      await reloadCart();
+      // await reloadCart();
     } catch (err) {
       // handle error
     }
@@ -91,28 +88,71 @@ export default function App() {
   useEffect(() => {
     const getProfile = async () => {
       try {
-        const userData = await getAuthorized(); // userData is the user object
+        const userData = await getAuthorized();
         setUser(userData);
       } catch (err) {
         console.error("Profile load error:", err);
-        setUser(null);
+
+        if (err.response?.status === 401) {
+          // Token expired
+          setUser(null);
+          setToken(null);
+          logOut();
+          // Optional: redirect to login
+          // navigate("/login");
+        } else {
+          setUser(null);
+        }
       }
     };
 
-    if (token) {
+    if (userSession) {
+      setUser(userSession);
+    } else if (token) {
       getProfile();
     } else {
       setUser(null);
     }
   }, [token]);
   // Load cart on token change
-  useEffect(() => {
+  /*useEffect(() => {
     if (token) {
       reloadCart();
     }
-  }, [token]);
-
+  }, [token]);*/
   // Debug: log user updates
+  useEffect(() => {
+    const reloadCart = async () => {
+      try {
+        const data = await getCart();
+        console.log("Cart data:", data);
+
+        const safeData = Array.isArray(data) ? data : [];
+        setCart(safeData);
+        setSubtotal(calculateSubtotal(safeData));
+      } catch (err) {
+        console.error("reloadCart error:", err);
+
+        if (err.response?.status === 401) {
+          // Token expired → clear everything related to auth/cart
+          setCart([]);
+          setSubtotal(0);
+          setToken(null);
+          logOut(); // assuming this clears localStorage (token, user, etc.)
+          // Optionally redirect to login if you use react-router's navigate
+          // navigate("/login");
+        }
+      }
+    };
+
+    if (token) {
+      reloadCart();
+    } else {
+      // No token → ensure cart is empty
+      setCart([]);
+      setSubtotal(0);
+    }
+  }, [token]);
   useEffect(() => {
     if (user) {
       console.log("User updated:", user);
@@ -120,9 +160,7 @@ export default function App() {
     }
   }, [user]);
   const handleLogout = () => {
-    localStorage.removeItem("token");
-    setToken(null);
-    setUser(null);
+    logOut();
   };
   return (
     <BrowserRouter>
