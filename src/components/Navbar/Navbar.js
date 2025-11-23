@@ -20,28 +20,23 @@ export default function Navbar({ user, onLogout }) {
           </Link>
         </li>
         <li className="navbar__item">
-          {" "}
           {user?.role === "admin" && (
             <Link className="navbar__link" to="/admin">
               Admin
             </Link>
           )}
+
           {user?.role === "user" && (
             <Link className="navbar__link" to="/profile">
               Profile
             </Link>
           )}
-        </li>
-        <li className="navbar__item">
-          {!user ? (
-            <Link
-              className="navbar__link"
-              to="/landing
-            "
-            >
-              User Dasboard
+
+          {!user && (
+            <Link className="navbar__link" to="/">
+              User Dashboard
             </Link>
-          ) : null}{" "}
+          )}
         </li>
       </ul>
     </nav>

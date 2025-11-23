@@ -1,26 +1,23 @@
 import React, { useEffect, useState } from "react";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  BrowserRouter,
-} from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import {
   addToCart,
   getAuthorized,
   getCart,
-  getOrders,
+  getToken,
+  getUserSession,
+  logOut,
   removeFromCart,
   updateCartQty,
 } from "./utils/api.js";
 import { calculateSubtotal, isCartFull } from "./utils/cartUtil.js";
+
 import Home from "./pages/Home/Home.js";
 import About from "./components/About/About.js";
 import Contact from "./pages/Contact/Contact.js";
 import Store from "./pages/Store/Store.js";
 
 import Footer from "./components/Footer/Footer.js";
-
 import Header from "./components/Header/Header.js";
 import ShopPage from "./components/ShopPage/ShopPage.js";
 
@@ -36,100 +33,149 @@ import ProfilePage from "./pages/ProfilePage/ProfilePage.js";
 import LoginForm from "./components/Login/Login.js";
 import AdminRoute from "./pages/AdminRoute/AdminRoute.js";
 import SubscribedRoute from "./routes/SuscribedRoute/SubscriptionRoute.js";
+
 const stripePromise = loadStripe("pk_test_..."); // Your Stripe TEST publishable key
+
 export default function App() {
   const [cart, setCart] = useState([]);
-  const [token, setToken] = useState(localStorage.getItem("token"));
+  const [token, setToken] = useState(getToken());
+  const [userSession, setUserSession] = useState(getUserSession());
   const [user, setUser] = useState(null);
   const [isSubscribed, setIsSubscribed] = useState("");
   const [subtotal, setSubtotal] = useState(0);
 
   const cartFull = isCartFull(cart);
-  console.log(subtotal);
-  console.log(isSubscribed);
 
-  // Utility to reload cart from backend
+  // Load user profile / session
+  useEffect(() => {
+    const fetchProfile = async () => {
+      try {
+        const userData = await getAuthorized();
+        console.log("userData from API:", userData);
+        setUser(userData);
+        setUserSession(userData);
+        localStorage.setItem("user", JSON.stringify(userData));
+      } catch (err) {
+        console.error("Profile load error:", err);
+
+        if (err.response?.status === 401) {
+          // Token expired
+          setUser(null);
+          setUserSession(null);
+          setToken(null);
+          logOut();
+        } else {
+          setUser(null);
+          setUserSession(null);
+        }
+      }
+    };
+
+    if (userSession) {
+      // Use stored session immediately on refresh
+      setUser(userSession);
+    } else if (token) {
+      // No stored session but we have a token → fetch from API
+      fetchProfile();
+    } else {
+      setUser(null);
+      setUserSession(null);
+    }
+  }, [token, userSession]);
+
+  // Load cart on token change
+
   const reloadCart = async () => {
-    const data = await getCart();
-    console.log(data);
+    try {
+      const data = await getCart();
+      console.log("Cart data:", data);
 
-    setCart(data);
-    setSubtotal(calculateSubtotal(data));
+      const safeData = Array.isArray(data) ? data : [];
+      setCart(safeData);
+      setSubtotal(calculateSubtotal(safeData));
+    } catch (err) {
+      console.error("reloadCart error:", err);
+
+      if (err.response?.status === 401) {
+        setCart([]);
+        setSubtotal(0);
+        setToken(null);
+        logOut();
+      }
+    }
   };
 
-  // Handler: Add to cart
+  // Keep subscription status in sync with user
+  useEffect(() => {
+    if (user) {
+      console.log("User updated:", user);
+      setIsSubscribed(user.subscription_status || "");
+    } else {
+      setIsSubscribed("");
+    }
+  }, [user]);
+  useEffect(() => {
+    if (token) {
+      reloadCart();
+    } else {
+      setCart([]);
+      setSubtotal(0);
+    }
+  }, [token]);
+  // Handlers
   const handleAddToCart = async (productId, quantity) => {
     try {
       await addToCart(productId, quantity);
-      await reloadCart();
+      // optional: reload cart here if you want immediate UI update
+      reloadCart();
+      const data = await getCart();
+      const safeData = Array.isArray(data) ? data : [];
+      setCart(safeData);
+      setSubtotal(calculateSubtotal(safeData));
     } catch (err) {
       console.log(err);
     }
   };
 
-  // Handler: Update cart quantity
   const handleUpdateCartQty = async (itemId, newQty) => {
     try {
       await updateCartQty(itemId, newQty);
-      await reloadCart();
+      // optional: reload cart
+      reloadCart();
     } catch (err) {
-      // handle error
+      console.log(err);
     }
   };
 
-  // Handler: Remove from cart
   const handleRemoveFromCart = async (itemId) => {
     try {
       await removeFromCart(itemId);
-      await reloadCart();
-    } catch (err) {
-      // handle error
-    }
-  };
-
-  // Load user profile on token change
-  useEffect(() => {
-    const getProfile = async () => {
-      try {
-        const userData = await getAuthorized(); // userData is the user object
-        setUser(userData);
-      } catch (err) {
-        console.error("Profile load error:", err);
-        setUser(null);
-      }
-    };
-
-    if (token) {
-      getProfile();
-    } else {
-      setUser(null);
-    }
-  }, [token]);
-  // Load cart on token change
-  useEffect(() => {
-    if (token) {
       reloadCart();
+      // optional: reload cart
+    } catch (err) {
+      console.log(err);
     }
-  }, [token]);
-
-  // Debug: log user updates
-  useEffect(() => {
-    if (user) {
-      console.log("User updated:", user);
-      setIsSubscribed(user.subscription_status);
-    }
-  }, [user]);
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    setToken(null);
-    setUser(null);
   };
+
+  const handleLogout = () => {
+    logOut(); // clears localStorage (token + user)
+    setToken(null); // clear React state
+    setUser(null);
+    setUserSession(null);
+    setCart([]);
+    setSubtotal(0);
+    setIsSubscribed("");
+  };
+
   return (
     <BrowserRouter>
       <Header user={user} onLogout={handleLogout} />
       <Routes>
-        <Route path="/landing" element={<LandingPage user={user} />} />
-        <Route path="/home" element={<Home />} />
+        <Route path="/" element={<LandingPage user={user} />} />
+        <Route
+          path="/landing"
+          element={<Home user={user} onLogout={handleLogout} />}
+        />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/store" element={<Store />} />
