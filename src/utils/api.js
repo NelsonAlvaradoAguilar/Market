@@ -1,5 +1,21 @@
 import axios from "axios";
-const getToken = () => localStorage.getItem("token") || null;
+const getToken = () => {
+  const raw = localStorage.getItem("token");
+  if (!raw || raw === "null" || raw === "undefined") return null;
+  return raw;
+};
+const getUserSession = () => {
+  const stored = localStorage.getItem("user");
+  if (!stored || stored === "null" || stored === "undefined") return null;
+
+  try {
+    const parsed = JSON.parse(stored);
+    return parsed || null;
+  } catch (e) {
+    console.error("Failed to parse user from localStorage:", e);
+    return null;
+  }
+};
 
 //const API_BASE = "http://localhost:4242/api";
 const API_BASE = "https://marketserver-7r02.onrender.com/api";
@@ -78,7 +94,7 @@ const createOrder = async (data) => {
 };
 export const getAllOrdersAdmin = async (start, end) => {
   try {
-    const token = localStorage.getItem("token");
+    const token = getToken();
     const res = await axios.get(`${API_BASE}/orders/list`, {
       params: { start, end },
       headers: { Authorization: `Bearer ${token}` },
@@ -113,7 +129,7 @@ const createOrderItem = async (data) => {
 };
 export const getOrderByIdAdmin = async (orderId) => {
   try {
-    const token = localStorage.getItem("token");
+    const token = getToken();
     const res = await axios.get(`${API_BASE}/orders/${orderId}`, {
       headers: { Authorization: `Bearer ${token}` },
     });
@@ -181,7 +197,7 @@ const getAuthorized = async () => {
 // Logout
 const logOut = () => {
   localStorage.removeItem("token");
-  localStorage.removeItem("user"); // <-- this is key!
+  localStorage.removeItem("user");
 };
 export const addToCart = async (productId, quantity = 1) => {
   const token = getToken();
@@ -278,7 +294,7 @@ const cancelSubscription = async () => {
 };
 export const getWeeklyOrders = async (start, end) => {
   try {
-    const token = localStorage.getItem("token");
+    const token = getToken();
     const res = await axios.get(`${API_BASE}/orders/admin/weekly`, {
       params: { start, end },
       headers: { Authorization: `Bearer ${token}` },
@@ -291,7 +307,7 @@ export const getWeeklyOrders = async (start, end) => {
 };
 export const getUsers = async () => {
   try {
-    const token = localStorage.getItem("token");
+    const token = getToken();
     const res = await axios.get(`${API_BASE}/users`, {
       headers: { Authorization: `Bearer ${token}` },
     });
@@ -304,7 +320,7 @@ export const getUsers = async () => {
 
 export const getUserOrders = async (userId, { start, end, limit } = {}) => {
   try {
-    const token = localStorage.getItem("token");
+    const token = getToken();
     const res = await axios.get(`${API_BASE}/orders/user/${userId}`, {
       params: { start, end, limit },
       headers: { Authorization: `Bearer ${token}` },
@@ -317,7 +333,7 @@ export const getUserOrders = async (userId, { start, end, limit } = {}) => {
 };
 export const downloadOrdersPdf = async (start, end) => {
   try {
-    const token = localStorage.getItem("token");
+    const token = getToken();
     const res = await axios.get(`${API_BASE}/orders/admin/pdf`, {
       params: { start, end },
       headers: { Authorization: `Bearer ${token}` },
@@ -473,5 +489,6 @@ export {
   getAuthorized,
   getToken,
   logOut,
+  getUserSession,
   cancelSubscription,
 };

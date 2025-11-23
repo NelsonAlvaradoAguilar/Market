@@ -7,7 +7,7 @@ const BusinessHours = ({ workingHours }) => (
     <ul className="business-hours__ul">
       {workingHours.map((item, index) => (
         <li className="business-hours__li" key={index}>
-          <span className="business-hours__day">{item.day}:</span>
+          <span className="business-hours__day">{item.day}</span>
           <span className="business-hours__time"> {item.time}</span>
         </li>
       ))}
