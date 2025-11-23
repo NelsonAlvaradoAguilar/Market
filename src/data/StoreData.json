@@ -2,13 +2,13 @@
   "store": {
     "workingHours": {
       "workingHours": [
-        { "day": "Monday", "time": "Closed" },
-        { "day": "Tuesday", "time": "10 a.m.–6 p.m." },
-        { "day": "Wednesday", "time": "10 a.m.–6 p.m." },
-        { "day": "Thursday", "time": "10 a.m.–6 p.m." },
-        { "day": "Friday", "time": "10 a.m.–6 p.m." },
-        { "day": "Saturday", "time": "10 a.m.–6 p.m." },
-        { "day": "Sunday", "time": "Closed" }
+        { "day": "Mon", "time": "Closed" },
+        { "day": "Tues", "time": "10 –6 " },
+        { "day": "Wed", "time": "10 –6 " },
+        { "day": "Thur", "time": "10 –6 " },
+        { "day": "Fri", "time": "10 –6 " },
+        { "day": "Sat", "time": "10 –6 " },
+        { "day": "Sun", "time": "Closed" }
       ]
     },
     "about": {

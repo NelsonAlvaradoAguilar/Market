@@ -5,13 +5,18 @@ const getToken = () => {
   return raw;
 };
 const getUserSession = () => {
-  const raw = JSON.parse(localStorage.getItem("user"));
-  if (!raw || raw === "null" || raw === "undefined") return null;
-  return raw;
+  const stored = localStorage.getItem("user");
+  if (!stored || stored === "null" || stored === "undefined") return null;
+
+  try {
+    const parsed = JSON.parse(stored);
+    return parsed || null;
+  } catch (e) {
+    console.error("Failed to parse user from localStorage:", e);
+    return null;
+  }
 };
 
-const removeToken = () => localStorage.removeItem("token");
-const removeUser = () => localStorage.removeItem("user");
 //const API_BASE = "http://localhost:4242/api";
 const API_BASE = "https://marketserver-7r02.onrender.com/api";
 
@@ -191,12 +196,8 @@ const getAuthorized = async () => {
 };
 // Logout
 const logOut = () => {
-  const closeTokenSession = () => removeToken();
-  const closeUserSession = () => removeUser();
-
-  closeTokenSession();
-  closeUserSession();
-  // <-- this is key!
+  localStorage.removeItem("token");
+  localStorage.removeItem("user");
 };
 export const addToCart = async (productId, quantity = 1) => {
   const token = getToken();
