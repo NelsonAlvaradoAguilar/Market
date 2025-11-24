@@ -6,8 +6,13 @@ import { createCheckoutSession } from "../../utils/api";
 import { useNavigate } from "react-router-dom";
 import "./ProfilePage.scss";
 
-export default function ProfilePage({ user, onLogout, handleSubscribe }) {
-  const isActive = user?.subscription_status === "active";
+export default function ProfilePage({
+  user,
+  onLogout,
+  handleSubscribe,
+  isSubscribed,
+}) {
+  const isActive = isSubscribed === "active";
   return !user ? (
     <div>No user data found.</div>
   ) : (
