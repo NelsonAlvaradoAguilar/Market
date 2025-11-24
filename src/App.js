@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
+import { loadStripe } from "@stripe/stripe-js";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import {
   addToCart,
+  createCheckoutSession,
   getAuthorized,
   getCart,
   getToken,
@@ -24,7 +26,7 @@ import ShopPage from "./components/ShopPage/ShopPage.js";
 import CartPage from "./pages/CartPage/CartPage.js";
 import CheckoutPage from "./pages/CheckoutPage/CheckoutPage.js";
 import { Elements } from "@stripe/react-stripe-js";
-import { loadStripe } from "@stripe/stripe-js";
+
 import SignUpForm from "./components/SignUp/SignUp.js";
 
 import LandingPage from "./pages/LandingPage/LandingPague.js";
@@ -156,7 +158,19 @@ export default function App() {
       console.log(err);
     }
   };
+  const handleSubscribe = async () => {
+    try {
+      const { id: sessionId } = await createCheckoutSession();
+      const stripe = await stripePromise;
 
+      const { error } = await stripe.redirectToCheckout({ sessionId });
+      if (error) {
+        console.error("Stripe redirectToCheckout error:", error);
+      }
+    } catch (err) {
+      console.error("Error starting checkout:", err);
+    }
+  };
   const handleLogout = () => {
     logOut(); // clears localStorage (token + user)
     setToken(null); // clear React state
@@ -171,9 +185,9 @@ export default function App() {
     <BrowserRouter>
       <Header user={user} onLogout={handleLogout} />
       <Routes>
-        <Route path="/" element={<LandingPage user={user} />} />
+        <Route path="/landing" element={<LandingPage user={user} />} />
         <Route
-          path="/landing"
+          path="/"
           element={<Home user={user} onLogout={handleLogout} />}
         />
         <Route path="/about" element={<About />} />
@@ -184,7 +198,13 @@ export default function App() {
         <Route path="/login" element={<LoginForm setToken={setToken} />} />
         <Route
           path="/profile"
-          element={<ProfilePage user={user} onLogout={handleLogout} />}
+          element={
+            <ProfilePage
+              user={user}
+              onLogout={handleLogout}
+              handleSubscribe={handleSubscribe}
+            />
+          }
         />
 
         <Route
