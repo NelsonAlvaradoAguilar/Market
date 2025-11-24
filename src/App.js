@@ -160,12 +160,11 @@ export default function App() {
   };
   const handleSubscribe = async () => {
     try {
-      const { id: sessionId } = await createCheckoutSession();
-      const stripe = await stripePromise;
-
-      const { error } = await stripe.redirectToCheckout({ sessionId });
-      if (error) {
-        console.error("Stripe redirectToCheckout error:", error);
+      const { url } = await createCheckoutSession(); // your util returns { url }
+      if (url) {
+        window.location.href = url; // redirect to Stripe Checkout
+      } else {
+        console.error("No URL returned from createCheckoutSession");
       }
     } catch (err) {
       console.error("Error starting checkout:", err);
@@ -203,6 +202,7 @@ export default function App() {
               user={user}
               onLogout={handleLogout}
               handleSubscribe={handleSubscribe}
+              isSubscribed={isSubscribed}
             />
           }
         />
@@ -236,7 +236,12 @@ export default function App() {
           path="/admin"
           element={
             <AdminRoute user={user}>
-              <AdminDashboard user={user} />
+              <AdminDashboard
+                user={user}
+                onLogout={handleLogout}
+                handleSubscribe={handleSubscribe}
+                isSubscribed={isSubscribed}
+              />
             </AdminRoute>
           }
         />

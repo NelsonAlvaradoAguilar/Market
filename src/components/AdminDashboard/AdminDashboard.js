@@ -2,8 +2,12 @@ import React from "react";
 import ProfilePage from "../../pages/ProfilePage/ProfilePage";
 import WeeklyOrders from "../WeeklyOrders/WeeklyOrdes";
 import AllOrdersAdmin from "../AllOrdersAdmin/AllOrdersAdmin";
-
-export default function AdminDashboard({ user, onLogout }) {
+export default function AdminDashboard({
+  user,
+  onLogout,
+  handleSubscribe,
+  isSubscribed,
+}) {
   return (
     <div style={{ padding: 24 }}>
       <h1>Admin Dashboard</h1>
@@ -13,11 +17,21 @@ export default function AdminDashboard({ user, onLogout }) {
 
       <h2>All Orders (filter by date)</h2>
       <AllOrdersAdmin />
+
       <hr style={{ margin: "24px 0" }} />
 
       <h2>Weekly Orders by User (overview)</h2>
+      <WeeklyOrders />
 
-      <ProfilePage user={user} onLogout={onLogout} />
+      <hr style={{ margin: "24px 0" }} />
+
+      <h2>Your Profile</h2>
+      <ProfilePage
+        user={user}
+        onLogout={onLogout}
+        handleSubscribe={handleSubscribe}
+        isSubscribed={isSubscribed}
+      />
     </div>
   );
 }
