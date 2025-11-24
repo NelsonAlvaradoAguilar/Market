@@ -266,9 +266,7 @@ export const createCheckoutSession = async () => {
         headers: { Authorization: `Bearer ${token}` },
       }
     );
-    console.log(res);
-
-    return res.data; // { url }
+    return res.data; // { id }
   } catch (err) {
     console.error("Error creating checkout session:", err);
     throw err;

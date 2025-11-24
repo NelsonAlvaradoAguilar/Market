@@ -33,7 +33,7 @@ export default function Navbar({ user, onLogout }) {
           )}
 
           {!user && (
-            <Link className="navbar__link" to="/">
+            <Link className="navbar__link" to="/landing">
               User Dashboard
             </Link>
           )}
