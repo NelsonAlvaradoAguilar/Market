@@ -18,7 +18,8 @@ import Home from "./pages/Home/Home.js";
 import About from "./components/About/About.js";
 import Contact from "./pages/Contact/Contact.js";
 import Store from "./pages/Store/Store.js";
-
+import SubscriptionSuccess from "./components/SubscriptionSuccess/SubscriptionSuccess.js";
+import SubscriptionCancel from "./pages/SubscriptionCancel/SubscriptionCancel";
 import Footer from "./components/Footer/Footer.js";
 import Header from "./components/Header/Header.js";
 import ShopPage from "./components/ShopPage/ShopPage.js";
@@ -148,6 +149,7 @@ export default function App() {
       console.log(err);
     }
   };
+  console.log(isSubscribed);
 
   const handleRemoveFromCart = async (itemId) => {
     try {
@@ -189,6 +191,8 @@ export default function App() {
           path="/"
           element={<Home user={user} onLogout={handleLogout} />}
         />
+        <Route path="/subscription/success" element={<SubscriptionSuccess />} />
+        <Route path="/subscription/cancel" element={<SubscriptionCancel />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/store" element={<Store />} />
