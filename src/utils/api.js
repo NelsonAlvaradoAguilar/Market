@@ -290,6 +290,27 @@ const cancelSubscription = async () => {
     throw err;
   }
 };
+export const confirmSubscription = async (sessionId) => {
+  const token = getToken();
+  if (!token) throw new Error("No token");
+  if (!sessionId) throw new Error("Missing sessionId");
+
+  try {
+    const res = await axios.post(
+      `${API_BASE}/subscriptions/confirm`,
+      { sessionId },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    return res.data; // { success: true } or error
+  } catch (err) {
+    console.error("Error confirming subscription:", err);
+    throw err;
+  }
+};
 export const getWeeklyOrders = async (start, end) => {
   try {
     const token = getToken();

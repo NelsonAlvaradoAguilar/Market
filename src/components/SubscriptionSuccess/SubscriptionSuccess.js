@@ -1,14 +1,10 @@
 import { useEffect, useState } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
-import axios from "axios";
-import { getToken } from "../../utils/api"; // or wherever you keep this
-
-const API_BASE = process.env.REACT_APP_API_BASE || "http://localhost:8080";
-
+import { confirmSubscription } from "../../utils/api";
 export default function SubscriptionSuccess() {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
-  const [status, setStatus] = useState("confirming"); // "confirming" | "success" | "error"
+  const [status, setStatus] = useState("confirming");
 
   useEffect(() => {
     const confirm = async () => {
@@ -19,20 +15,10 @@ export default function SubscriptionSuccess() {
       }
 
       try {
-        const token = getToken();
-        await axios.post(
-          `${API_BASE}/subscriptions/confirm`,
-          { sessionId },
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
+        await confirmSubscription(sessionId);
 
         setStatus("success");
 
-        // Option 1: reload page to refresh user from backend
         setTimeout(() => {
           navigate("/profile", { replace: true });
           window.location.reload();
@@ -45,7 +31,6 @@ export default function SubscriptionSuccess() {
 
     confirm();
   }, [searchParams, navigate]);
-
   if (status === "confirming") {
     return (
       <div style={{ padding: "2rem" }}>
