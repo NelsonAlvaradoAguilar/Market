@@ -5,17 +5,8 @@ import Home from "../Home/Home";
 import { createCheckoutSession } from "../../utils/api";
 import { useNavigate } from "react-router-dom";
 import "./ProfilePage.scss";
-export default function ProfilePage({ user, onLogout }) {
-  const handleSubscribe = async () => {
-    try {
-      const { url } = await createCheckoutSession();
-      window.location.href = url; // redirect to Stripe Checkout
-    } catch (err) {
-      console.error("Subscribe error:", err);
-      alert("Could not start subscription. Please try again.");
-    }
-  };
 
+export default function ProfilePage({ user, onLogout, handleSubscribe }) {
   const isActive = user?.subscription_status === "active";
   return !user ? (
     <div>No user data found.</div>
