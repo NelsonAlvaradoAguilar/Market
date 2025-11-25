@@ -1,17 +1,14 @@
-import { useEffect, useState } from "react";
-import { useSearchParams, useNavigate } from "react-router-dom";
-import axios from "axios";
-import { getToken } from "../../utils/api"; // or wherever you keep this
+import React, { useEffect, useState } from "react";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import { confirmSubscription } from "../../utils/api";
 
-const API_BASE = process.env.REACT_APP_API_BASE || "http://localhost:8080";
-
-export default function SubscriptionSuccess() {
+export default function SubscriptionSuccess({ refreshUser }) {
   const [searchParams] = useSearchParams();
+  const [status, setStatus] = useState("processing");
   const navigate = useNavigate();
-  const [status, setStatus] = useState("confirming"); // "confirming" | "success" | "error"
 
   useEffect(() => {
-    const confirm = async () => {
+    const run = async () => {
       const sessionId = searchParams.get("session_id");
       if (!sessionId) {
         setStatus("error");
@@ -19,55 +16,31 @@ export default function SubscriptionSuccess() {
       }
 
       try {
-        const token = getToken();
-        await axios.post(
-          `${API_BASE}/subscriptions/confirm`,
-          { sessionId },
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
+        // 1) Confirm subscription on backend (updates DB)
+        await confirmSubscription(sessionId);
+
+        // 2) Refresh user in App state + localStorage
+        if (typeof refreshUser === "function") {
+          await refreshUser();
+        }
 
         setStatus("success");
 
-        // Option 1: reload page to refresh user from backend
+        // 3) Redirect to profile
         setTimeout(() => {
-          navigate("/profile", { replace: true });
-          window.location.reload();
-        }, 1500);
+          navigate("/profile");
+        }, 800);
       } catch (err) {
-        console.error("Error confirming subscription:", err);
+        console.error("Subscription confirmation failed:", err);
         setStatus("error");
       }
     };
 
-    confirm();
-  }, [searchParams, navigate]);
+    run();
+  }, [searchParams, navigate, refreshUser]);
 
-  if (status === "confirming") {
-    return (
-      <div style={{ padding: "2rem" }}>
-        <h1>Finishing your subscription…</h1>
-        <p>Please wait a moment while we confirm your payment.</p>
-      </div>
-    );
-  }
-
-  if (status === "error") {
-    return (
-      <div style={{ padding: "2rem" }}>
-        <h1>There was a problem confirming your subscription.</h1>
-        <p>You can return to your profile and try again.</p>
-      </div>
-    );
-  }
-
-  return (
-    <div style={{ padding: "2rem" }}>
-      <h1>Subscription confirmed!</h1>
-      <p>Redirecting you to your profile…</p>
-    </div>
-  );
+  if (status === "processing") return <p>Confirming your subscription...</p>;
+  if (status === "error")
+    return <p>There was a problem confirming your subscription.</p>;
+  return <p>Subscription confirmed! Redirecting to your profile...</p>;
 }

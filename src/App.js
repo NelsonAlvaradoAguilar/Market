@@ -48,6 +48,17 @@ export default function App() {
   const [subtotal, setSubtotal] = useState(0);
 
   const cartFull = isCartFull(cart);
+  const refreshUser = async () => {
+    try {
+      const userData = await getAuthorized();
+      console.log("Refreshed user from API:", userData);
+      setUser(userData); // <-- this will trigger your useEffect([user])
+      setUserSession(userData);
+      localStorage.setItem("user", JSON.stringify(userData));
+    } catch (err) {
+      console.error("Profile refresh error:", err);
+    }
+  };
 
   // Load user profile / session
   useEffect(() => {
@@ -181,6 +192,7 @@ export default function App() {
     setSubtotal(0);
     setIsSubscribed("");
   };
+  console.log(isSubscribed);
 
   return (
     <BrowserRouter>
@@ -191,7 +203,10 @@ export default function App() {
           path="/"
           element={<Home user={user} onLogout={handleLogout} />}
         />
-        <Route path="/subscription/success" element={<SubscriptionSuccess />} />
+        <Route
+          path="/subscription/success"
+          element={<SubscriptionSuccess refreshUser={refreshUser} />}
+        />
         <Route path="/subscription/cancel" element={<SubscriptionCancel />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
