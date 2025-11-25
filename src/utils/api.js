@@ -4,6 +4,7 @@ const getToken = () => {
   if (!raw || raw === "null" || raw === "undefined") return null;
   return raw;
 };
+
 const getUserSession = () => {
   const stored = localStorage.getItem("user");
   if (!stored || stored === "null" || stored === "undefined") return null;
@@ -17,8 +18,8 @@ const getUserSession = () => {
   }
 };
 
-//const API_BASE = "http://localhost:4242/api";
-const API_BASE = "https://marketserver-7r02.onrender.com/api";
+const API_BASE = "http://localhost:4242/api";
+//const API_BASE = "https://marketserver-7r02.onrender.com/api";
 
 const getProducts = async () => {
     try {
@@ -278,7 +279,7 @@ const cancelSubscription = async () => {
 
   try {
     const res = await axios.post(
-      "/subscriptions/cancel",
+      `${API_BASE}/subscriptions/cancel`,
       {},
       {
         headers: { Authorization: `Bearer ${token}` },
@@ -287,6 +288,27 @@ const cancelSubscription = async () => {
     return res.data; // e.g. { message: "Subscription will cancel at period end" }
   } catch (err) {
     console.error("Error canceling subscription:", err);
+    throw err;
+  }
+};
+export const confirmSubscription = async (sessionId) => {
+  const token = getToken();
+  if (!token) throw new Error("No token");
+  if (!sessionId) throw new Error("Missing sessionId");
+
+  try {
+    const res = await axios.post(
+      `${API_BASE}/subscriptions/confirm`,
+      { sessionId },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    return res.data; // { success: true } or error
+  } catch (err) {
+    console.error("Error confirming subscription:", err);
     throw err;
   }
 };
