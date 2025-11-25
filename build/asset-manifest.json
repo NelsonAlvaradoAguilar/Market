@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.e44e09ec.css",
-    "main.js": "/static/js/main.75678d38.js",
+    "main.css": "/static/css/main.ef501b2f.css",
+    "main.js": "/static/js/main.c80e3535.js",
     "static/js/453.4d302bdb.chunk.js": "/static/js/453.4d302bdb.chunk.js",
     "static/media/PXL_20250930_174844532.PANO.jpg": "/static/media/PXL_20250930_174844532.PANO.a9864b249d807d01d3e5.jpg",
     "static/media/healthy-food-delivery-services-update-66338f1e8fb0a.avif": "/static/media/healthy-food-delivery-services-update-66338f1e8fb0a.8f8b99e0fc843540677f.avif",
@@ -24,12 +24,12 @@
     "static/media/slick.ttf": "/static/media/slick.c94f7671dcc99dce43e2.ttf",
     "static/media/slick.woff": "/static/media/slick.295183786cd8a1389865.woff",
     "index.html": "/index.html",
-    "main.e44e09ec.css.map": "/static/css/main.e44e09ec.css.map",
-    "main.75678d38.js.map": "/static/js/main.75678d38.js.map",
+    "main.ef501b2f.css.map": "/static/css/main.ef501b2f.css.map",
+    "main.c80e3535.js.map": "/static/js/main.c80e3535.js.map",
     "453.4d302bdb.chunk.js.map": "/static/js/453.4d302bdb.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.e44e09ec.css",
-    "static/js/main.75678d38.js"
+    "static/css/main.ef501b2f.css",
+    "static/js/main.c80e3535.js"
   ]
 }

@@ -18,7 +18,7 @@ const getUserSession = () => {
   }
 };
 
-const API_BASE = "http://localhost:4242/api";
+const API_BASE = process.env.REACT_APP_API_BASE || "http://localhost:4242/api";
 //const API_BASE = "https://marketserver-7r02.onrender.com/api";
 
 const getProducts = async () => {
