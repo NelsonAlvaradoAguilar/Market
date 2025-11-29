@@ -1,4 +1,4 @@
 # Market
 
-Email: admin@example.com
+Email: neaaitservices@gmail.com
 Password:AdminPassword123!
