@@ -1,4 +1,4 @@
 # Market
 
 Email: admin@example.com
-Password: AdminPassword123!
+Password:AdminPassword123!
