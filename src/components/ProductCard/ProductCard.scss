@@ -15,3 +15,8 @@
     @include button(#dc3545, #fff);
   }
 }
+.product-card--selected {
+  border: 2px solid #4caf50; // green border, or your preferred highlight
+  box-shadow: 0 0 8px #4caf5044;
+  background: #f6fff6;
+}

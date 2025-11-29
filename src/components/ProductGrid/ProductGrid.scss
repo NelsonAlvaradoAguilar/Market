@@ -14,5 +14,9 @@
   &__card {
     list-style: none;
     // width: 8rem;
+    &--empty {
+      width: 8rem;
+      margin-right: 5rem;
+    }
   }
 }
