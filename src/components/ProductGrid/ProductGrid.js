@@ -10,7 +10,8 @@ const ProductGrid = ({
   isSubscribed,
   onRemove,
   cart = [],
-  cartFull, // <-- new prop
+  cartFull,
+  // <-- new prop
 }) => {
   const [selectedProductId, setSelectedProductId] = useState(null);
   // Build a quick lookup of productIds that are in the cart
@@ -47,7 +48,8 @@ const ProductGrid = ({
                 onRemove={onRemove}
                 isInCart={isInCart}
                 cartFull={cartFull}
-                selected={selectedProductId === productId} // <-- pass selected prop
+                selected={selectedProductId === productId}
+                // <-- pass selected prop
               />
             </li>
           );

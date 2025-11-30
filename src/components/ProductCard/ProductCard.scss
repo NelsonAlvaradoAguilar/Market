@@ -3,10 +3,8 @@
 
 .product-card {
   @include product-card();
-  margin-right: 0.5rem;
   margin-left: 0.5rem;
-  margin-top: 0.5rem;
-
+  margin-bottom: 0.5rem;
   &__add-btn {
     @include button(#28a745, #fff);
   }

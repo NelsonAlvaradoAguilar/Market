@@ -42,18 +42,49 @@ const getProducts = async () => {
       );
       return null;
     }
-  },
-  getSections = async () => {
-    try {
-      const response = await axios.get(`${API_BASE}/sections`);
-      return response.data;
-    } catch (error) {
-      console.log(
-        `Failed to get sections from API with error message: ${error}`
-      );
-      return null;
-    }
   };
+const addProduct = async (product) => {
+  try {
+    const response = await axios.post(`${API_BASE}/products`, product);
+    return response.data;
+  } catch (error) {
+    console.log(`Failed to add product to API with error message: ${error}`);
+    throw error;
+  }
+};
+
+// Update product (ADMIN)
+const updateProduct = async (id, product) => {
+  try {
+    const response = await axios.put(`${API_BASE}/products/${id}`, product);
+    return response.data;
+  } catch (error) {
+    console.log(`Failed to update product in API with error message: ${error}`);
+    throw error;
+  }
+};
+
+// Delete product (ADMIN)
+const deleteProduct = async (id) => {
+  try {
+    const response = await axios.delete(`${API_BASE}/products/${id}`);
+    return response.data;
+  } catch (error) {
+    console.log(
+      `Failed to delete product from API with error message: ${error}`
+    );
+    throw error;
+  }
+};
+const getSections = async () => {
+  try {
+    const response = await axios.get(`${API_BASE}/sections`);
+    return response.data;
+  } catch (error) {
+    console.log(`Failed to get sections from API with error message: ${error}`);
+    return null;
+  }
+};
 const getCategories = async () => {
   try {
     const response = await axios.get(`${API_BASE}/categories`);
@@ -338,11 +369,14 @@ export const getUsers = async () => {
   }
 };
 
-export const getUserOrders = async (userId, { start, end, limit } = {}) => {
+export const getUserOrders = async (
+  userId,
+  { start, end, limit, email } = {}
+) => {
   try {
     const token = getToken();
     const res = await axios.get(`${API_BASE}/orders/user/${userId}`, {
-      params: { start, end, limit },
+      params: { start, end, limit, email },
       headers: { Authorization: `Bearer ${token}` },
     });
     return res.data;
@@ -497,6 +531,9 @@ export const createOrderItem = async (data) => {
 */
 export {
   getProducts,
+  updateProduct,
+  deleteProduct,
+  addProduct,
   getProductById,
   getSections,
   getCategories,
