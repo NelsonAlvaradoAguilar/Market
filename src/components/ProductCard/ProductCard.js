@@ -17,7 +17,7 @@ const ProductCard = ({
       <img className="product-card__img" src={item.imageUrl} alt={item.name} />
       <h4 className="product-card__title">{item?.name}</h4>
       <p className="product-card__origin">{item?.origin}</p>
-      <div>{item?.quantity}</div>
+
       {item.category_id === 6 && !isInCart && (
         <button
           className="product-card__button"
