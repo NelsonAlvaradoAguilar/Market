@@ -8,9 +8,9 @@ const ProductCard = ({
   subtotal,
   cartFull,
   selected,
+  isSubscribed, // <-- receive the prop
 }) => {
-  const productId = item.id;
-  const numericSubtotal = Number(subtotal) || 0;
+  // ...rest of your code
 
   return (
     <div className={`product-card${selected ? " product-card--selected" : ""}`}>
@@ -22,9 +22,20 @@ const ProductCard = ({
         <button
           className="product-card__button"
           onClick={() => addToCart(item.id)}
-          disabled={cartFull}
+          disabled={!isSubscribed || cartFull}
+          title={
+            !isSubscribed
+              ? "Subscribe to enable purchasing"
+              : cartFull
+              ? "Box is full"
+              : ""
+          }
         >
-          {cartFull ? "Box is full" : "Buy"}
+          {!isSubscribed
+            ? "Subscribe to buy"
+            : cartFull
+            ? "Box is full"
+            : "Buy"}
         </button>
       )}
 
@@ -32,8 +43,10 @@ const ProductCard = ({
         <button
           className="product-card__button product-card__button--remove"
           onClick={() => onRemove(item.id)}
+          disabled={!isSubscribed}
+          title={!isSubscribed ? "Subscribe to enable removing" : ""}
         >
-          Remove from box
+          {!isSubscribed ? "Subscribe to remove" : "Remove from box"}
         </button>
       )}
     </div>

@@ -3,13 +3,12 @@
 
 .product {
   display: flex;
-
-  padding-left: 0.5rem;
+  padding-left: 0%;
 
   flex-direction: row;
   flex-wrap: wrap;
   // margin-right: 0.5rem;
-  justify-content: space-evenly;
+  justify-content: space-around;
   margin-right: auto;
   &__card {
     list-style: none;
