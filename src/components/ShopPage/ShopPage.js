@@ -134,17 +134,15 @@ const ShopPage = ({
           />
         </div>
 
-        <div>
-          <ProductGrid
-            items={itemsToDisplay}
-            addToCart={addToCart}
-            onRemove={onRemove}
-            cart={cart}
-            subtotal={subtotal}
-            isSubscribed={isSubscribed}
-            cartFull={cartFull}
-          />
-        </div>
+        <ProductGrid
+          items={itemsToDisplay}
+          addToCart={addToCart}
+          onRemove={onRemove}
+          cart={cart}
+          subtotal={subtotal}
+          isSubscribed={isSubscribed}
+          cartFull={cartFull}
+        />
       </div>
       <Link className="shop-page__box-cta" to="/cart"></Link>
     </section>

@@ -36,6 +36,7 @@ import ProfilePage from "./pages/ProfilePage/ProfilePage.js";
 import LoginForm from "./components/Login/Login.js";
 import AdminRoute from "./pages/AdminRoute/AdminRoute.js";
 import SubscribedRoute from "./routes/SuscribedRoute/SubscriptionRoute.js";
+import AdminProductManager from "./components/AdminProductManager/AdminProductManager.js";
 
 const stripePromise = loadStripe("pk_test_..."); // Your Stripe TEST publishable key
 
@@ -284,6 +285,7 @@ export default function App() {
             </SubscribedRoute>
           }
         />
+        <Route path="/admin/products" element={<AdminProductManager />} />
         <Route path="*" element={<Home />} />
       </Routes>
       <Footer user={user} />

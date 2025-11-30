@@ -4,32 +4,54 @@ import { getWeeklyOrders } from "../../utils/api";
 const WeeklyOrders = () => {
   const [rows, setRows] = useState([]);
   const [loading, setLoading] = useState(true);
-
+  const [email, setEmail] = useState("");
+  function yearWeekToDate(yearweek) {
+    const year = Math.floor(yearweek / 100);
+    const week = yearweek % 100;
+    // ISO week 1 is the week with the first Thursday of the year
+    const simple = new Date(year, 0, 1 + (week - 1) * 7);
+    const dow = simple.getDay();
+    const ISOweekStart = new Date(simple);
+    if (dow <= 4) ISOweekStart.setDate(simple.getDate() - simple.getDay() + 1);
+    else ISOweekStart.setDate(simple.getDate() + 8 - simple.getDay());
+    return ISOweekStart;
+  }
   // Example: last 4 weeks
+  const fetchData = async () => {
+    setLoading(true);
+    const end = new Date();
+    const start = new Date();
+    start.setDate(end.getDate() - 28);
+
+    const startStr = start.toISOString().slice(0, 10);
+    const endStr = end.toISOString().slice(0, 10);
+
+    // Pass email as third argument
+    const data = await getWeeklyOrders(startStr, endStr, undefined, email);
+    setRows(data);
+    setLoading(false);
+  };
   useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
-      const end = new Date();
-      const start = new Date();
-      start.setDate(end.getDate() - 28);
-
-      const startStr = start.toISOString().slice(0, 10);
-      const endStr = end.toISOString().slice(0, 10);
-
-      const data = await getWeeklyOrders(startStr, endStr);
-      console.log(data);
-
-      setRows(data);
-      setLoading(false);
-    };
-
     fetchData();
+    // eslint-disable-next-line
   }, []);
-
   if (loading) return <p>Loading weekly orders...</p>;
 
   return (
     <div style={{ maxWidth: 600, margin: "2em auto" }}>
+      <div style={{ marginBottom: "1em" }}>
+        <label>
+          Filter by Email:{" "}
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="user@example.com"
+            style={{ width: 200 }}
+          />
+        </label>
+        <button onClick={fetchData}>Search</button>
+      </div>
       <ul style={{ listStyle: "none", padding: 0 }}>
         {rows.length === 0 && (
           <li
@@ -58,13 +80,16 @@ const WeeklyOrders = () => {
             }}
           >
             <h3 style={{ margin: 0, color: "#007bff", fontSize: "1.1em" }}>
-              Week:{" "}
+              Week starting:{" "}
               {row.week_start
-                ? `${String(row.week_start).slice(0, 4)}-W${String(
-                    row.week_start
-                  ).slice(4)}`
+                ? yearWeekToDate(row.week_start).toLocaleDateString(undefined, {
+                    month: "short",
+                    day: "numeric",
+                    year: "numeric",
+                  })
                 : "N/A"}
             </h3>
+
             <div style={{ marginTop: 8 }}>
               <span style={{ display: "block", marginBottom: 4 }}>
                 <strong>User:</strong> {row.user_name || "Unknown"}

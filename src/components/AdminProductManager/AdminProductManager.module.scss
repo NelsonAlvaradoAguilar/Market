@@ -1,0 +1,234 @@
+.managerContainer {
+  max-width: 900px;
+  margin: 2.5em auto;
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 2px 24px rgba(0, 0, 0, 0.07);
+  padding: 2.5em 2em 2em 2em;
+}
+
+h2 {
+  font-size: 2em;
+  font-weight: 700;
+  margin-bottom: 1.2em;
+  color: #273042;
+}
+
+form {
+  background: #f7f9fa;
+  border-radius: 8px;
+  padding: 1.5em 1.2em;
+  margin-bottom: 2em;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+  h3 {
+    font-size: 1.2em;
+    font-weight: 600;
+    margin-bottom: 1em;
+    color: #2d3a4a;
+  }
+  input {
+    border: 1px solid #d1d6db;
+    border-radius: 5px;
+    padding: 0.5em 0.9em;
+    font-size: 1em;
+    background: #fff;
+    transition: border 0.2s;
+    &:focus {
+      border-color: #8ad0f8;
+      outline: none;
+    }
+  }
+  button {
+    background: #2d3a4a;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 0.55em 1.5em;
+    font-size: 1em;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s;
+    &:hover:not(:disabled) {
+      background: #3a4a60;
+    }
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    & + button {
+      background: #eaeaea;
+      color: #444;
+      margin-left: 0.7em;
+      &:hover:not(:disabled) {
+        background: #d1d6db;
+      }
+    }
+  }
+}
+
+.inventorySection {
+  margin-top: 1.5em;
+  background: #f8fafb;
+  border-radius: 10px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+  padding: 1.3em 0 1em 0;
+}
+
+.inventoryHeader {
+  padding: 0 1.2em 0.8em 1.2em;
+  h3 {
+    margin: 0 0 0.5em 0;
+    font-size: 1.15em;
+    font-weight: 600;
+    color: #222;
+  }
+}
+
+.inventoryGridHeader,
+.inventoryGrid {
+  display: grid;
+  grid-template-columns: 1.3fr 1.1fr 1fr 0.8fr 1.1fr 1fr 1.5fr;
+  gap: 0.4em;
+  align-items: center;
+  padding: 0.7em 1.2em;
+}
+
+.inventoryGridHeader {
+  font-weight: bold;
+  color: #3a4a60;
+  background: #f0f2f4;
+  border-radius: 8px 8px 0 0;
+  font-size: 1em;
+  letter-spacing: 0.01em;
+  border-bottom: 2px solid #e6eaf0;
+}
+
+.inventoryGrid {
+  background: #fff;
+  border-bottom: 1px solid #ececec;
+  font-size: 0.97em;
+  &:last-child {
+    border-bottom: none;
+  }
+  img {
+    border-radius: 4px;
+    background: #fff;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.07);
+    max-width: 40px;
+    max-height: 40px;
+    object-fit: cover;
+    display: block;
+    margin: 0 auto;
+  }
+  button {
+    margin-right: 0.5em;
+    min-width: 60px;
+    padding: 0.35em 0.9em;
+    border-radius: 5px;
+    border: none;
+    font-size: 0.97em;
+    cursor: pointer;
+    transition: background 0.15s;
+    &:first-child {
+      background: #eaeaea;
+      color: #273042;
+      &:hover:not(:disabled) {
+        background: #d1d6db;
+      }
+    }
+    &:last-child {
+      background: #ffeaea;
+      color: #c0392b;
+      &:hover:not(:disabled) {
+        background: #ffd6d6;
+      }
+    }
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+  }
+}
+
+.inventoryEmpty {
+  text-align: center;
+  color: #888;
+  padding: 2em;
+  font-size: 1.08em;
+}
+
+/* Modal styles */
+.confirmOverlay {
+  background: rgba(0, 0, 0, 0.4);
+  position: fixed;
+  z-index: 20;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.confirmBox {
+  background: #fff;
+  padding: 2em 2.5em;
+  border-radius: 10px;
+  box-shadow: 0 4px 32px rgba(0, 0, 0, 0.17);
+  text-align: center;
+  min-width: 320px;
+
+  p {
+    margin-bottom: 1.5em;
+    font-size: 1.1em;
+    color: #c0392b;
+    font-weight: 500;
+  }
+  button {
+    margin: 0 0.5em;
+    min-width: 90px;
+    padding: 0.5em 1.2em;
+    border-radius: 5px;
+    border: none;
+    font-size: 1em;
+    cursor: pointer;
+    &:first-child {
+      background: #c0392b;
+      color: white;
+    }
+    &:last-child {
+      background: #eaeaea;
+      color: #222;
+    }
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+}
+
+/* Responsive grid: stack on small screens */
+@media (max-width: 900px) {
+  .managerContainer {
+    padding: 1em 0.5em;
+  }
+  .inventoryGridHeader,
+  .inventoryGrid {
+    grid-template-columns: 1fr 1fr 1fr;
+    font-size: 0.97em;
+    gap: 0.3em;
+    span,
+    div {
+      word-break: break-word;
+    }
+    img {
+      max-width: 32px;
+      max-height: 32px;
+    }
+  }
+  .inventoryHeader {
+    padding-left: 0.4em;
+    padding-right: 0.4em;
+  }
+}

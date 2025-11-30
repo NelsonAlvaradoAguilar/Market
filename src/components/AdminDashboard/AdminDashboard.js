@@ -2,6 +2,8 @@ import React from "react";
 import ProfilePage from "../../pages/ProfilePage/ProfilePage";
 import WeeklyOrders from "../WeeklyOrders/WeeklyOrdes";
 import AllOrdersAdmin from "../AllOrdersAdmin/AllOrdersAdmin";
+import AdminProductManager from "../AdminProductManager/AdminProductManager";
+import { Link, NavLink } from "react-router-dom";
 export default function AdminDashboard({
   user,
   onLogout,
@@ -11,27 +13,21 @@ export default function AdminDashboard({
   return (
     <div style={{ padding: 24 }}>
       <h1>Admin Dashboard</h1>
-      <p>
-        Welcome, {user?.name} (role: {user?.role})
-      </p>
 
-      <h2>All Orders (filter by date)</h2>
-      <AllOrdersAdmin />
-
-      <hr style={{ margin: "24px 0" }} />
-
-      <h2>Weekly Orders by User (overview)</h2>
-      <WeeklyOrders />
-
-      <hr style={{ margin: "24px 0" }} />
-
-      <h2>Your Profile</h2>
       <ProfilePage
         user={user}
         onLogout={onLogout}
         handleSubscribe={handleSubscribe}
         isSubscribed={isSubscribed}
       />
+
+      <NavLink to="/admin/products" activeClassName="active">
+        Manage Products
+      </NavLink>
+      <h2>All Orders (filter by date)</h2>
+      <AllOrdersAdmin />
+
+      <hr style={{ margin: "24px 0" }} />
     </div>
   );
 }
