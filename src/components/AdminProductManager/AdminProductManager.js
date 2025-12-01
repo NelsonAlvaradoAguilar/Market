@@ -29,18 +29,9 @@ const AdminProductManager = () => {
     try {
       const res = await getProducts();
       // Defensive: handle cases where API returns { products: [...] } or a single object
-      let productsArray = [];
+      console.log(res);
 
-      if (Array.isArray(res)) {
-        productsArray = res;
-      } else if (res && Array.isArray(res.products)) {
-        productsArray = res.products;
-      } else if (res) {
-        // If it's a single product object, wrap in array
-        productsArray = [res];
-      }
-
-      setProducts(productsArray);
+      setProducts(res);
       setError("");
     } catch (err) {
       setError("Failed to load products.");
