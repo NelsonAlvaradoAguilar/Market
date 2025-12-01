@@ -185,6 +185,7 @@ form {
     color: #c0392b;
     font-weight: 500;
   }
+
   button {
     margin: 0 0.5em;
     min-width: 90px;
@@ -231,4 +232,8 @@ form {
     padding-left: 0.4em;
     padding-right: 0.4em;
   }
+}
+.actions {
+  display: flex;
+  justify-content: center;
 }

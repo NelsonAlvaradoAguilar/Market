@@ -21,7 +21,10 @@ export default function AdminDashboard({
         isSubscribed={isSubscribed}
       />
 
-      <NavLink to="/admin/products" activeClassName="active">
+      <NavLink
+        to="/admin/products"
+        className={({ isActive }) => (isActive ? "active" : "")}
+      >
         Manage Products
       </NavLink>
       <h2>All Orders (filter by date)</h2>
