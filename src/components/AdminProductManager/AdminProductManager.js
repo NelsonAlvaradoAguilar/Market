@@ -28,14 +28,16 @@ const AdminProductManager = () => {
     setLoading(true);
     try {
       const res = await getProducts();
-      setProducts(res || []);
+      // Defensive: handle cases where API returns { products: [...] } or a single object
+      console.log(res);
+
+      setProducts(res);
       setError("");
     } catch (err) {
       setError("Failed to load products.");
     }
     setLoading(false);
   };
-
   const handleInput = (e) => {
     const { name, value } = e.target;
     setProduct((p) => ({ ...p, [name]: value }));
@@ -212,7 +214,7 @@ const AdminProductManager = () => {
                   />
                 )}
               </div>
-              <div>
+              <div className="actions">
                 <button
                   onClick={() => handleEdit(prod)}
                   style={{ marginRight: 4 }}
